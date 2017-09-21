@@ -1,2 +1,2 @@
-# onecart
-OneCart is a responsive eCommerce WordPress theme - https://getbutterfly.com/downloads/onecart/
+# OneCart
+OneCart is a commercial WordPress theme available from https://getbutterfly.com/downloads/onecart/. The theme is hosted here, on a public GitHub repository, in order to better facilitate community contributions from developers and users alike. If you have a suggestion, a bug report, or a patch for an issue, feel free to submit it here. I do ask, however, that if you are using the theme on a live site that you please purchase a valid license from the website. I cannot provide support to anyone that does not hold a valid license key.
