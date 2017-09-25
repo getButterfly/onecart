@@ -3,11 +3,11 @@ OneCart is a commercial WordPress theme available from https://getbutterfly.com/
 
 # Roadmap
 
-[x] TODO: Add full PHP 7.0 compatibility
-[ ] TODO: Add full PHP 7.1 compatibility
-[x] TODO: Add explicit GPLv3 license
-[ ] TODO: Improve demo content
-[ ] TODO: Improve theme assets (according to WordPress.org guidelines)
-[ ] TODO: Test, test, test
-[x] TODO: Set up a collaboration system (GIT, pull requests)
-[ ] TODO: Migrate old documentation and installation notes
+- [x] TODO: Add full PHP 7.0 compatibility
+- [ ] TODO: Add full PHP 7.1 compatibility
+- [x] TODO: Add explicit GPLv3 license
+- [ ] TODO: Improve demo content
+- [ ] TODO: Improve theme assets (according to WordPress.org guidelines)
+- [ ] TODO: Test, test, test
+- [x] TODO: Set up a collaboration system (GIT, pull requests)
+- [ ] TODO: Migrate old documentation and installation notes
