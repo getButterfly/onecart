@@ -1,0 +1,53 @@
+#slide-meta-box p {
+	border-bottom: 1px solid #e5e5e5;
+	box-shadow: 0 1px #fff;
+	margin: 0;
+	padding: 10px;
+}
+#slide-meta-box .inside {
+	margin: 0;
+	padding: 0;
+}
+#slide-meta-box label {
+	float: left;
+	width: 180px;
+	display: block;
+	font-size: 13px;
+	color: #444;
+	margin: 5px 0 0 0;
+}
+#slide-meta-box input[type=text], #slide-meta-box textarea {
+	width: 300px;
+	color: #888;
+	border: 1px solid #eee;
+	border-bottom: 1px solid #ddd;
+	box-sizing:content-box;
+	-ms-box-sizing:content-box;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box;
+	-webkit-border-radius: 3px; /* round corners */
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition: all 0.4s ease-in-out; /* fade in effect */
+	-moz-transition: all 0.4s ease-in-out;
+	-o-transition: all 0.4s ease-in-out;
+	padding: 6px 8px;
+}
+#slide-meta-box textarea {
+	height: 120px;
+	min-height: 120px;
+	width: 800px;
+	min-width: 800px;
+	max-width: 800px;
+}
+#slide-meta-box input[type=text]:focus, #slide-meta-box textarea:focus {
+	-webkit-box-shadow: #9cbdbe 0 0 1px;
+	-moz-box-shadow: #9cbdbe 0 0 1px;
+	box-shadow: #9cbdbe 0 0 1px;
+	border-color: #9cbdbe;
+	background-color: #fff;
+	color: #333;
+}
+#slide-meta-box span.description {
+	margin: 0 0 0 8px;
+}
