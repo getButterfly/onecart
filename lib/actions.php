@@ -174,7 +174,6 @@ function ocart_place_in_header() {
 ?>
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/default.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/flick/jquery-ui.css" />
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans|Montserrat|Bree+Serif|Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
 
 	<?php /* background images */ ?>
 

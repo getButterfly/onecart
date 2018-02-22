@@ -11,24 +11,24 @@
 
 	/* main wrap */
 	.wrap {width: 280px}
-	
+
 	/* header */
 	#header {height: auto}
-	
+
 	/* logo */
 	#logo {margin: 20px 0 0 0}
 	#logo img {
 		max-width: 220px;
 		height: auto;
 	}
-	
+
 	/* browser */
 	#browser, #supermenu {display: none}
-	
+
 	/* small cart */
 	#cart {top: 20px}
 	.cart {padding: 0}
-	
+
 	/* top links */
 	#toplinks {
 		float: left;
@@ -43,7 +43,7 @@
 		border: 1px solid #ddd;
 		border-radius: 3px;
 	}
-	
+
 	/* browser */
 	#browser-320 {
 		display: block;
@@ -64,7 +64,7 @@
 	}
 	#browser-320 select * {font-family: Arial}
 	#browser-320 optgroup {font-style: normal}
-	
+
 	/* slider */
 	#banner {
 		margin: 20px 0 0 0;
@@ -81,7 +81,7 @@
 	.nextButton, .prevButton {top: 30px}
 	.iosSlider_buttons {display: none}
 	.iosSlider .text1, .iosSlider .text2 {display: none}
-	
+
 	/* catalog */
 	#catalog {
 		margin: 0 auto;
@@ -117,7 +117,7 @@
 		color: #fff;
 		margin: 0 0 0 10px;
 	}
-	
+
 	/* bottom widgets */
 	#bottom {padding: 30px 0 0 0;}
 	#bottom .wrap {text-align: center}
@@ -127,7 +127,7 @@
 		padding: 0 0 20px 0;
 		border-bottom: 1px solid #d5d5d5;
 	}
-	
+
 	/* footer */
 	#footer {
 		width: 100%;
@@ -136,10 +136,10 @@
 	#footer .wrap {text-align: center}
 	#footer .alignleft {margin: 10px 0 30px 0}
 	.payment-icons {display: none}
-	
+
 	/* filter */
 	#filter {display: none}
-	
+
 	/* details box */
 	#details {
 		width: 100%;
@@ -226,12 +226,12 @@
 		font-size: 12px;
 		line-height: 17px;
 	}
-	
+
 	/* blog detail */
 	#blog {margin: 30px 0}
 	.blog_title {padding: 0 0 20px 0}
 	.blog_nav {display: none}
-	
+
 	/* blog nav */
 	#blog_nav-320 {
 		display: block;
@@ -252,7 +252,7 @@
 	}
 	#blog_nav-320 select * {font-family: Arial}
 	#blog_nav-320 optgroup {font-style: normal}
-	
+
 	/* blog */
 	.blog_content {
 		float: none;
@@ -272,7 +272,7 @@
 		text-align: center;
 		font-size: 20px;
 	}
-	
+
 	/* sidebar */
 	.sidebar {
 		float: none;
@@ -283,7 +283,7 @@
 	.oc_search {padding: 10px}
 	.oc_tabs {padding: 0}
 	.searchfield { width: 213px }
-	
+
 	/* comments */
 	#comments {
 		width: 100%;
@@ -317,7 +317,7 @@
 		font-family: Tahoma;
 	}
 	.comment-edit-link {display: none}
-	
+
 	/* checkout wrappers */
 	.checkout_left {
 		float: none;
@@ -362,7 +362,7 @@
 		line-height: 20px;
 		font-weight: 300;
 	}
-	
+
 	/* cart popup */
 	#lightbox {
 		position: absolute;
@@ -383,7 +383,6 @@
 	.lightbox h1 {
 		font-weight: 500;
 		font-size: 14px;
-		font-family: "Ubuntu", Arial;
 		color: #363636;
 		text-transform: uppercase;
 		margin: 0 0 20px 0;
@@ -421,7 +420,7 @@
 		color: #333;
 		text-align: center;
 		height: 24px;
-		font-family: "Ubuntu", Arial;
+		font-family: inherit;
 		font-size: 11px;
 		font-weight: 300;
 	}
@@ -436,7 +435,7 @@
 		padding: 0 10px;
 		height: 25px;
 	}
-	
+
 	/* totals */
 	.totals {
 		border-top: 1px solid #ddd;
@@ -466,7 +465,7 @@
 		font-size: 18px;
 		top: 10px;
 	}
-	
+
 	/* cart buttons */
 	.cart-buttons {
 		padding: 30px 0;
@@ -477,7 +476,7 @@
 		display: block;
 		margin: 0 auto;
 	}
-	
+
 	/* pre-checkout */
 	.checkout_guest, .checkout_login {
 		float: none;
@@ -518,7 +517,7 @@
 	}
 	.checkout_login input[type=submit] {
 		color: #fff;
-		font-family: "Ubuntu", Arial;
+		font-family: inherit;
 		font-size: 18px;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -530,7 +529,7 @@
 		display: block;
 		margin: 15px 0 0 0;
 	}
-	
+
 	/* checkout form */
 	.cform fieldset {
 		padding: 0 0 20px 0;
@@ -605,7 +604,7 @@
 		left: auto;
 		padding: 0 0 0 50px;
 	}
-	
+
 	/* popup forms */
 	.form_norm {
 		border-bottom: none;
@@ -646,7 +645,7 @@
 		display: block;
 		margin: 0;
 	}
-	
+
 	/* v2 grid */
 	.catalog {
 		float: none;
@@ -663,13 +662,13 @@
 		padding-top: 20px;
 		margin: 0 0 6px 0;
 	}
-	
+
 	/* lightbox product */
 	.lightbox-product .product-info {
 		width: 100%;
 		float: none;
 	}
-	
+
 	#topbar {
 		height: auto;
 	}
@@ -681,23 +680,23 @@
 
 	/* main wrap */
 	.wrap {width: 440px}
-	
+
 	/* header */
 	#header {height: auto}
-	
+
 	/* logo */
 	#logo {margin: 20px 0 0 0}
 	#logo img {
 		height: auto;
 	}
-	
+
 	/* browser */
 	#browser, #supermenu {display: none}
-	
+
 	/* small cart */
 	#cart {top: 20px}
 	.cart {padding: 0}
-	
+
 	/* top links */
 	#toplinks {
 		float: left;
@@ -712,7 +711,7 @@
 		border: 1px solid #ddd;
 		border-radius: 3px;
 	}
-	
+
 	/* browser */
 	#browser-320 {
 		display: block;
@@ -733,7 +732,7 @@
 	}
 	#browser-320 select * {font-family: Arial}
 	#browser-320 optgroup {font-style: normal}
-	
+
 	/* slider */
 	#banner {
 		margin: 20px 0 0 0;
@@ -750,7 +749,7 @@
 	.nextButton, .prevButton {top: 60px}
 	.iosSlider_buttons {display: none}
 	.iosSlider .text1, .iosSlider .text2 {display: none}
-	
+
 	/* catalog */
 	#catalog {
 		margin: 0 auto;
@@ -786,7 +785,7 @@
 		color: #fff;
 		margin: 0 0 0 10px;
 	}
-	
+
 	/* bottom widgets */
 	#bottom {padding: 30px 0 0 0;}
 	#bottom .wrap {text-align: center}
@@ -796,7 +795,7 @@
 		padding: 0 0 20px 0;
 		border-bottom: 1px solid #d5d5d5;
 	}
-	
+
 	/* footer */
 	#footer {
 		width: 100%;
@@ -805,10 +804,10 @@
 	#footer .wrap {text-align: center}
 	#footer .alignleft {margin: 10px 0 30px 0}
 	.payment-icons {display: none}
-	
+
 	/* filter */
 	#filter {display: none}
-	
+
 	/* details box */
 	#details {
 		width: 100%;
@@ -908,12 +907,12 @@
 		font-size: 12px;
 		line-height: 17px;
 	}
-	
+
 	/* blog detail */
 	#blog {margin: 30px 0}
 	.blog_title {padding: 0 0 20px 0}
 	.blog_nav {display: none}
-	
+
 	/* blog nav */
 	#blog_nav-320 {
 		display: block;
@@ -934,7 +933,7 @@
 	}
 	#blog_nav-320 select * {font-family: Arial}
 	#blog_nav-320 optgroup {font-style: normal}
-	
+
 	/* blog */
 	.blog_content {
 		float: none;
@@ -954,7 +953,7 @@
 		text-align: center;
 		font-size: 20px;
 	}
-	
+
 	/* sidebar */
 	.sidebar {
 		float: none;
@@ -965,7 +964,7 @@
 	.oc_search {padding: 10px}
 	.oc_tabs {padding: 0}
 	.searchfield { width: 223px }
-	
+
 	/* comments */
 	#comments {
 		width: 100%;
@@ -1001,7 +1000,7 @@
 		margin: 0 0 0 5px;
 		font-family: Tahoma;
 	}
-	
+
 	/* checkout wrappers */
 	.checkout_left {
 		float: none;
@@ -1038,7 +1037,7 @@
 		line-height: 20px;
 		font-weight: 300;
 	}
-	
+
 	/* cart popup */
 	#lightbox {
 		position: absolute;
@@ -1059,7 +1058,6 @@
 	.lightbox h1 {
 		font-weight: 500;
 		font-size: 14px;
-		font-family: "Ubuntu", Arial;
 		color: #363636;
 		text-transform: uppercase;
 		margin: 0 0 20px 0;
@@ -1097,7 +1095,7 @@
 		color: #333;
 		text-align: center;
 		height: 24px;
-		font-family: "Ubuntu", Arial;
+		font-family: inherit;
 		font-size: 11px;
 		font-weight: 300;
 	}
@@ -1112,7 +1110,7 @@
 		padding: 0 10px;
 		height: 25px;
 	}
-	
+
 	/* totals */
 	.totals {
 		border-top: 1px solid #ddd;
@@ -1142,7 +1140,7 @@
 		font-size: 18px;
 		top: 10px;
 	}
-	
+
 	/* cart buttons */
 	.cart-buttons {
 		padding: 30px 0;
@@ -1153,7 +1151,7 @@
 		display: block;
 		margin: 0 auto;
 	}
-	
+
 	/* pre-checkout */
 	.checkout_guest, .checkout_login {
 		float: none;
@@ -1194,7 +1192,7 @@
 	}
 	.checkout_login input[type=submit] {
 		color: #fff;
-		font-family: "Ubuntu", Arial;
+		font-family: inherit;
 		font-size: 18px;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -1206,7 +1204,7 @@
 		display: block;
 		margin: 15px 0 0 0;
 	}
-	
+
 	/* checkout form */
 	.cform fieldset {
 		padding: 0 0 20px 0;
@@ -1281,7 +1279,7 @@
 		left: auto;
 		padding: 0 0 0 50px;
 	}
-	
+
 	/* popup forms */
 	.form_norm {
 		border-bottom: none;
@@ -1322,7 +1320,7 @@
 		display: block;
 		margin: 0;
 	}
-	
+
 	/* v2 grid */
 	.catalog {
 		float: right;
@@ -1345,7 +1343,7 @@
 		width: 100%;
 		float: none;
 	}
-	
+
 	#topbar {
 		height: auto;
 	}
@@ -1362,23 +1360,23 @@
 
 	/* main wrap */
 	.wrap {width: 718px}
-	
+
 	/* header */
 	#header {height: auto}
-	
+
 	/* logo */
 	#logo {margin: 20px 20px 0 0;}
 	#logo img {
 		height: auto;
 	}
-	
+
 	/* browser */
 	#browser, #supermenu {display: none}
-	
+
 	/* small cart */
 	#cart {top: 20px}
 	.cart {padding: 0}
-	
+
 	/* top links */
 	#toplinks {
 		float: left;
@@ -1392,7 +1390,7 @@
 		margin: 5px 20px 12px 0;
 		border-radius: 3px;
 	}
-	
+
 	/* browser */
 	#browser-320 {
 		display: block;
@@ -1413,7 +1411,7 @@
 	}
 	#browser-320 select * {font-family: Arial}
 	#browser-320 optgroup {font-style: normal}
-	
+
 	/* slider */
 	#banner {
 		margin: 20px 0 0 0;
@@ -1430,7 +1428,7 @@
 	.nextButton, .prevButton {top: 120px}
 	.iosSlider_buttons {display: none}
 	.iosSlider .text1, .iosSlider .text2 {display: none}
-	
+
 	/* catalog */
 	#catalog {
 		margin: 0 auto;
@@ -1464,7 +1462,7 @@
 		color: #fff;
 		margin: 0 0 0 10px;
 	}
-	
+
 	/* bottom widgets */
 	#bottom {padding: 30px 0 0 0;}
 	#bottom .wrap {text-align: left}
@@ -1474,7 +1472,7 @@
 		padding: 0 0 20px 0;
 		border-bottom: 1px solid #d5d5d5;
 	}
-	
+
 	/* footer */
 	#footer {
 		width: 100%;
@@ -1483,10 +1481,10 @@
 	#footer .wrap {text-align: left}
 	#footer .alignleft {margin: 10px 0 30px 0}
 	.payment-icons {display: none}
-	
+
 	/* filter */
 	#filter {display: none}
-	
+
 	/* details box */
 	#details {
 		width: 100%;
@@ -1579,12 +1577,12 @@
 		font-size: 12px;
 		line-height: 17px;
 	}
-	
+
 	/* blog detail */
 	#blog {margin: 30px 0}
 	.blog_title {padding: 0 0 20px 0;}
 	.blog_nav {display: none}
-	
+
 	/* blog nav */
 	#blog_nav-320 {
 		display: block;
@@ -1605,7 +1603,7 @@
 	}
 	#blog_nav-320 select * {font-family: Arial}
 	#blog_nav-320 optgroup {font-style: normal}
-	
+
 	/* blog */
 	.blog_content {
 		float: none;
@@ -1625,7 +1623,7 @@
 		text-align: left;
 		font-size: 20px;
 	}
-	
+
 	/* sidebar */
 	.sidebar {
 		float: none;
@@ -1636,7 +1634,7 @@
 	.oc_search {padding: 10px}
 	.oc_tabs {padding: 0}
 	.searchfield { width: 223px }
-	
+
 	/* comments */
 	#comments {
 		width: 100%;
@@ -1672,7 +1670,7 @@
 		margin: 0 0 0 5px;
 		font-family: Tahoma;
 	}
-	
+
 	/* checkout wrappers */
 	.checkout_left {
 		float: none;
@@ -1709,7 +1707,7 @@
 		line-height: 20px;
 		font-weight: 300;
 	}
-	
+
 	/* cart popup */
 	#lightbox {
 		position: absolute;
@@ -1730,7 +1728,7 @@
 	.lightbox h1 {
 		font-weight: 500;
 		font-size: 14px;
-		font-family: "Ubuntu", Arial;
+		font-family: inherit;
 		color: #363636;
 		text-transform: uppercase;
 		margin: 0 0 20px 0;
@@ -1768,7 +1766,7 @@
 		color: #333;
 		text-align: center;
 		height: 24px;
-		font-family: "Ubuntu", Arial;
+		font-family: inherit;
 		font-size: 11px;
 		font-weight: 300;
 	}
@@ -1783,7 +1781,7 @@
 		padding: 0 10px;
 		height: 25px;
 	}
-	
+
 	/* totals */
 	.totals {
 		border-top: 1px solid #ddd;
@@ -1813,7 +1811,7 @@
 		font-size: 18px;
 		top: 10px;
 	}
-	
+
 	/* cart buttons */
 	.cart-buttons {
 		padding: 30px 0;
@@ -1824,7 +1822,7 @@
 		display: block;
 		margin: 0 auto;
 	}
-	
+
 	/* pre-checkout */
 	.checkout_guest, .checkout_login {
 		float: none;
@@ -1865,7 +1863,7 @@
 	}
 	.checkout_login input[type=submit] {
 		color: #fff;
-		font-family: "Ubuntu", Arial;
+		font-family: inherit;
 		font-size: 18px;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -1877,7 +1875,7 @@
 		display: block;
 		margin: 15px 0 0 0;
 	}
-	
+
 	/* checkout form */
 	.cform fieldset {
 		padding: 0 0 20px 0;
@@ -1952,7 +1950,7 @@
 		left: auto;
 		padding: 0 0 0 50px;
 	}
-	
+
 	/* popup forms */
 	.form_norm {
 		border-bottom: none;
@@ -1993,7 +1991,7 @@
 		display: block;
 		margin: 0;
 	}
-	
+
 	/* v2 grid */
 	.catalog {
 		float: right;
@@ -2010,13 +2008,13 @@
 		padding-top: 20px;
 		margin: 0 0 6px 0;
 	}
-	
+
 	/* lightbox product */
 	.lightbox-product .product-info {
 		width: 100%;
 		float: none;
 	}
-	
+
 	#topbar {
 		height: auto;
 	}

@@ -167,7 +167,6 @@ cart popup on header
 }
 
 .items .info h3 {
-	font-family: "Ubuntu", Arial;
 	font-size: 11px;
 	line-height: 15px;
 	font-weight: normal;
@@ -177,7 +176,6 @@ cart popup on header
 }
 
 .items .info span {
-	font-family: "Ubuntu", Arial;
 	font-size: 13px;
 }
 
@@ -206,7 +204,6 @@ cart popup on header
 	text-transform: uppercase;
 	text-align: center;
 	margin: 12px;
-	font-family: "Ubuntu", Arial;
 	font-size: 13px;
 	font-weight: 700;
 	padding: 10px 0;
@@ -232,7 +229,6 @@ top bar
 
 #wishlist a {
 	padding: 5px 12px;
-	font-family: Ubuntu;
 	font-size: 12px;
 	border-radius: 3px;
 	box-shadow: inset 0 1px 1px #666;
@@ -242,7 +238,6 @@ top bar
 	background: #bbb;
 	color: #fff;
 }
-#wishlist a span {font-family: Ubuntu}
 
 #wishlist a:hover {
 	background: #fff;
@@ -284,7 +279,6 @@ top bar
 }
 
 .wishlist_title_price a {
-	font-family: Ubuntu;
 	color: #666;
 	font-size: 12px;
 }
@@ -297,7 +291,6 @@ top bar
 }
 
 .wishlist_title_price .wishlist_orig {
-	font-family: "Ubuntu", Arial;
 	font-size: 14px;
 	font-weight: 300;
 	color: #aaa;
@@ -306,7 +299,6 @@ top bar
 }
 
 .wishlist_title_price .wishlist_price {
-	font-family: "Ubuntu", Arial;
 	font-size: 14px;
 	font-weight: 700;
 	color: #ea6ea0;
@@ -319,7 +311,6 @@ top bar
 .wishlist_remove a {
 	background: #bbb;
 	color: #fff;
-	font-family: Ubuntu;
 	font-size: 11px;
 	padding: 6px 16px;
 	border-radius: 3px;
@@ -332,7 +323,6 @@ top bar
 	top: 0;
 	right: 60px;
 	background: #fff;
-	font-family: Ubuntu;
 	font-size: 12px;
 	float: left;
 	display: block;
@@ -356,7 +346,6 @@ top bar
 	color: #ddd;
 	font-size: 12px;
 	text-transform: uppercase;
-	font-family: Ubuntu;
 	font-weight: 400;
 }
 
@@ -411,7 +400,6 @@ top bar
 .switchbar-inner span {
 	color: #fff;
 	font-size: 11px;
-	font-family: Ubuntu;
 	position: relative;
 	top: -1px;
 }
@@ -459,7 +447,6 @@ navigation menu (style 2) super/mega
 #supermenu li a {
 	float: left;
 	display: block;
-	font-family: Open Sans;
 	font-size: 13px;
 	height: 30px;
 	line-height: 30px;
@@ -514,7 +501,6 @@ navigation menu (style 2) super/mega
 #supermenu ul a {
 	float: none;
 	display: inline-block;
-	font-family: Open Sans;
 	font-size: 11px;
 	height: auto;
 	border-right: 0;
@@ -771,14 +757,12 @@ sliding banner
 }
 
 .iosSlider .text4 p {
-	font-family: Open Sans;
 	font-size: 30px;
 	line-height: 1.3em;
 	margin: 0 0 25px 0;
 }
 .iosSlider .text4 p.large {font-weight: bold}
 .iosSlider .text4 p.smaller {
-	font-family: Open Sans;
 	font-size: 20px;
 	line-height: 1.3em;
 }
@@ -795,14 +779,12 @@ sliding banner
 }
 
 .iosSlider .text6 p {
-	font-family: Open Sans;
 	font-size: 30px;
 	line-height: 1.3em;
 	margin: 0 0 25px 0;
 }
 .iosSlider .text6 p.large {font-weight: bold}
 .iosSlider .text6 p.smaller {
-	font-family: Open Sans;
 	font-size: 20px;
 	line-height: 1.3em;
 }
@@ -820,14 +802,12 @@ sliding banner
 .iosSlider .text1 span {
 	padding: 10px;
 	display: block;
-	font-family: Open Sans;
 	font-size: 40px;
 }
 
 .iosSlider .text2 span {
 	padding: 10px;
 	display: block;
-	font-family: Open Sans;
 	font-size: 15px;
 	line-height: 22px;
 }
@@ -847,7 +827,6 @@ sliding banner
 	text-transform: uppercase;
 	font-size: 11px;
 	padding: 8px 15px;
-	font-family: Open Sans;
 	opacity: 0.90;
 	filter: alpha(opacity:90);
 }
@@ -888,7 +867,6 @@ filter products
 #filter-by h2 span.count {
 	margin: 0 0 0 15px;
 	color: #aaa;
-	font-family: Tahoma;
 	font-size: 13px;
 	position: relative;
 	top: -1px;
@@ -898,7 +876,6 @@ filter products
 	position: absolute;
 	top: 0;
 	right: 0;
-	font-family: "Ubuntu";
 	font-size: 12px;
 	text-transform: none;
 	color: #333;
@@ -930,7 +907,6 @@ filter products
 	color: #fff;
 	text-transform: uppercase;
 	text-align: center;
-	font-family: "Ubuntu", Arial;
 	font-size: 14px;
 	font-weight: 700;
 	padding: 12px 0;
@@ -945,7 +921,6 @@ filter products
 
 .tax-parent {
 	display: block;
-	font-family: "Ubuntu";
 	font-size: 11px;
 	line-height: 18px;
 	text-transform: uppercase;
@@ -1004,7 +979,6 @@ filter products
 
 .tax ul ul li a {
 	display: block;
-	font-family: "Ubuntu";
 	text-transform: uppercase;
 	font-size: 11px;
 	line-height: 15px;
@@ -1013,7 +987,6 @@ filter products
 	padding: 7px 10px 7px 28px;
 }
 .tax ul ul li a span {
-	font-family: "Ubuntu";
 	font-size: 12px;
 	color: #ccc;
 	padding: 0 0 0 6px;
@@ -1035,7 +1008,6 @@ filter products
 	position: absolute;
 	top: 7px;
 	left: 90px;
-	font-family: "Ubuntu";
 	font-size: 12px;
 	color: #ccc;
 }
@@ -1179,7 +1151,6 @@ catalog of products
 
 .label-content .price-now {
 	color: #fff;
-	font-family: "Ubuntu", Arial;
 	font-size: 13px;
 	font-weight: 700;
 	padding: 2px 15px;
@@ -1591,13 +1562,11 @@ product information
 }
 
 .product-price .price-now {
-	font-family: "Ubuntu", Arial;
 	font-size: 14px;
 	font-weight: 700;
 }
 
 .product-price .price-old {
-	font-family: "Ubuntu", Arial;
 	font-size: 14px;
 	font-weight: 300;
 	color: #aaa;
@@ -1807,7 +1776,6 @@ product information
 	color: #666;
 	text-transform: uppercase;
 	padding: 6px 8px 6px 26px;
-	font-family: Tahoma;
 	background: #fff url(../img/more.png) no-repeat 8px center;
 	border-bottom: 1px solid #eee;
 	border-right: 1px solid #eee;
@@ -1821,7 +1789,6 @@ product information
 /* end tabs */
 
 .product-about h3, .product-var h3 {
-	font-family: Ubuntu;
 	font-size: 11px;
 	line-height: 18px;
 	text-transform: uppercase;
@@ -1838,7 +1805,6 @@ product information
 
 .product-tax ul, .product-tax-nocart ul {margin: 10px 0 0 0}
 .product-tax li, .product-tax-nocart li {
-	font-family: "Ubuntu", Arial;
 	font-weight: 300;
 	font-size: 11px;
 	line-height: 14px;
@@ -1848,7 +1814,6 @@ product information
 .product-tax-nocart li {
 	float: left;
 	display: block;
-	font-family: "Ubuntu", Arial;
 	font-size: 12px;
 	height: 17px;
 	line-height: 17px;
@@ -1865,7 +1830,6 @@ product information
 .product-tax a {
 	float: left;
 	display: block;
-	font-family: "Ubuntu", Arial;
 	font-size: 12px;
 	height: 17px;
 	line-height: 17px;
@@ -1906,7 +1870,6 @@ product information
 .product-text h3 {
 	font-size: 12px;
 	line-height: 18px;
-	font-family: Ubuntu;
 	font-weight: normal;
 	color: #666;
 	text-shadow: 0 1px #eee;
@@ -1926,7 +1889,6 @@ product information
 	width: 200px;
 	height: 24px;
 	color: #888;
-	font-family: Ubuntu;
 	font-size: 12px;
 	border-radius: 2px;
 }
@@ -1941,7 +1903,6 @@ product information
 	color: #fff;
 	height: 26px;
 	padding: 0 10px;
-	font-family: Ubuntu;
 	font-weight: 200;
 	text-transform: uppercase;
 	text-align: center;
@@ -1958,7 +1919,6 @@ product information
 	display: none;
 	font-size: 12px;
 	line-height: 18px;
-	font-family: Ubuntu;
 	color: #333;
 	padding: 0 0 0 30px;
 	background: url(../img/error16.png) no-repeat left center;
@@ -1987,7 +1947,6 @@ product information
 .btn-add {
 	float: left;
 	color: #fff;
-	font-family: "Ubuntu", Arial;
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -2003,7 +1962,6 @@ product information
 .btn-quantity {
 	float: left;
 	color: #4e4e4e;
-	font-family: "Ubuntu", Arial;
 	font-size: 15px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -2151,7 +2109,6 @@ lightbox content login
 .lightbox-no-padding {padding: 38px 21px 25px 0}
 
 .lightbox .closebutton {
-	font-family: Tahoma;
 	font-size: 11px;
 	color: #fff;
 	background: #888;
@@ -2168,7 +2125,6 @@ lightbox content login
 .lightbox h1 {
 	font-weight: 500;
 	font-size: 24px;
-	font-family: "Ubuntu", Arial;
 	color: #363636;
 	text-transform: uppercase;
 	margin: 0 0 36px 0;
@@ -2319,7 +2275,7 @@ p.form-right {
 
 .form_submit {
 	color: #fff;
-	font-family: "Ubuntu", Arial;
+	font-family: inherit;
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -2348,7 +2304,6 @@ p.form-right {
 	background: #d44b4b;
 	color: #fff;
 	text-transform: uppercase;
-	font-family: "Ubuntu", Arial;
 	font-size: 18px;
 	font-weight: 700;
 	padding: 12px 40px;
@@ -2381,7 +2336,6 @@ lightbox cart
 }
 
 .thecart th, .thecart td {
-	font-family: "Ubuntu", Arial;
 	font-size: 14px;
 	font-weight: 300;
 }
@@ -2416,7 +2370,7 @@ lightbox cart
 	color: #333;
 	text-align: center;
 	height: 24px;
-	font-family: "Ubuntu", Arial;
+	font-family: inherit;
 	font-size: 14px;
 	font-weight: 300;
 }
@@ -2450,12 +2404,11 @@ lightbox cart
 .t-option {
 	display: block;
 	color: #999;
-	font-family: "Ubuntu", Arial;
 	text-transform: uppercase;
 	font-size: 12px;
 	margin: 8px 0 0 0;
 }
-.t-option span {color: #333;font-family: "Ubuntu", Arial; text-transform: uppercase;}
+.t-option span {color: #333; text-transform: uppercase;}
 
 .td-item a {
 	float: left;
@@ -2535,7 +2488,6 @@ cart buttons
 .btnstyle2 {
 	background: #ddd;
 	color: #333;
-	font-family: "Ubuntu", Arial;
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -2547,7 +2499,6 @@ cart buttons
 
 .btnstyle1 {
 	color: #fff;
-	font-family: "Ubuntu", Arial;
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -2829,7 +2780,6 @@ blog page
 	top: -6px;
 	color: #fff;
 	float: left;
-	font-family: "Ubuntu", Arial;
 	font-weight: 300;
 	text-transform: uppercase;
 	font-size: 12px;
@@ -3124,7 +3074,7 @@ comments template
 
 #commentform #submit {
 	color: #fff;
-	font-family: "Ubuntu", Arial;
+	font-family: inherit;
 	font-size: 20px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -3242,7 +3192,6 @@ a.btnstyle3:hover {text-decoration: none}
 
 .tabs li a {
 	display: block;
-	font-family: "Ubuntu", Arial;
 	font-size: 11px;
 	padding: 10px 0;
 	text-align: center;
@@ -3280,25 +3229,22 @@ a.btnstyle3:hover {text-decoration: none}
 
 .tabcontent li span.meta {
 	display: block;
-	font-family: "Ubuntu", Arial;
 	font-size: 11px;
 	color: #aaa;
 	margin: 8px 0 0 0;
 }
-.tabcontent li span.meta a {padding: 0 0 0 10px;font-family: "Ubuntu", Arial;}
+.tabcontent li span.meta a {padding: 0 0 0 10px;}
 
 .tabcontent li.comment {position: relative}
 
 .tabcontent li.comment span.comment_time a {
 	display: block;
-	font-family: "Ubuntu", Arial;
 	font-size: 11px;
 	color: #aaa;
 	margin: 8px 0 0 0;
 }
 .tabcontent li.comment span.comment_excerpt a {
 	display: block;
-	font-family: "Ubuntu";
 	color: #666;
 	font-size: 11px;
 	line-height: 18px;
@@ -3322,7 +3268,6 @@ a.btnstyle3:hover {text-decoration: none}
 .sidebar .tagcloud a {
 	float: left;
 	display: block;
-	font-family: "Ubuntu";
 	border-radius: 2px;
 	color: #fff;
 	text-transform: lowercase;
@@ -3399,7 +3344,6 @@ checkout summary
 }
 
 .checkout_summary li .info h3 a {
-	font-family: "Ubuntu", Arial;
 	font-size: 11px;
 	line-height: 17px;
 	font-weight: normal;
@@ -3411,7 +3355,6 @@ checkout summary
 
 .checkout_summary li .info span {
 	display: block;
-	font-family: "Ubuntu", Arial;
 	font-size: 12px;
 	font-weight: 300;
 	color: #999;
@@ -3530,7 +3473,7 @@ checkout process
 
 .checkout_login input[type=submit] {
 	color: #fff;
-	font-family: "Ubuntu", Arial;
+	font-family: inherit;
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -3617,7 +3560,6 @@ checkout forms
 .cform p.preorder {
 	text-align: center;
 	font-size: 11px;
-	font-family: "Ubuntu";
 	color: #333;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -3689,7 +3631,6 @@ checkout forms
 .cform label {
 	float: left;
 	width: 150px;
-	font-family: "Ubuntu";
 	font-size: 12px;
 	line-height: 19px;
 	color: #333;
@@ -3802,7 +3743,6 @@ checkout forms
 	left: 415px;
 	font-size: 11px;
 	line-height: 16px;
-	font-family: Arial;
 	cursor: default;
 	padding: 0 0 0 15px;
 }
@@ -3811,7 +3751,7 @@ checkout forms
 	border: 1px solid #d0d0d0;
 	border-bottom: 1px solid #e5e5e5;
 	border-right: 1px solid #e5e5e5;
-	font-family: Arial;
+	font-family: inherit;
 	font-size: 13px;
 	color: #777;
 	box-sizing:content-box;
@@ -3843,7 +3783,6 @@ checkout forms
 
 .cform .inform {
 	margin: 10px 0 0 0;
-	font-family: Tahoma;
 	font-size: 11px;
 	line-height: 17px;
 	color: #999;
@@ -3855,12 +3794,12 @@ checkout forms
 	color: #333;
 }
 .cform input[disabled], .cform select[disabled] {background: #eee}
-.cform select * {font-family: Arial}
+.cform select * {font-family: inherit}
 
 .cform input[type=submit] {
 	text-align: center;
 	color: #fff;
-	font-family: "Ubuntu", Arial;
+	font-family: inherit;
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -3895,7 +3834,6 @@ messages shown to user
 .result a:hover {text-decoration: underline}
 
 .result h5 {
-	font-family: Arial;
 	font-size: 12px;
 	text-transform: uppercase;
 	color: #999;
@@ -3906,7 +3844,6 @@ messages shown to user
 my orders css
 ***************************************************************/
 .myorders p {
-	font-family: Tahoma;
 	font-size: 13px;
 	color: #333;
 	line-height: 22px;
@@ -3920,7 +3857,6 @@ my orders css
 
 .myorders .says {
 	display: block;
-	font-family: Ubuntu;
 	font-size: 11px;
 	line-height: 20px;
 	color: #666;
@@ -3930,7 +3866,6 @@ my orders css
 	padding: 10px 15px;
 	margin: 15px 0 0 0;
 }
-.myorders .says b {font-family: Arial}
 
 .myorders a:hover {text-decoration: underline}
 
@@ -3941,7 +3876,6 @@ my orders css
 }
 .myorders table th {
 	width: 25%;
-	font-family: Arial;
 	font-size: 12px;
 	line-height: 18px;
 	font-weight: normal;
@@ -3950,7 +3884,6 @@ my orders css
 	padding: 12px 10px;
 }
 .myorders table td {
-	font-family: Arial;
 	font-size: 12px;
 	line-height: 18px;
 	font-weight: normal;
@@ -3959,12 +3892,10 @@ my orders css
 	padding: 12px 10px;
 }
 
-.myorders td abbr, .myorders td a {font-family: Arial}
 .myorders td abbr {color: #bbb}
 
 .myorders span.data {
 	display: block;
-	font-family: Arial;
 	color: #888;
 	font-size: 13px;
 	line-height: 20px;
@@ -3977,7 +3908,6 @@ my orders css
 }
 
 .myorders_field h4 {
-	font-family: "Ubuntu";
 	font-size: 13px;
 	font-weight: normal;
 	text-transform: uppercase;
@@ -3987,7 +3917,6 @@ my orders css
 
 .myorders_field span.help {
 	display: block;
-	font-family: "Ubuntu";
 	font-size: 11px;
 	color: #aaa;
 	line-height: 17px;
@@ -3998,7 +3927,6 @@ my orders css
 
 .myorders span.emptyfield {
 	display: block;
-	font-family: "Ubuntu";
 	font-size: 11px;
 	color: #aaa;
 	line-height: 17px;
@@ -4009,7 +3937,6 @@ my orders css
 
 .myorders span.successfield {
 	display: block;
-	font-family: "Ubuntu";
 	font-size: 11px;
 	color: #666;
 	line-height: 17px;
@@ -4020,7 +3947,6 @@ my orders css
 
 .myorders_field span.errorfield {
 	display: block;
-	font-family: "Ubuntu";
 	font-size: 11px;
 	line-height: 17px;
 	background: url(../img/error.png) no-repeat left 3px;
@@ -4034,7 +3960,7 @@ my orders css
 	border: 1px solid #d0d0d0;
 	border-bottom: 1px solid #e5e5e5;
 	border-right: 1px solid #e5e5e5;
-	font-family: Arial;
+	font-family: inherit;
 	font-size: 11px;
 	color: #777;
 	box-sizing:content-box;
@@ -4062,7 +3988,6 @@ my orders css
 	font-size: 11px;
 	font-weight: bold;
 	text-transform: uppercase;
-	font-family: "Ubuntu";
 	cursor: pointer;
 	border-radius: 0;
 	margin: 20px 0 0 0;
@@ -4116,7 +4041,6 @@ my orders css
 a.back {
 	position: absolute;
 	display: block;
-	font-family: "Ubuntu";
 	font-size: 11px;
 	text-transform: uppercase;
 	color: #333;
@@ -4157,7 +4081,6 @@ table.table-invoice .spt {width: 15%}
 
 .status {
 	display: block;
-	font-family: "Ubuntu";
 	text-transform: uppercase;
 	font-size: 13px;
 	margin: 12px 0 0 0;
@@ -4237,7 +4160,7 @@ contact form
 #contactform input[type=submit] {
 	background: #bbb;
 	color: #fff;
-	font-family: "Ubuntu", Arial;
+	font-family: inherit;
 	font-size: 13px;
 	font-weight: 300;
 	text-transform: uppercase;
@@ -4289,7 +4212,6 @@ contact form
 	font-size: 12px;
 	color: #666;
 }
-.loc, .loc * {font-family: Ubuntu}
 
 .loc_fields fieldset p {
 	display: block;
@@ -4391,7 +4313,6 @@ styling reviews
 ***************************************************************/
 .infotab_div h4 {
 	font-weight: normal;
-	font-family: Ubuntu;
 	font-size: 13px;
 	font-weight: 500;
 	text-transform: uppercase;
@@ -4589,7 +4510,6 @@ filtering and categories
 }
 
 .header {
-	font-family: Ubuntu;
 	font-size: 11px;
 	line-height: 17px;
 	font-weight: bold;
@@ -4619,7 +4539,6 @@ filtering and categories
 .filter ul li {padding: 2px 0}
 
 .filter ul li a {
-	font-family: Open Sans;
 	font-size: 11px;
 	line-height: 17px;
 	color: #333;
@@ -4810,11 +4729,9 @@ img.preload{display: none}
 	display: block;
 	color: #666;
 	font-size: 13px;
-	font-family: Ubuntu;
 	margin: 12px 0 0 0;
 }
 .catalog_item_title span.title {
-	font-family: Ubuntu;
 	line-height: 15px;
 	display: block;
 	height: 36px;
@@ -4825,14 +4742,12 @@ img.preload{display: none}
 	color: #999;
 	font-size: 13px;
 	height: 18px;
-	font-family: Ubuntu;
 	text-decoration: line-through;
 }
 
 .catalog_item_title span.price {
 	display: block;
 	font-size: 18px;
-	font-family: Ubuntu;
 	font-weight: bold;
 	position: relative;
 }
@@ -4840,7 +4755,6 @@ img.preload{display: none}
 .catalog_item_title span.price ins {
 	font-size: 14px;
 	font-style: italic;
-	font-family: Gerogia;
 }
 
 .catalog_item_options {
@@ -4887,7 +4801,6 @@ img.preload{display: none}
 }
 
 .get-more-results a {
-	font-family: Ubuntu;
 	color: #fff;
 	padding: 8px 20px;
 	border-radius: 2px;
@@ -5017,7 +4930,6 @@ help / switch layout etc
 	background: #fff url(../img/grid_view.png) no-repeat 8px center;
 	color: #666;
 	font-size: 11px;
-	font-family: Tahoma;
 	padding: 0 6px 0 24px;
 	cursor: pointer;
 	border-radius: 3px;
@@ -5067,7 +4979,6 @@ Search products
 	background: #fff url(../img/icon-prodsearch.png) no-repeat 8px center;
 	color: #666;
 	font-size: 11px;
-	font-family: Tahoma;
 	padding: 0 10px 0 28px;
 	height: 23px;
 	border-radius: 3px;
@@ -5115,13 +5026,11 @@ Search products
 .ajax-search-results li span.search_title {
 	float: left;
 	width: 144px;
-	font-family: Arial;
 	font-size: 11px;
 	line-height: 17px;
 }
 
 .ajax-search-results li span.search_term {
-	font-family: Arial;
 	color: #fff;
 	background: #333;
 }
@@ -5129,7 +5038,6 @@ Search products
 li.no-results {
 	border-top: 1px solid #eee;
 	padding: 12px 10px;
-	font-family: Arial;
 	font-size: 11px;
 	line-height: 17px;
 	color: #444;
@@ -5143,7 +5051,6 @@ span.sticker_new {
 	margin: 4px 10px 0 0;
 	padding: 5px 8px;
 	font-size: 11px;
-	font-family: Ubuntu;
 	border-radius: 3px;
 	box-shadow: inset 0 1px 1px #6e9202;
 	-webkit-transition: all 0.4s ease-in-out;
@@ -5254,7 +5161,6 @@ columns styling
 	padding: 0 0 10px 0;
 	text-transform: uppercase;
 	text-shadow: 0 2px #fff;
-	font-family: Ubuntu;
 	font-weight: 200;
 	font-size: 22px;
 	color: #777;
@@ -5336,7 +5242,6 @@ columns styling
 	padding: 8px;
 	height: 14px;
 	line-height: 14px;
-	font-family: Ubuntu;
 }
 
 .column-image img {
@@ -5347,7 +5252,6 @@ columns styling
 .column-title {
 	margin: 10px 0 0 0;
 	display: block;
-	font-family: Ubuntu;
 	font-size: 12px;
 	line-height: 16px;
 	color: #333;
@@ -5360,14 +5264,12 @@ columns styling
 .column-price {
 	margin: 10px 0 0 0;
 	float: left;
-	font-family: Ubuntu;
 	font-size: 16px;
 }
 
 .column-price ins {
 	font-size: 14px;
 	font-style: italic;
-	font-family: Gerogia;
 }
 
 .column-oldprice {
@@ -5375,7 +5277,6 @@ columns styling
 	float: left;
 	color: #aaa;
 	text-decoration: line-through;
-	font-family: Ubuntu;
 	font-weight: 200;
 	font-size: 14px;
 	text-shadow: 0 1px #fff;
@@ -5393,7 +5294,6 @@ columns styling
 	padding: 0 0 10px 0;
 	text-transform: uppercase;
 	text-shadow: 0 2px #fff;
-	font-family: Ubuntu;
 	font-weight: 200;
 	font-size: 22px;
 	color: #777;
@@ -5418,7 +5318,6 @@ columns styling
 .blog_content .page .column-title {
 	margin: 10px 0 0 0;
 	display: block;
-	font-family: Ubuntu;
 	font-size: 12px;
 	line-height: 16px;
 	color: #333;
@@ -5433,7 +5332,6 @@ columns styling
 .blog_content .page .column-price {
 	margin: 10px 0 0 0;
 	float: left;
-	font-family: Ubuntu;
 	font-size: 16px;
 }
 
@@ -5441,7 +5339,6 @@ columns styling
 .blog_content .page .column-price ins {
 	font-size: 14px;
 	font-style: italic;
-	font-family: Gerogia;
 }
 
 .blog_content .post .column-oldprice,
@@ -5450,7 +5347,6 @@ columns styling
 	float: left;
 	color: #aaa;
 	text-decoration: line-through;
-	font-family: Ubuntu;
 	font-weight: 200;
 	font-size: 14px;
 	text-shadow: 0 1px #fff;
@@ -5465,7 +5361,5 @@ columns styling
 	padding: 8px;
 	height: 14px;
 	line-height: 14px;
-	font-family: Ubuntu;
 	color: #fff;
 }
-/*End*/

@@ -47,6 +47,7 @@ GNU General Public License for more details.
 * UPDATE: Removed Pinterest SDK
 * UPDATE: Removed sharing section
 * UPDATE: Removed Twitter widget
+* UPDATE: Removed all custom fonts and switched to platform-optimised ones
 
 = 1.9-beta3 =
 * FIX: Fixed readme.txt syntax
