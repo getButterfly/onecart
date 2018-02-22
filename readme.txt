@@ -23,7 +23,7 @@ For more information about OneCart please go to https://getbutterfly.com/downloa
 
 == Copyright ==
 
-OneCart WordPress Theme, Copyright 2012-2017 getButterfly.com
+OneCart WordPress Theme, Copyright 2012-2018 getButterfly.com
 OneCart is distributed under the terms of the GNU GPL
 
 This program is free software: you can redistribute it and/or modify
@@ -41,6 +41,7 @@ GNU General Public License for more details.
 = 1.9.1 =
 * UPDATE: Updated PHP 7.2 compatibility
 * UPDATE: Updated WordPress compatibility
+* UPDATE: Removed Facebook SDK
 
 = 1.9-beta3 =
 * FIX: Fixed readme.txt syntax

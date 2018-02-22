@@ -1,25 +1,4 @@
 <?php
-
-/************************************************************
-add the fb sdk
-************************************************************/
-add_action('ocart_after_body_start', 'ocart_fb_sdk', 4);
-function ocart_fb_sdk() {
-	if (!function_exists('ocart_fb_script')) {
-		echo "<div id=\"fb-root\"></div>
-		<script type=\"text/javascript\">
-		// Load the SDK Asynchronously
-		  (function(d){
-			 var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-			 if (d.getElementById(id)) {return;}
-			 js = d.createElement('script'); js.id = id; js.async = true;
-			 js.src = \"//connect.facebook.net/en_US/all.js\";
-			 ref.parentNode.insertBefore(js, ref);
-		   }(document));
-		</script>";
-	}
-}
-
 /************************************************************
 update sale record
 ************************************************************/
@@ -27,41 +6,41 @@ add_action('ocart_after_order_placed', 'ocart_default_order_payment_status');
 function ocart_default_order_payment_status($post_id){
 	update_post_meta($post_id, 'order_status', 'received');
 	update_post_meta($post_id, 'payment_status', 'Unpaid');
-	
+
 	/* new post status */
 	wp_update_post( array( 'ID' => $post_id, 'post_status' => 'received' ) );
 }
-	
+
 /************************************************************
 update sale record
 ************************************************************/
 add_action('ocart_after_order_placed', 'ocart_update_sale_record');
 function ocart_update_sale_record($post_id){
-	
+
 	$order_gross = get_post_meta($post_id, 'payment_gross_total', true);
 	$sub_tax = get_post_meta($post_id, 'order_tax', true);
 	$sub_shipping = get_post_meta($post_id, 'shipping_fee', true);
-	
+
 	$sub_total = $order_gross - ($sub_tax + $sub_shipping);
-	
+
 	/* total sales */
 	$sales = get_option('occommerce_get_sales');
 	update_option('occommerce_get_sales', $sub_total + $sales);
-	
+
 	/* day sales */
 	$date = date('Y-m-d');
 	$sale_data = get_option('occommerce_sales_by_day');
 	if (!isset($sale_data[$date])) { $sale_data[$date] = 0; }
 	$sale_data[$date] += $sub_total;
 	update_option('occommerce_sales_by_day', $sale_data);
-	
+
 	/* month sales */
 	$date = date('Y-m');
 	$sale_data = get_option('occommerce_sales_by_month');
 	if (!isset($sale_data[$date])) { $sale_data[$date] = 0; }
 	$sale_data[$date] += $sub_total;
 	update_option('occommerce_sales_by_month', $sale_data);
-	
+
 	/* country sales */
 	$code = $_POST['cform_country'];
 	$sale_data = get_option('occommerce_sales_by_country');
@@ -70,25 +49,25 @@ function ocart_update_sale_record($post_id){
 	if (!isset($sale_data[$code]['volume'])) { $sale_data[$code]['volume'] = 0; }
 	$sale_data[$code]['volume'] += $sub_total;
 	update_option('occommerce_sales_by_country', $sale_data);
-	
+
 	/* total shipping */
 	$shipping = get_option('occommerce_get_shipping');
 	update_option('occommerce_get_shipping', $sub_shipping + $shipping);
-	
+
 	/* day shipping */
 	$date = date('Y-m-d');
 	$sale_data = get_option('occommerce_shipping_by_day');
 	if (!isset($sale_data[$date])) { $sale_data[$date] = 0; }
 	$sale_data[$date] += $sub_shipping;
 	update_option('occommerce_shipping_by_day', $sale_data);
-	
+
 	/* month shipping */
 	$date = date('Y-m');
 	$sale_data = get_option('occommerce_shipping_by_month');
 	if (!isset($sale_data[$date])) { $sale_data[$date] = 0; }
 	$sale_data[$date] += $sub_shipping;
 	update_option('occommerce_shipping_by_month', $sale_data);
-	
+
 	/* country shipping */
 	$code = $_POST['cform_country'];
 	$sale_data = get_option('occommerce_shipping_by_country');
@@ -97,25 +76,25 @@ function ocart_update_sale_record($post_id){
 	if (!isset($sale_data[$code]['volume'])) { $sale_data[$code]['volume'] = 0; }
 	$sale_data[$code]['volume'] += $sub_shipping;
 	update_option('occommerce_shipping_by_country', $sale_data);
-	
+
 	/* total tax */
 	$tax = get_option('occommerce_get_tax');
 	update_option('occommerce_get_tax', $sub_tax + $tax);
-	
+
 	/* day tax */
 	$date = date('Y-m-d');
 	$sale_data = get_option('occommerce_tax_by_day');
 	if (!isset($sale_data[$date])) { $sale_data[$date] = 0; }
 	$sale_data[$date] += $sub_tax;
 	update_option('occommerce_tax_by_day', $sale_data);
-	
+
 	/* month tax */
 	$date = date('Y-m');
 	$sale_data = get_option('occommerce_tax_by_month');
 	if (!isset($sale_data[$date])) { $sale_data[$date] = 0; }
 	$sale_data[$date] += $sub_tax;
 	update_option('occommerce_tax_by_month', $sale_data);
-	
+
 	/* country tax */
 	$code = $_POST['cform_country'];
 	$sale_data = get_option('occommerce_tax_by_country');
@@ -124,7 +103,7 @@ function ocart_update_sale_record($post_id){
 	if (!isset($sale_data[$code]['volume'])) { $sale_data[$code]['volume'] = 0; }
 	$sale_data[$code]['volume'] += $sub_tax;
 	update_option('occommerce_tax_by_country', $sale_data);
-	
+
 }
 
 /************************************************************
@@ -197,49 +176,49 @@ function ocart_place_in_header() {
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/default.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/flick/jquery-ui.css" />
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans|Montserrat|Bree+Serif|Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
-	
+
 	<?php /* background images */ ?>
-	
+
 	<style type="text/css">
-	
+
 	body {background: <?php ocart_background() ?>;}
-	
+
 	.cart .cart-link span {background: url(<?php ocart_current_skin_uri() ?>/icon-count.png) no-repeat;}
-	
+
 	.addtocart {background: url(<?php ocart_current_skin_uri() ?>/addtocart.png) no-repeat 0 0;}
-	
+
 	.cartarrow {background: url(<?php ocart_current_skin_uri() ?>/arrow-cart.png) no-repeat center;}
 
 	.tax-parent {background: #fff url(<?php ocart_current_skin_uri() ?>/arrow-dd.png) no-repeat right top;}
-	
+
 	#filter {background: url(<?php ocart_current_skin_uri() ?>/filter.png) no-repeat 0 0;}
-	
+
 	.tax ul ul li a {background: url(<?php ocart_current_skin_uri() ?>/filter-item.png) no-repeat 10px 0;}
-	
+
 	.items .remove {background: url(<?php ocart_current_skin_uri() ?>/remove.png) no-repeat top;}
-	
+
 	#options li.sort .sort-link {background: url(<?php ocart_current_skin_uri() ?>/arrow-list.png) no-repeat right top;}
-	
+
 	#browser .next, #browser .prev {background-image: url(<?php ocart_current_skin_uri() ?>/icon-buttons.png);}
-	
+
 	.nextItem, .prevItem, .snextItem, .sprevItem {background: #fff url(<?php ocart_current_skin_uri() ?>/nav-catalog.png) no-repeat;}
-	
+
 	.upImage, .dnImage, .nextImage, .prevImage {background: #fff url(<?php ocart_current_skin_uri() ?>/nav-images.png) no-repeat;}
-	
+
 	a.back {background: url(<?php ocart_current_skin_uri() ?>/backto.png) no-repeat left center;}
-	
+
 	.blog_store {background: url(<?php ocart_current_skin_uri() ?>/back.png) no-repeat 8px top;}
-	
+
 	.tabcontent ul li {background: url(<?php ocart_current_skin_uri() ?>/bullet.png) no-repeat 20px 20px;}
-	
+
 	.blog_content .post ul li {background: url(<?php ocart_current_skin_uri() ?>/bullet.png) no-repeat left center;}
-	
+
 	.blog_content .page ul li {background: url(<?php ocart_current_skin_uri() ?>/bullet.png) no-repeat left center;}
-	
+
 	.c-tag {background: url(<?php ocart_current_skin_uri() ?>/tags.png) no-repeat;}
-	
+
 	.product-tag {background: url(<?php ocart_current_skin_uri() ?>/prodlabels.png) no-repeat;}
-	
+
 	.nextButton {background: url(<?php ocart_current_skin_uri() ?>/nav-slider.png) no-repeat -40px 0;}
 	.prevButton {background: url(<?php ocart_current_skin_uri() ?>/nav-slider.png) no-repeat 0 0;}
 
@@ -269,28 +248,28 @@ function ocart_place_in_header() {
 	.tag-sale {background-position: 0 0}
 	.tag-new {background-position: 0 -28px}
 	.tag-sold {background-position: 0 -56px}
-	
+
 	</style>
-	
+
 	<?php /* conditional css */
 	if (ocart_current_skin() != 'default' ) { ?>
-	
+
 	<style type="text/css">
-	
+
 	.product-tag-new, .product-tag-instock, .btn-add, .btnstyle1, .checkout_login input[type=submit],
 	.cform input[type=submit], .sidebar .widget a.btnstyle3
 	{text-shadow: none;}
-	
+
 	</style>
-	
+
 	<?php } ?>
 
 	<?php /* css */ ?>
-	
+
 	<style type="text/css">
-	
+
 	#header {background-color: <?php ocart_skin_data('header_bg') ?>}
-	
+
 	.label-content .price-now, .btnstyle1, .blog_store, .blog_content .post-tags a:hover,
 	#comments a#cancel-comment-reply-link:hover, #submit, .tagcloud a, .cform input[type=submit], .myorders input[type=submit],
 	#contactform input[type=submit]:hover, #contactform input[type=submit]:focus, #contactform input[type=submit]:active,
@@ -299,11 +278,11 @@ function ocart_place_in_header() {
 	p#toggle_review a:hover, .catalog_item_status_sale, #supermenu li.current-menu-item > a, #supermenu li.current-menu-item > a:hover,
 	#supermenu li.current-menu-ancestor > a, .lightbox .closebutton:hover, .get-more-results a
 	{background-color: <?php ocart_skin_data('active_color') ?>}
-	
+
 	#supermenu li.current-menu-item > a, #supermenu li.current-menu-item > a:hover {
 	border-right: 1px solid <?php ocart_skin_data('active_color') ?>;
 	}
-	
+
 	.list a.current, .iosSlider .button1:hover, .tax ul ul li a:hover span, .tax ul ul li a.colorbox:hover span ,
 	.section .meta a, .section #twitter_update_list a:hover, #footer a:hover, .product-price .price-now,
 	.product-tax a.current, .product-tax a:hover, .t-productname a, .calc-total span, .blog_nav .current-cat a,
@@ -316,17 +295,17 @@ function ocart_place_in_header() {
 	.myorders p.radiobox label a, .product-rating-note a, span.is_req, .catalog_item_title span.price, .filter ul li a.selected,
 	.cform p.chkbox_terms label a, .column-price
 	{color: <?php ocart_skin_data('active_color') ?>}
-	
+
 	.cartpopup
 	{
 		border-top: 2px solid <?php ocart_skin_data('active_color') ?>;
 	}
-	
+
 	ul.options
 	{
 		border-top: 3px solid <?php ocart_skin_data('active_color') ?>;
 	}
-	
+
 	.cform input[type=text]:focus, .cform textarea:focus, .cform select:focus, .myorders_field input[type=text]:focus, .myorders_field input[type=password]:focus,
 	#contactform input[type=text]:focus, #contactform textarea:focus
 	{
@@ -335,7 +314,7 @@ function ocart_place_in_header() {
 		box-shadow: <?php ocart_skin_data('active_color') ?> 0 0 1px;
 		border-color: <?php ocart_skin_data('active_color') ?>;
 	}
-	
+
 	.iosSlider .text1 span, .iosSlider .text2 span {
 		background: <?php ocart_skin_data('slide_text_bg') ?>;
 		color: <?php ocart_skin_data('slide_text_color') ?>;
@@ -352,79 +331,79 @@ function ocart_place_in_header() {
 	{
 		color: <?php ocart_skin_data('text_color_3') ?>;
 	}
-	
+
 	.thecart th, #toplinks a, #options li.sort .sort-link, #options li.sort .sort-link-nodd, ul.options a, .section h3, .member span
 	{
 		color: <?php ocart_skin_data('text_color_2') ?>;
 	}
-	
-	.section .meta, .section datetime, .section #twitter_update_list a, .sidebar .oc_twitter #twitter_update_list a 
+
+	.section .meta, .section datetime, .section #twitter_update_list a, .sidebar .oc_twitter #twitter_update_list a
 	{
 		color: <?php ocart_skin_data('text_color_4') ?>;
 	}
-	
+
 	#bottom {
 		background-color: <?php ocart_skin_data('bottom_bg') ?>;
 	}
-	
+
 	.prods {
 		border-bottom: 1px solid <?php ocart_skin_data('catalog_border') ?>;
 	}
-	
+
 	#header {
 		border-bottom: 1px solid <?php ocart_skin_data('header_border') ?>;
 	}
-	
+
 	#footer {
 		border-top: 1px solid <?php ocart_skin_data('footer_border') ?>;
 	}
-	
+
 	.widget, .widget_custom, .checkout_left, .checkout_summary, .blog_content .post, .blog_content .page, .commentlist .vcard img,
 	.commentlist p em, #commentform input[type=text], #commentform textarea
 	{
 		border-bottom: 1px solid <?php ocart_skin_data('widget_border') ?>;
 	}
-	
+
 	.list a, .blog_nav a {
 		color: <?php ocart_skin_data('nav_color') ?>;
 	}
-	
+
 	.blog_title, .commentlist li.depth-1 {
 		border-bottom: 1px solid <?php ocart_skin_data('common_border_1') ?>;
 	}
-	
+
 	.commentlist li.depth-2, .commentlist li.depth-3 {
 		border-top: 1px solid <?php ocart_skin_data('common_border_1') ?>;
 	}
-	
+
 	.commentlist p {
 		color: <?php ocart_skin_data('comments_color') ?>;
 	}
-	
+
 	.commentlist .commentmetadata {
 		color: <?php ocart_skin_data('comments_meta_color') ?>;
 	}
-	
+
 	.commentlist .commenter, #comments .commentlist .commenter a {
 		color: <?php ocart_skin_data('comments_author') ?>;
 	}
-	
+
 	.checkout_login input[type=submit] {
 		background: <?php ocart_skin_data('button_style1_color') ?>;
 	}
-	
+
 	.checkout_login input[type=submit]:hover {
 		background: <?php ocart_skin_data('button_style1_hover') ?>;
 	}
-	
+
 	.cform input[type=submit]:hover, .cform input[type=submit]:focus, .cform input[type=submit]:active, .myorders input[type=submit]:hover {
 		background: <?php ocart_skin_data('button_hover_2') ?>;
 	}
-	
+
 	.checkout_process h3, .cform legend, .widget h3, .widget_custom h3 {
 		color: <?php ocart_skin_data('heading3') ?>;
 	}
-	
+
 	.sidebar .widget a.btnstyle3 {
 		background: <?php ocart_skin_data('button_style2_color') ?>;
 	}
@@ -432,24 +411,24 @@ function ocart_place_in_header() {
 	.blog_content .post-meta span {
 		color: <?php ocart_skin_data('text_color_5') ?>;
 	}
-	
+
 	#supermenu li a {
 		color: <?php ocart_skin_data('menu_color') ?>;
 	}
-	
+
 	#supermenu li.current-menu-item > a, #supermenu li.current-menu-item > a:hover, #supermenu li.current-menu-ancestor > a  {
 		color: <?php ocart_skin_data('menu_active_color') ?>;
 	}
-	
+
 	#supermenu li a:hover {
 		background-color: <?php ocart_skin_data('menu_hover_bg') ?>;
 		color: <?php ocart_skin_data('menu_hover_color') ?>;
 	}
-	
+
 	#supermenu ul {
 		background: <?php ocart_skin_data('menu_sub_bg') ?>;
 	}
-	
+
 	#supermenu li li {
 		border-bottom: 1px dotted <?php ocart_skin_data('menu_sub_border') ?>;
 	}
@@ -457,30 +436,30 @@ function ocart_place_in_header() {
 	#supermenu ul a {
 		color: <?php ocart_skin_data('menu_sub_color') ?>;
 	}
-	
+
 	#supermenu ul {
 		opacity: <?php if (ocart_get_option('theme_menu_opacity') != 100) { ?>0.<?php } ?><?php echo ocart_get_option('theme_menu_opacity'); ?>;
 		filter: alpha(opacity:<?php echo ocart_get_option('theme_menu_opacity'); ?>);
 	}
-	
+
 	</style>
-	
+
 	<?php /* custom/dynamic css */ ?>
-	
+
 	<style type="text/css">
-	
+
 	<?php if (!ocart_get_option('theme_slide_usebg')) { ?>
 	.iosSlider .text1 span, .iosSlider .text2 span {
 		background: none;
 		padding: 0;
 	}
 	<?php } ?>
-	
+
 	.iosSlider .text1 span, .iosSlider .text2 span {
 		opacity: <?php if (ocart_get_option('theme_slide_opacity') != 100) { ?>0.<?php } ?><?php echo ocart_get_option('theme_slide_opacity'); ?>;
 		filter: alpha(opacity:<?php echo ocart_get_option('theme_slide_opacity'); ?>);
 	}
-	
+
 	<?php if (ocart_get_option('theme_slide_usebg_image')) { ?>
 	.iosSlider .text1 span, .iosSlider .text2 span {
 		background: url(<?php echo get_template_directory_uri(); ?>/img/bg-transparent.png) repeat;
@@ -489,35 +468,35 @@ function ocart_place_in_header() {
 		filter: alpha(opacity:100);
 	}
 	<?php } ?>
-	
+
 	<?php if (!ocart_get_option('enable_slideshow')) { ?>
 	.nextButton, .prevButton, .iosSlider_buttons {display: none}
 	<?php } ?>
-	
+
 	#lightbox-shadow {
 		background: #<?php echo ocart_get_option('lightbox_shadow'); ?>;
 	}
-	
+
 	#header, #header-holder {
 		height: <?php echo ocart_get_option('theme_header_height'); ?>px;
 	}
-	
+
 	<?php if (ocart_get_option('disable_cart')) { ?>
 	#toplinks {
 		padding: 0;
 	}
 	<?php } ?>
-	
+
 	<?php if (!ocart_get_option('show_nav_all')) { ?>
 	.list {
 		left: 0;
 	}
 	<?php } ?>
-	
+
 	#catalog, .prods, .prods li {
 		height: <?php echo ocart_get_option('catalog_image_height'); ?>px;
 	}
-	
+
 	<?php
 	if (isset($ocart['scroll_attr']) && is_array($ocart['scroll_attr'])) {
 		foreach ($ocart['scroll_attr'] as $key) {
@@ -530,11 +509,11 @@ function ocart_place_in_header() {
 		}
 	}
 	?>
-	
+
 	.main-image {
 		left: <?php echo ocart_get_option('main_image_left_px'); ?>px;
 	}
-	
+
 	<?php
 	global $ocart;
 	if (isset($ocart['html_custom_css']) && $ocart['html_custom_css']) {
@@ -543,15 +522,15 @@ function ocart_place_in_header() {
 	?>
 
 	</style>
-	
+
 	<?php /* responsive css */ ?>
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo get_template_directory_uri(); ?>/css/responsive.css" />
-	
+
 	<?php
 
 	// javascripts, jquery
 	require_once get_template_directory().'/js/jquery.custom.js.php';
-	
+
 	// other js code, tracking code, before </head>
 	if (isset($ocart['html_header_code']) && !empty($ocart['html_header_code'])) {
 		echo $ocart['html_header_code'];
