@@ -79,7 +79,6 @@ if ($flag == false && is_admin()) {
 		'show_gridbtn' => 1, // show grid button by default
 		'show_sliderbtn' => 1, // show slider button by default
 		'show_backtotop' => 1, // show back to top button by default
-		'show_pinit' => 0, // hide pinit in product page by default
 		'currencycode' => 'USD', // default currency code
 		'disable_cart' => 0, // default to false do not disable purchase/cart module
 		'disable_prices' => 0, // default to false do not disable prices in catalog mode

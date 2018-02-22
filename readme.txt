@@ -42,6 +42,11 @@ GNU General Public License for more details.
 * UPDATE: Updated PHP 7.2 compatibility
 * UPDATE: Updated WordPress compatibility
 * UPDATE: Removed Facebook SDK
+* UPDATE: Removed Twitter SDK
+* UPDATE: Removed Google+ SDK
+* UPDATE: Removed Pinterest SDK
+* UPDATE: Removed sharing section
+* UPDATE: Removed Twitter widget
 
 = 1.9-beta3 =
 * FIX: Fixed readme.txt syntax

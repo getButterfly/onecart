@@ -159,7 +159,6 @@ function ocart_enqueue_scripts() {
 	wp_enqueue_script('carousel', get_stylesheet_directory_uri() . '/js/jquery.carouFredSel.js', array('jquery'));
 	wp_enqueue_script('scrollbar', get_stylesheet_directory_uri() . '/js/jquery.mCustomScrollbar.js', array('jquery'));
 	wp_enqueue_script('mousewheel', get_stylesheet_directory_uri() . '/js/jquery.mousewheel.js', array('jquery'));
-	wp_enqueue_script('twitter', get_stylesheet_directory_uri() . '/js/jquery.twitter.js', array('jquery'));
 	wp_enqueue_script('jcookies', get_stylesheet_directory_uri() . '/js/jquery.cookies.js', array('jquery'));
 	wp_enqueue_script('functions', get_stylesheet_directory_uri() . '/js/jquery.functions.js', array('jquery'));
 }
@@ -284,10 +283,10 @@ function ocart_place_in_header() {
 	}
 
 	.list a.current, .iosSlider .button1:hover, .tax ul ul li a:hover span, .tax ul ul li a.colorbox:hover span ,
-	.section .meta a, .section #twitter_update_list a:hover, #footer a:hover, .product-price .price-now,
+	.section .meta a, #footer a:hover, .product-price .price-now,
 	.product-tax a.current, .product-tax a:hover, .t-productname a, .calc-total span, .blog_nav .current-cat a,
 	.blog_content .post a, .blog_content .post-tags span, .blog_content .page a, .blog_content .page h1, #comments a,
-	#comments a#cancel-comment-reply-link, .widget a, .widget_custom a, .sidebar .oc_twitter #twitter_update_list span a,
+	#comments a#cancel-comment-reply-link, .widget a, .widget_custom a,
 	.tabcontent li span.meta a, .checkout_total span, .checkout_process h2, .cform span a, .cform p.radiobox label ins,
 	.cform span.req, .result a, .myorders a, .myorders_field span.errorfield, table.table-invoice ins, #contactform label span,
 	.paymentform input[type=submit], #Skrill_payment_form input[type=submit], #Authorize_payment_form input[type=submit],
@@ -320,14 +319,14 @@ function ocart_place_in_header() {
 		color: <?php ocart_skin_data('slide_text_color') ?>;
 	}
 
-	.section p, .section #twitter_update_list li, #commentform p
+	.section p, #commentform p
 	{
 		color: <?php ocart_skin_data('text_color_1') ?>;
 	}
 
 	.tax-parent, #min_price, #max_price, .tax ul ul li a, .product-about p, .product-tax-nocart li, .product-tax a,
 	.blog_content .post-meta, .blog_content .post p, #blog .blog_content .post-tags a, .blog_content .page-meta,
-	.blog_content .page p, .sidebar .oc_twitter #twitter_update_list li, .liststyle1 .entry span, .checkout_guest p
+	.blog_content .page p, .liststyle1 .entry span, .checkout_guest p
 	{
 		color: <?php ocart_skin_data('text_color_3') ?>;
 	}
@@ -337,7 +336,7 @@ function ocart_place_in_header() {
 		color: <?php ocart_skin_data('text_color_2') ?>;
 	}
 
-	.section .meta, .section datetime, .section #twitter_update_list a, .sidebar .oc_twitter #twitter_update_list a
+	.section .meta, .section datetime
 	{
 		color: <?php ocart_skin_data('text_color_4') ?>;
 	}

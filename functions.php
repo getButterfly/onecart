@@ -87,7 +87,7 @@ function ocart_get_option($option) {
             if ($option == 'default_expire_for_new') return 15;
             if ($option == 'grid_default_tagline_attribute') return 'size';
             if (in_array($option, array( 'show_gridbtn', 'show_sliderbtn', 'show_backtotop', 'show_nav', 'show_nav_all', 'checkout_extras', 'enable_slideshow', 'enable_calc', 'theme_slide_usebg_image', 'enable_tax', 'show_bloglink', 'show_login', 'show_product_breadcrumb', 'sort_products', 'ocml', 'ocmc', 'main_image_nav', 'wishlist' ))) return 1;
-            if (in_array($option, array( 'show_pinit', 'theme_slide_usebg', 'tax_rate', 'disable_cart', 'disable_prices', 'page_terms', 'tax_included', 'menu_style', 'attr_select', 'force_lightbox', 'cur_no_space', 'single_product_in_popup', 'hide_slider' ) )) return 0;
+            if (in_array($option, array( 'theme_slide_usebg', 'tax_rate', 'disable_cart', 'disable_prices', 'page_terms', 'tax_included', 'menu_style', 'attr_select', 'force_lightbox', 'cur_no_space', 'single_product_in_popup', 'hide_slider' ) )) return 0;
         }
     }
 }
@@ -137,7 +137,7 @@ function ocart_seo() {
 		$content .= '</title>';
 		$content .= '<meta name="description" content="'.$desc.'" />';
 	}
-	
+
 	// search
 	if (is_search()) {
 		$sep = ocart_get_option('seo_seperator_search');
@@ -152,7 +152,7 @@ function ocart_seo() {
 		$content .= '</title>';
 		$content .= '<meta name="description" content="'.$desc.'" />';
 	}
-	
+
 	// categories, taxonomies
 	if (is_tax() || is_tag() || is_category()) {
 		global $taxonomy,$term;
@@ -189,7 +189,7 @@ function ocart_seo() {
 		$content .= '</title>';
 		$content .= '<meta name="description" content="'.$desc.'" />';
 	}
-	
+
 	// 404 not found
 	if (is_404()) {
 		$sep = ocart_get_option('seo_seperator_404');
@@ -204,7 +204,7 @@ function ocart_seo() {
 		$content .= '</title>';
 		$content .= '<meta name="description" content="'.$desc.'" />';
 	}
-	
+
 	// post/page
 	if (is_single() || is_page()) {
 		global $post;
@@ -255,7 +255,7 @@ function ocart_seo() {
 	}
 
 	echo $content;
-	
+
 }
 
 /************************************************************
@@ -282,7 +282,7 @@ if ( isset( $_GET['currency'] ) ) {
 		fclose($handle);
 	}
 	$_SESSION['exchange_rate'] = $result[0];
-	
+
 	// reversed exchange rate
 	$url = 'http://finance.yahoo.com/d/quotes.csv?f=l1d1t1&s='.$_SESSION['currency'].$ocart['currencycode'].'=X';
 	$handle = fopen($url, 'r');
@@ -291,7 +291,7 @@ if ( isset( $_GET['currency'] ) ) {
 		fclose($handle);
 	}
 	$_SESSION['exchange_rate_reverse'] = $result[0];
-	
+
 } else {
 	if(isset($_SESSION['currency'])) {
 		$_GET['currency'] = $_SESSION['currency'];
@@ -302,9 +302,9 @@ if ( isset( $_GET['currency'] ) ) {
 display languages
 ************************************************************/
 function ocart_show_languages() {
-	
+
 	global $ocart;
-	
+
 	// fetch languages
 	$langs = get_option('occommerce_language_plugins');
 
@@ -314,13 +314,13 @@ function ocart_show_languages() {
 	} else {
 		$active_lang = 'en_US'; // fallback
 	}
-	
+
 	// add english by default
 	if (!is_array($langs)) $langs = array('en_US');
 	if (is_array($langs) && !in_array('en_US', $langs)) {
 		$langs[] = 'en_US';
 	}
-	
+
 ?>
 
 <div class="switchbar-inner">
@@ -399,19 +399,19 @@ function ocart_currency_label($code) {
 display multi currencies
 ************************************************************/
 function ocart_show_currencies() {
-	
+
 	global $ocart;
-	
+
 	// available currencies
 	$supported_c = ocart_get_option('multi_currency');
 	$supported_c = str_replace(' ','', $supported_c);
 	$currencies = explode(',', $supported_c);
-	
+
 	// add default currency
 	if (!in_array($ocart['currencycode'], $currencies)) {
 		array_push($currencies, $ocart['currencycode']);
 	}
-	
+
 	// make sure the currencies are added to available currencies
 	$builtincurrencies = get_option('occommerce_currencies');
 	foreach($currencies as $currency) {
@@ -419,14 +419,14 @@ function ocart_show_currencies() {
 			ocart_add_currency($currency);
 		}
 	}
-		
+
 	// active currency
 	if (isset($_SESSION['currency'])) {
 		$active_curr = $_SESSION['currency'];
 	} else {
 		$active_curr = $ocart['currencycode'];
 	}
-	
+
 ?>
 
 <div class="switchbar-inner">
@@ -474,7 +474,7 @@ build a collection slider
 function ocart_new_collection($auto='', $slug='', $override_title='', $count='', $orderby='date', $order='DESC', $exclude='', $autoplay="true", $timer=500, $unique_id='default-carousel') {
 
 	global $post;
-	
+
 	// get collection
 	if (!$slug) {
 		$terms = get_terms('collection', 'orderby=name&hide_empty=0');
@@ -496,17 +496,17 @@ function ocart_new_collection($auto='', $slug='', $override_title='', $count='',
 	} else {
 	$name = $term->name;
 	}
-	
+
 	// how many products
 	if ($count) {
 	$num = $count;
 	} else {
 	$num = -1;
 	}
-	
+
 	// pre query
 	$args = array( 'post_type' => 'product', 'posts_per_page' => $num, 'collection' => $slug, 'orderby' => $orderby, 'order' => $order );
-	
+
 	// auto collection
 	if ($auto) {
 		switch ($auto) {
@@ -527,16 +527,16 @@ function ocart_new_collection($auto='', $slug='', $override_title='', $count='',
 				break;
 		}
 	}
-	
+
 	// check excluded IDs
 	if ($exclude) {
 		$arr = explode(',', $exclude);
 		$args['post__not_in'] = $arr;
 	}
-	
+
 	// Get posts assigned with collection
 	$collection = new WP_Query( $args );
-	
+
 	$display = '';
 
 $display .= "<div class='wrap'>
@@ -544,63 +544,63 @@ $display .= "<div class='wrap'>
 <div class='column'>
 
 	<h2>$name</h2>";
-	
+
 	if( $collection->have_posts() ) :
-	
+
 	$display .= "<div class='column-wrap column-$unique_id'>
-	
+
 	<div class='collection-prev'></div>
 	<div class='collection-next'></div>
-	
+
 	<ul>";
-	
+
 	while( $collection->have_posts() ) : $collection->the_post();
-	
+
 	$status = get_post_meta($post->ID, 'status', true);
 	$mark_as_onsale = get_post_meta($post->ID, 'mark_as_onsale', true);
 	$mark_as_new = get_post_meta($post->ID, 'mark_as_new', true);
-	
+
 	$display .= "<li><a href='javascript:lightbox(null, \"". get_template_directory_uri(). "/ajax/product_lightbox.php\", \"\", \"".get_the_ID()."\", \"". get_permalink($post->ID)."\" );' class='column-image'>";
-				
+
 				$display .= get_the_post_thumbnail( get_the_ID(), 'collection-thumb', array('title' => '', 'class' => 'collection_front_image') );
 				$display .= ocart_product('collection_hover_image', get_the_ID());
-				
+
 				if (!ocart_get_option('disable_cart')) {
-				
+
 					if ($status == 'sold') {
-						
+
 					$display .= "<span class='catalog_item_status catalog_item_status_sold'>".ocart_sticker_text('sold')."</span>";
-						
+
 					} elseif (isset($mark_as_onsale) && $mark_as_onsale == 'on') {
-						
+
 					$display .= "<span class='catalog_item_status catalog_item_status_sale'>".ocart_sticker_text('sale')."</span>";
-						
+
 					} elseif (isset($mark_as_new) && $mark_as_new == 'on' && ocart_is_new_product() ) {
-						
+
 					$display .= "<span class='catalog_item_status catalog_item_status_new'>".ocart_sticker_text('new')."</span>";
-					
+
 					}
-					
+
 					if (isset($mark_as_new) && isset($mark_as_onsale) && $mark_as_new == 'on' && $mark_as_onsale == 'on' && ocart_is_new_product() ) {
 						$display .= '<div class="sticker_new">'.ocart_sticker_text('new', $wrap='span').'</div>';
 					}
-						
+
 				}
-				
+
 			$display .= "</a>";
-			
+
 			$display .= "<a href='javascript:lightbox(null, \"". get_template_directory_uri(). "/ajax/product_lightbox.php\", \"\", \"".get_the_ID()."\", \"". get_permalink($post->ID)."\" );' class='column-title'>".get_the_title()."</a>
-			
+
 			<div class='column-price'>".ocart_product('get_price_in_grid')."</div>
 			<div class='column-oldprice'>".ocart_product('get_plain_original_price')."</div>
 			<div class='clear'></div>
-			
+
 		</li>";
-		
+
 		endwhile;
-	
+
 	$display .= "</ul><div class='clear'></div></div>";
-	
+
 	endif;
 
 $display .= "</div></div>";
@@ -632,10 +632,10 @@ $(function() {
 			}
 		}
 	});
-	
+
 });
 </script>";
-	
+
 	return $display;
 
 }
@@ -687,17 +687,17 @@ function ocart_is_new_product() {
 	$start_date = get_post_meta($post->ID, 'new_start', true);
 	$mark_as_new = get_post_meta($post->ID, 'mark_as_new', true);
 	$expiry_date = get_post_meta($post->ID, 'new_expiry', true);
-	
+
 	// marked as new
 	if ($mark_as_new != 'on') return false;
-	
+
 	// start date
 	if ($start_date != '') {
 		$start = strtotime($start_date);
 		$now = strtotime(date('Y-m-d'));
 		if ($start > $now) return false;
 	}
-	
+
 	// expiry date
 	if ($expiry_date != '') {
 		$expiry = strtotime($expiry_date);
@@ -708,9 +708,9 @@ function ocart_is_new_product() {
 			return false;
 		}
 	}
-	
+
 	return true;
-	
+
 }
 
 /************************************************************
@@ -784,9 +784,9 @@ function ocart_product_breadcrumb() {
 						if ($terms && !is_wp_error( $terms )) {
 							foreach($terms as $term) {
 			?>
-		
+
 			<li><a href="<?php echo get_term_link($term->slug, $taxonomy); ?>" class="navi-tax" id="<?php echo $term->taxonomy; ?>-<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li><li>/</li>
-				
+
 			<?php
 							}
 						}
@@ -813,7 +813,7 @@ function ocart_notify_me_stock() {
 			<input type="submit" name="subscribe_to_button" id="subscribe_to_button" value="<?php _e('Notify Me','ocart'); ?>" />
 		</form><div class="clear"></div>
 		<div class="subs-status">
-		
+
 		</div>
 	</div>
 
@@ -896,7 +896,7 @@ catalog v2 breadcrumb
 ************************************************************/
 function ocart_breadcrumb($id, $tax) {
 	$term = get_term_by('id', $id, $tax);
-	
+
 	if ($tax == 'product_category') {
 		if ($term->parent > 0) {
 			$parent = get_term_by('id', $term->parent, $tax);
@@ -952,7 +952,7 @@ show grid filters
 ************************************************************/
 function ocart_show_grid_filters() {
 	global $ocart;
-	
+
 ?>
 
 <div class="header" id="price_range_slider"><?php echo __('Price Range','ocart'); ?><a href="#reset"><?php echo __('Reset','ocart'); ?></a></div>
@@ -983,7 +983,7 @@ function ocart_product_avg_rating() {
 	global $post;
 	$post_comments = get_comments(array( 'type' => 'comment', 'status' => 'approve', 'post_id' => $post->ID ));
 	$avg_total = 0;
-	
+
 	if ($post_comments) {
 
 		foreach($post_comments as $comment) {
@@ -992,32 +992,32 @@ function ocart_product_avg_rating() {
 				$avg_total += $rating;
 			}
 		}
-		
+
 		$avg = $avg_total / count($post_comments);
-		
+
 		echo '<div class="product-rating-wrapper">';
-		
+
 		for($i = 1; $i <= $avg; $i++) {
 			echo '<div class="product-rating-star"></div>';
 		}
 		for($i = $avg; $avg < 5; $avg++) {
 			echo '<div class="product-rating-off"></div>';
 		}
-		
+
 		echo '</div><div class="clear"></div>';
-	
+
 		echo '<div class="clear"></div><div class="product-rating-note">'.sprintf(__('Avg. customer rating: <strong>%s</strong> / 5','ocart'), number_format((double)($avg_total / count($post_comments)), 2), count($post_comments)).'</div>';
-		
+
 	} else {
-		
+
 		for($i = 1; $i <= 5; $i++) {
 			echo '<div class="product-rating-off"></div>';
 		}
-		
+
 		echo '<div class="clear"></div><div class="product-rating-note">'.__('No reviews yet. <a href="#rate" id="rate_product">Be the first!</a>','ocart').'</div>';
-		
+
 	}
-	
+
 }
 
 /************************************************************
@@ -1115,9 +1115,9 @@ function ocart_payment_options() {
 ?>
 
 	<label for="pay_by_<?php echo $gateway; ?>"><input type="radio" data-fee="<?php ocart_get_pay_extra_charge($gateway); ?>" name="cform_pay_option" id="pay_by_<?php echo $gateway; ?>" value="pay_by_<?php echo $gateway; ?>" <?php ocart_disable_gateway($gateway); ?> /><?php echo $gateway_arr['paymentname']; ?> <?php ocart_require_additional_charge($gateway); ?> <?php ocart_require_login_to_pay($gateway); ?>
-	
+
 	<?php do_action("ocart_display_payment_logo_{$gateway}"); ?>
-	
+
 	</label>
 
 <?php
@@ -1130,21 +1130,21 @@ return current skin
 ************************************************************/
 function ocart_current_skin() {
 	global $ocart;
-	
+
 	if (isset($_COOKIE['oc_cookie_skin'])) {
-	
+
 		$skin = $_COOKIE['oc_cookie_skin'];
-	
+
 	} else {
-	
+
 		if (!isset($ocart['skin'])) {
 			$skin = 'default';
 		} else {
 			$skin = $ocart['skin'];
 		}
-	
+
 	}
-	
+
 	return $skin;
 }
 
@@ -1182,24 +1182,24 @@ get skin data
 function ocart_skin_data($data) {
 
 	global $ocart;
-	
+
 	$skin = get_option('occommerce_skin_'.ocart_current_skin());
-	
+
 	$cur_skin = ocart_current_skin();
-	
+
 	if (isset($_COOKIE['oc_cookie_skin'])) {
 		echo $skin["$data"];
 	} else {
-	
+
 		if (isset($ocart["$cur_skin"."_"."$data"])) {
 			$ocart_skin = $ocart['skin'].'_'.$data;
 			echo $ocart["$ocart_skin"];
 		} else {
 			echo $skin["$data"];
 		}
-	
+
 	}
-	
+
 }
 
 /************************************************************
@@ -1251,14 +1251,14 @@ get logo image as <img> tag
 function ocart_logo_img() {
 
 	global $ocart;
-	
+
 	// logo url
 	$file_loc = get_option('occommerce_logo_url');
 	if (isset($file_loc) && !empty($file_loc)) {
 		$url = $file_loc;
 	} else {
 		$url = ocart_get_current_skin_uri().'/logo.png';
-	
+
 	}
 	echo '<img src="'.$url.'" alt="'.get_bloginfo('name').'" title="'.get_bloginfo('name').'" />';
 }
@@ -1269,14 +1269,14 @@ logo url
 function ocart_logo_url() {
 
 	global $ocart;
-	
+
 	// logo url
 	$file_loc = get_option('occommerce_logo_url');
 	if (isset($file_loc) && !empty($file_loc)) {
 		$url = $file_loc;
 	} else {
 		$url = ocart_get_current_skin_uri().'/logo.png';
-	
+
 	}
 	return $url;
 }
@@ -1374,9 +1374,9 @@ function ocart_format_currency($money, $nosymbol=false) {
 		$format = $money.ocart_get_currency_symbol();
 		}
 	}
-	
+
 	return $format;
-	
+
 }
 
 /************************************************************
@@ -1467,17 +1467,17 @@ function ocart_the_content($excerpt_length = 55, $ending = '...', $superending =
 	$text = apply_filters('the_content', $text);
 	$text = str_replace(']]>', ']]&gt;', $text);
 	$text = strip_tags($text);
-	
+
 	if ($limit == 'char') {
-	
+
 		if (!$text) {
 			echo '<p>'.__('No description has been entered yet.','ocart').'</p>';
 		} else {
 			echo '<p>'.substr($text,0,$excerpt_length).$ending.'</p>';
 		}
-	
+
 	} else {
-	
+
 		$words = preg_split("/[\n\r\t ]+/", $text, $excerpt_length + 1, PREG_SPLIT_NO_EMPTY);
 		if ( count($words) > $excerpt_length ) {
 			array_pop($words);
@@ -1488,9 +1488,9 @@ function ocart_the_content($excerpt_length = 55, $ending = '...', $superending =
 			$text = implode(' ', $words);
 			echo '<p>'.$text.'</p>';
 		}
-	
+
 	}
-	
+
 }
 
 /************************************************************
@@ -1509,7 +1509,7 @@ function ocart_recent_comments($no_comments = 5, $comment_len = 100) {
             ?>
                 <li class="comment">
                 <!-- Comment content -->
-				<span class="comment_excerpt"><a href="<?php echo get_permalink( $comment->comment_post_ID ) . '#comment-' . $comment->comment_ID; ?>"><?php echo strip_tags(substr(apply_filters('get_comment_text', $comment->comment_content), 0, $comment_len)); ?></a></span>  
+				<span class="comment_excerpt"><a href="<?php echo get_permalink( $comment->comment_post_ID ) . '#comment-' . $comment->comment_ID; ?>"><?php echo strip_tags(substr(apply_filters('get_comment_text', $comment->comment_content), 0, $comment_len)); ?></a></span>
 				<!-- When -->
 				<span class="comment_time"><a href="<?php echo get_permalink( $comment->comment_post_ID ) . '#comment-' . $comment->comment_ID; ?>"><?php echo human_time_diff(get_comment_date('U',$comment->comment_ID), current_time('timestamp')), __(' ago', 'ocart'); ?></a></span>
 				<div class="comment_author"><?php echo get_avatar( $comment->comment_author_email, 32, $d = get_template_directory_uri() . '/img/assets/default-user.png'); ?></div>
@@ -1527,7 +1527,7 @@ function ocart_page_title() {
 	if (is_home()) {
 		printf(__('%s | %s','ocart'), get_bloginfo('name'), get_bloginfo('description'));
 	} elseif (is_single() || is_page()) {
-		printf(__('%s | %s','ocart'), single_post_title(), get_bloginfo('name')); 
+		printf(__('%s | %s','ocart'), single_post_title(), get_bloginfo('name'));
 	} elseif (is_404()) {
 		printf(__('404 | %s','ocart'), get_bloginfo('name'));
 	} elseif (is_category()) {
@@ -1723,7 +1723,7 @@ list store options
 ************************************************************/
 function ocart_store_nav($target = '', $custom_id = '') {
 	global $ocart;
-	
+
 	// for specific taxonomy archives
 	if (get_query_var( 'taxonomy' ) && get_query_var('taxonomy') == 'product_category') {
 		$target = get_query_var( 'taxonomy' );
@@ -1737,7 +1737,7 @@ function ocart_store_nav($target = '', $custom_id = '') {
 
 	// terms
 	$parents = get_terms( 'product_category', 'orderby=name&hide_empty='.$ocart['emptyterms'].'&exclude='.$custom_id);
-	
+
 	// sort link class
 	if (ocart_get_option('show_nav')) {
 		$main_class = 'sort-link';
@@ -1756,7 +1756,7 @@ function ocart_store_nav($target = '', $custom_id = '') {
 		<?php } ?>
 			<?php if (ocart_get_option('show_nav')) { ?>
 			<ul class="options">
-				
+
 				<?php if ($custom_id) { ?>
 				<li><a href="#"><?php _e('Shop by Brand','ocart'); ?></a></li>
 				<?php } ?>
@@ -1766,21 +1766,21 @@ function ocart_store_nav($target = '', $custom_id = '') {
 				?>
 						<li><a href="#" id="<?php echo $term->taxonomy; ?>-<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
 				<?php } ?>
-				
+
 			</ul>
 			<?php } ?>
 		</li>
 	</ul>
 	<?php } ?>
-	
+
 	<?php if ($target && (int)$custom_id) { $term = get_term_by('id', $custom_id, $target); // we know it is a product category ?>
-	
+
 	<ul class="list">
-			
+
 			<?php
 			if (get_query_var( 'taxonomy' ) == 'product_category' && get_query_var( 'term' )) {
 			$term = get_term_by('slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-			
+
 			// parent term
 			if ($term->parent) {
 				$target_term = get_term_by('id', $term->parent, get_query_var( 'taxonomy' ) );
@@ -1788,25 +1788,25 @@ function ocart_store_nav($target = '', $custom_id = '') {
 			} else {
 				$target_term_link = null;
 			}
-			
+
 			?>
-			
+
 			<?php if ($target_term_link != null) { ?>
 			<li><a href="<?php echo get_term_link($target_term_link, 'product_category'); ?>" id="<?php echo $target_term->taxonomy; ?>-<?php echo $target_term->slug; ?>"><?php _e('All','ocart'); ?></a></li>
 			<?php } else { ?>
 			<li><a href="<?php echo get_term_link($term->slug, 'product_category'); ?>" id="<?php echo $term->taxonomy; ?>-<?php echo $term->slug; ?>" class="current"><?php _e('All','ocart'); ?><span></span></a></li>
 			<?php } ?>
-			
+
 			<?php } else { ?>
-			
+
 			<?php
 			$ii = get_term_by('id', $custom_id, $target);
 			?>
-			
+
 			<li><a href="<?php echo get_term_link($ii->slug, $target); ?>" id="<?php echo $ii->taxonomy; ?>-<?php echo $ii->slug; ?>" class="current"><?php _e('All','ocart'); ?><span></span></a></li>
-		
+
 			<?php } ?>
-		
+
 			<?php
 			$terms = get_terms( $target, 'orderby=name&hide_empty='.$ocart['emptyterms'].'&child_of='.$custom_id );
 			foreach($terms as $term) {
@@ -1815,16 +1815,16 @@ function ocart_store_nav($target = '', $custom_id = '') {
 				<li><a href="<?php echo get_term_link($term->slug, 'product_category'); ?>" id="<?php echo $term->taxonomy; ?>-<?php echo $term->slug; ?>"<?php if (get_query_var('term') == $term->slug) echo ' class="current"'; ?>><?php echo $term->name; ?><?php if (get_query_var('term') == $term->slug) echo '<span></span>'; ?></a></li>
 
 			<?php } ?>
-		
+
 	</ul><div class="clear"></div>
-	
+
 	<a href="#" class="prev"></a>
 	<a href="#" class="next"></a>
-	
+
 	<?php } else { // display brands ?>
-	
+
 	<ul class="list">
-	
+
 			<?php
 			if (get_query_var( 'taxonomy' ) == 'brand' && get_query_var( 'term' )) {
 			$term = get_term_by('slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
@@ -1834,7 +1834,7 @@ function ocart_store_nav($target = '', $custom_id = '') {
 			<?php } else { ?>
 			<li><a href="#" class="current"><?php _e('All','ocart'); ?><span></span></a></li>
 			<?php } ?>
-			
+
 			<?php
 			if (get_query_var( 'taxonomy' ) == 'brand' && get_query_var( 'term' )) {
 				$custom_tax = 'brand';
@@ -1842,7 +1842,7 @@ function ocart_store_nav($target = '', $custom_id = '') {
 				$custom_tax = ocart_get_option('default_nav_tax');
 			}
 			?>
-			
+
 			<?php
 			$terms = get_terms( $custom_tax, 'orderby=name&hide_empty='.$ocart['emptyterms'] );
 			foreach($terms as $term) {
@@ -1850,12 +1850,12 @@ function ocart_store_nav($target = '', $custom_id = '') {
 			?>
 			<li><a href="<?php echo get_term_link($term->slug, $custom_tax); ?>" id="<?php echo $term->taxonomy; ?>-<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
 			<?php } ?>
-		
+
 	</ul><div class="clear"></div>
-	
+
 	<a href="#" class="prev"></a>
 	<a href="#" class="next"></a>
-	
+
 	<?php } ?>
 
 <?php
@@ -1869,7 +1869,7 @@ function ocart_product($data, $id = '') {
 	// variables
 	global $post, $ocart;
 	if (!$id) { $id = $post->ID; }
-	
+
 	$custom = get_post_custom($id);
 	$price = $custom['price'][0];
 	$reg_price = $custom['regular_price'][0];
@@ -1887,19 +1887,19 @@ function ocart_product($data, $id = '') {
 	if (isset($custom['mark_as_new'])) {
 	$mark_as_new = $custom['mark_as_new'][0];
 	}
-	
+
 	// zc [ 1: 0]
 	if (isset($custom['imagecrop_method'][0])) {
 		$zc = $custom['imagecrop_method'][0];
 	} else {
 		$zc = 1;
 	}
-	
+
 	// get title
 	if ($data == 'title') {
 		the_title();
 	}
-	
+
 	// get product special tag if any (new/sale/sold)
 	if ($data == 'tag') {
 		if ($status == 'sold') {
@@ -1918,7 +1918,7 @@ function ocart_product($data, $id = '') {
 			echo '<div class="sticker_new">'.ocart_sticker_text('new', $wrap='span').'</div>';
 		}
 	}
-	
+
 	// get product availability
 	if ($data == 'status') {
 		if ($status == 'sold') {
@@ -1929,7 +1929,7 @@ function ocart_product($data, $id = '') {
 			echo '<div class="product-tag product-tag-instock">'.ocart_sticker_text('instock').'</div><div class="clear"></div>';
 		}
 	}
-	
+
 	// get product prices
 	if ($data == 'price') {
 		if (isset($reg_price) && $reg_price > $price) {
@@ -1965,7 +1965,7 @@ function ocart_product($data, $id = '') {
 		}
 		echo '</span>';
 	}
-	
+
 	// get base price
 	if ($data == 'baseprice') {
 		if (isset($reg_price) && $reg_price > $price) {
@@ -1975,12 +1975,12 @@ function ocart_product($data, $id = '') {
 		echo ocart_format_currency( ocart_show_price($price) );
 		echo '</span>';
 	}
-	
+
 	// get plain price
 	if ($data == 'plain_price') {
 		echo ocart_format_currency(ocart_show_price($price));
 	}
-	
+
 	// get price in grid view
 	if ($data == 'price_in_grid') {
 		// find custom prices
@@ -2011,26 +2011,26 @@ function ocart_product($data, $id = '') {
 			echo ocart_format_currency( ocart_show_price($prices[0]) );
 		}
 	}
-	
+
 	// get plain original price
 	if ($data == 'plain_original_price') {
 		if (isset($reg_price) && $reg_price != '') {
 			echo ocart_format_currency( ocart_show_price($reg_price) );
 		}
 	}
-	
+
 	// return true if original price exists
 	if ($data == 'have_original_price') {
 		if (isset($reg_price) && $reg_price != '') {
 			return true;
 		}
 	}
-	
+
 	// price no decimal
 	if ($data == 'price_no_decimal') {
 		echo ocart_format_currency( (int)$price );
 	}
-	
+
 	// get product info/summary
 	if ($data == 'details') {
 		if ($id) {
@@ -2040,17 +2040,17 @@ function ocart_product($data, $id = '') {
 			echo wpautop($post->post_content);
 		}
 	}
-	
+
 	// show catalog image [variable via product options]
 	if ($data == 'catalog_image') {
-	
+
 		if ($size == 'pic-small') { $w = 100; $h = 100; }
 		if ($size == 'pic-medium') { $w = 125; $h = 125; }
 		if ($size == 'pic-default') { $w = 194; $h = ocart_get_option('catalog_image_height'); }
 		if (!isset($size)) { $w = 194; $h = ocart_get_option('catalog_image_height'); }
 
 		$url = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'full');
-		
+
 		// hover image
 		if (isset($hover_image)) {
 		if ((int)$hover_image && $status != 'sold') {
@@ -2058,11 +2058,11 @@ function ocart_product($data, $id = '') {
 			echo '<div class="producthover"><img src="'.get_template_directory_uri().'/thumb.php?src='.$hover[0].'&amp;w='.$w.'&amp;h='.$h.'&amp;zc='.$zc.'&amp;a='.$crop.'&amp;q=100" class="productfront '.$size.'" alt="" /></div>';
 		}
 		}
-		
+
 		echo '<img src="'.get_template_directory_uri().'/thumb.php?src='.$url[0].'&amp;w='.$w.'&amp;h='.$h.'&amp;zc='.$zc.'&amp;a='.$crop.'&amp;q=100" class="productfront '.$size.'" alt="" />';
 
 	}
-	
+
 	// product hover v2
 	if ($data == 'product_hover') {
 		// hover image
@@ -2073,7 +2073,7 @@ function ocart_product($data, $id = '') {
 		}
 		}
 	}
-	
+
 	// product hover image in collection
 	if ($data == 'collection_hover_image') {
 		// hover image
@@ -2084,12 +2084,12 @@ function ocart_product($data, $id = '') {
 		}
 		}
 	}
-	
+
 	// show main image with zooming (width=230)
 	if ($data == 'main_image') {
-	
+
 		if (get_post_thumbnail_id($id)) {
-	
+
 			// attachments
 			$args = array(
 				'post_type' => 'attachment',
@@ -2104,7 +2104,7 @@ function ocart_product($data, $id = '') {
 			foreach($attachments as $attachment) {
 				$title = $attachment->post_title;
 			}
-			
+
 			// no title
 			if (!isset($title)) $title = null;
 
@@ -2113,14 +2113,14 @@ function ocart_product($data, $id = '') {
 				echo '<a href="'.$url[0].'" title="'.$title.'" class="zoom" id="thumb-'.get_post_thumbnail_id($id).'"><img src="'.get_template_directory_uri().'/thumb.php?src='.$url[0].'&amp;w='.ocart_get_option('main_image_width').'&amp;h='.ocart_get_option('main_image_height').'&amp;zc='.$zc.'&amp;a='.$crop.'&amp;q=100" alt="" /></a>';
 			}
 		}
-		
+
 	}
-	
+
 	// show product thumbnails
 	if ($data == 'thumbs') {
-	
+
 		if (ocart_has_images()) { echo '<div class="upImage"></div><div class="dnImage"></div>'; }
-	
+
 		// attachments
 		$args = array(
 			'post_type' => 'attachment',
@@ -2131,11 +2131,11 @@ function ocart_product($data, $id = '') {
 			'order' => 'ASC'
 		);
 		$attachments = get_posts($args);
-		
+
 		// video thumb
 		$has_video = get_post_meta($id, 'customtab_video', true);
 		$url = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'full');
-		
+
 		if ($attachments) {
 			echo '<ul class="thumbs">';
 				if (!empty($has_video)) {
@@ -2149,14 +2149,14 @@ function ocart_product($data, $id = '') {
 			}
 			echo '</ul>';
 		}
-	
+
 	}
-	
+
 	// show product thumbnails
 	if ($data == 'thumbs2') {
-	
+
 		if (ocart_has_images()) { echo '<div class="nextImage2"></div><div class="prevImage2"></div>'; }
-	
+
 		// attachments
 		$args = array(
 			'post_type' => 'attachment',
@@ -2167,11 +2167,11 @@ function ocart_product($data, $id = '') {
 			'order' => 'ASC'
 		);
 		$attachments = get_posts($args);
-		
+
 		// video thumb
 		$has_video = get_post_meta($id, 'customtab_video', true);
 		$url = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'full');
-		
+
 		if ($attachments) {
 			echo '<ul class="thumbs2">';
 				if (!empty($has_video)) {
@@ -2185,12 +2185,12 @@ function ocart_product($data, $id = '') {
 			}
 			echo '</ul>';
 		}
-	
+
 	}
-	
+
 	// show product images
 	if ($data == 'images') {
-	
+
 		$args = array(
 			'post_type' => 'attachment',
 			'numberposts' => -1,
@@ -2207,15 +2207,15 @@ function ocart_product($data, $id = '') {
 				echo '<a href="'.$url[0].'" title="'.$attachment->post_title.'" class="zoom" id="thumb-'.$attachment->ID.'"><img src="'.get_template_directory_uri().'/thumb.php?src='.$url[0].'&amp;w='.ocart_get_option('main_image_width').'&amp;h='.ocart_get_option('main_image_height').'&amp;zc='.$zc.'&amp;a='.$crop.'&amp;q=100" alt="" /></a>';
 			}
 		}
-	
+
 	}
-	
+
 	// show the small thumb in small cart
 	if ($data == 'small_thumb') {
 		$url = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'full');
 		echo '<img src="'.get_template_directory_uri().'/thumb.php?src='.$url[0].'&amp;w=46&amp;h=46&amp;zc='.$zc.'&amp;a='.$crop.'&amp;q=100" alt="" />';
 	}
-	
+
 	// get price in grid view
 	if ($data == 'get_price_in_grid') {
 		// find custom prices
@@ -2246,7 +2246,7 @@ function ocart_product($data, $id = '') {
 			return ocart_format_currency( ocart_show_price($prices[0]) );
 		}
 	}
-	
+
 	// get plain original price
 	if ($data == 'get_plain_original_price') {
 		if (isset($reg_price) && $reg_price != '') {
@@ -2299,7 +2299,7 @@ function ocart_has_images() {
 list a product taxonomy
 ************************************************************/
 function ocart_product_taxonomy(){
-	
+
 	global $post, $ocart;
 	$args=array('public' => true,'_builtin' => false);
 	$output = 'names'; // or objects
@@ -2310,7 +2310,7 @@ function ocart_product_taxonomy(){
 	} else {
 		$product_attr = array('color', 'size'); // default fallback
 	}
-	
+
 	if  ($taxonomies) {
 		$i = 0;
 		$taxonomies = $product_attr;
@@ -2326,22 +2326,22 @@ function ocart_product_taxonomy(){
 				<div class="product-tax-nocart product-<?php echo $taxonomy; ?>-nocart">
 				<?php } ?>
 					<h3><?php if (!ocart_get_option('disable_cart')) { printf(__('Choose %s','ocart'), ocart_get_taxonomy_nicename($taxonomy)); } else { printf(__('%s Options','ocart'), ocart_get_taxonomy_nicename($taxonomy)); } ?></h3>
-					
+
 					<?php if (ocart_get_option('attr_select')) { ?>
 
 					<select>
 						<option value="0"><?php _e('Please select','ocart'); ?></option>
 						<?php ocart_product_terms_select($taxonomy); ?>
 					</select>
-					
+
 					<?php } else { ?>
-					
+
 					<ul>
 						<?php ocart_product_terms($taxonomy); ?>
 					</ul>
-					
+
 					<?php } ?>
-					
+
 				</div>
 
 <?php
@@ -2413,9 +2413,9 @@ function ocart_display_super_nav() {
 
 <div id="nav">
 	<div class="wrap">
-		
+
 		<ul id="supermenu"><?php wp_nav_menu( array( 'theme_location' => 'nav_menu', 'container' => false, 'items_wrap' => '%3$s', 'fallback_cb' => false ) ); ?></ul>
-		
+
 	</div>
 </div>
 <?php } ?>
@@ -2440,7 +2440,7 @@ function ocart_product_terms($tax) {
 		<?php } else { ?>
 		<li><?php echo $term->name; ?></li>
 		<?php } ?>
-		
+
 <?php
 			} else {
 
@@ -2451,7 +2451,7 @@ function ocart_product_terms($tax) {
 				} else {
 					$bordercolor = $term->name;
 				}
-				
+
 ?>
 
 		<?php if (!ocart_get_option('disable_cart')) { ?>
@@ -2461,7 +2461,7 @@ function ocart_product_terms($tax) {
 		<?php } ?>
 
 <?php
-			
+
 			}
 		}
 	}
@@ -2485,11 +2485,11 @@ function ocart_product_terms_select($tax) {
 		<?php } else { ?>
 		<option value="<?php echo $term->taxonomy; ?>-<?php echo $term->slug; ?>" <?php ocart_option_price('product_'.$post->ID.'_'.$term->taxonomy.'_'.$term->term_id) ?>><?php echo $term->name; ?> <?php echo ocart_option_price_change('product_'.$post->ID.'_'.$term->taxonomy.'_'.$term->term_id); ?></option>
 		<?php } ?>
-		
+
 		<?php } else { ?>
-		
+
 		<option><?php echo $term->name; ?></option>
-		
+
 <?php
 			}
 		}
@@ -2527,10 +2527,10 @@ function ocart_smallcart() {
 ?>
 
 	<ul class="items">
-	
+
 		<?php
 		$cart_array = array_reverse($_SESSION['cart']);
-		$i = 0; 
+		$i = 0;
 		foreach($cart_array as $k => $v) : $i++;
 		if ( $i <= 4 && $v['quantity'] > 0 ) : ?>
 		<li id="item-<?php echo $v['id']; ?>" rel="<?php echo get_permalink($v['id']); ?>">
@@ -2544,7 +2544,7 @@ function ocart_smallcart() {
 			<div class="clear"></div>
 		</li>
 		<?php endif; endforeach; ?>
-		
+
 	</ul>
 	<div class="cartbtn"><a href="javascript:lightbox(null, '<?php echo get_template_directory_uri(); ?>/ajax/cart.php');"><?php _e('View Cart','ocart'); ?></a></div>
 
@@ -2703,7 +2703,7 @@ function ocart_recalculate_subtotal($amount, $amount_type) {
 			$total += $order['price'] * $order['quantity'];
 		}
 	}
-	
+
 	$amounts = 0;
 	foreach($_SESSION as $sess => $array) {
 		if (strstr($sess, 'coupon_')) {
@@ -2716,9 +2716,9 @@ function ocart_recalculate_subtotal($amount, $amount_type) {
 			$amounts += $array['amount'];
 		}
 	}
-	
+
 	$total = $total - $amounts;
-	
+
 	return $total;
 }
 
@@ -2740,18 +2740,18 @@ get shipping fees based on inputs
 ************************************************************/
 function ocart_get_shipping($fixed, $pct, $weight, $handling, $format=false, $add=false) {
 	$shipping = '';
-	
+
 	// fixed shipping rate
 	if ($fixed > 0) {
 		$shipping += $fixed;
 	}
-	
+
 	// percent rate
 	if ($pct > 0) {
 		$cart = ocart_cart_contents_only();
 		$shipping += (10 / 100) * $cart;
 	}
-	
+
 	// add superior handling fees (1 item = 2 items = etc)
 	if (is_array($handling) && count($handling) > 0) { // make sure we deal with array
 		// get total quantity of items in cart
@@ -2769,7 +2769,7 @@ function ocart_get_shipping($fixed, $pct, $weight, $handling, $format=false, $ad
 			$shipping += $quantity * $handling[1]; // first item handling * all quantity
 		}
 	}
-	
+
 	// add weight based prices
 	$total_weight = '';
 	if (is_array($weight) && count($weight) > 0) { // weight table exists
@@ -2781,7 +2781,7 @@ function ocart_get_shipping($fixed, $pct, $weight, $handling, $format=false, $ad
 					$total_weight += $item_weight * $v['quantity'];
 				}
 			}
-			
+
 			// parse weight array
 			foreach($weight as $value) {
 				$arr = explode('|', $value);
@@ -2793,25 +2793,25 @@ function ocart_get_shipping($fixed, $pct, $weight, $handling, $format=false, $ad
 					$shipping += $fee;
 				}
 			}
-			
+
 			if (!isset($fee)) {
 				$arr = explode('|', $weight[0]);
 				$shipping += (($total_weight / $arr[1]) * $arr[2]);
 			}
-			
+
 		}
 	}
-	
+
 	// if add is filled
 	if ($add) {
 		$shipping += $add;
 	}
-	
+
 	// if no shipping
 	if ($shipping == '') {
 		$shipping = 0;
 	}
-	
+
 	// display price format or not
 	if ($format) {
 	return ocart_format_currency ( ocart_show_price ($shipping) );
@@ -2826,23 +2826,23 @@ get tax fees
 ************************************************************/
 function ocart_get_tax($fixed, $pct, $format=false) {
 	$tax = '';
-	
+
 	// fixed tax rate
 	if ($fixed > 0) {
 		$tax += $fixed;
 	}
-	
+
 	// percent rate
 	if ($pct > 0) {
 		$cart = ocart_cart_contents_only();
 		$tax += ($pct / 100) * $cart;
 	}
-	
+
 	// if no tax
 	if ($tax == '') {
 		$tax = 0;
 	}
-	
+
 	// display price format or not
 	if ($format) {
 	return ocart_format_currency ( ocart_show_price ($tax) );
@@ -2858,36 +2858,36 @@ get the total cart payment
 function ocart_get_total($format=false, $add=false) {
 	$total = 0;
 	if (isset($_SESSION['cart'])) {
-		
+
 		// add products in cart
 		foreach($_SESSION['cart'] as $order) {
 			$total += $order['price'] * $order['quantity'];
 		}
-		
+
 		/**
 			pre calculation
 		**/
 		$total = apply_filters('ocart_pluggable_cart_total_pre', $total);
-		
+
 		// add shipping
 		$total += ocart_get_shipping($_SESSION['zonedata']['fixed_shipping'], $_SESSION['zonedata']['pct_shipping'], $_SESSION['zonedata']['weight'], $_SESSION['zonedata']['handling'], false);
-		
+
 		// add tax
 		/* add tax if user choose to add tax to totals */
 		if (!ocart_get_option('tax_included')) {
 		$total += ocart_get_tax($_SESSION['zonedata']['fixed_tax'], $_SESSION['zonedata']['pct_tax'], false);
 		}
-		
+
 		// coupons etc
 		if (isset($_SESSION['deduct_from_cart'])) {
 			$total = $total - $_SESSION['deduct_from_cart'];
 		}
-		
+
 		// if add is filled
 		if ($add) {
 			$total += $add;
 		}
-		
+
 		/**
 			after calculation
 		**/
@@ -2899,7 +2899,7 @@ function ocart_get_total($format=false, $add=false) {
 		} else {
 		return $total;
 		}
-	
+
 	}
 }
 
@@ -2909,24 +2909,24 @@ get cart total without hooks
 function ocart_get_total_builtin($mode='pre') {
 	$total = 0;
 	if (isset($_SESSION['cart'])) {
-		
+
 		// add products in cart
 		foreach($_SESSION['cart'] as $order) {
 			$total += $order['price'] * $order['quantity'];
 		}
-		
+
 		if ($mode != 'pre') {
-		
+
 			// add shipping
 			$total += ocart_get_shipping($_SESSION['zonedata']['fixed_shipping'], $_SESSION['zonedata']['pct_shipping'], $_SESSION['zonedata']['weight'], $_SESSION['zonedata']['handling'], false);
-			
+
 			/* add tax if user choose to add tax to totals */
 			if (!ocart_get_option('tax_included')) {
 			$total += ocart_get_tax($_SESSION['zonedata']['fixed_tax'], $_SESSION['zonedata']['pct_tax'], false);
 			}
-		
+
 		}
-		
+
 		// coupons etc
 		if (isset($_SESSION['deduct_from_cart'])) {
 			$total = $total - $_SESSION['deduct_from_cart'];
@@ -2934,7 +2934,7 @@ function ocart_get_total_builtin($mode='pre') {
 
 		// display price format or not
 		return $total;
-	
+
 	}
 }
 
@@ -2970,7 +2970,7 @@ function ocart_shipping_fee() {
 	} elseif (!isset($_SESSION['ocart_shipping_fee']) && isset($ocart['courier1_fee']) && !isset($_SESSION['force_free_shipping'])) { // make default courier fee
 		$rate += $ocart['courier1_fee'];
 	}
-	
+
 	// calculate weight
 	$total_weight = 0;
 	if (isset($_SESSION['ocart_cart_count'])) {
@@ -2987,7 +2987,7 @@ function ocart_shipping_fee() {
 			}
 		}
 	}
-	
+
 	// get pricing based on total weight
 	if ($total_weight > 0) {
 		$weight = explode(PHP_EOL, ocart_get_option('weight_table'));
@@ -3023,7 +3023,7 @@ function ocart_shipping_fee() {
 			}
 		}
 	}
-	
+
 	// return rate
 	if ($rate == '') {
 		return '0.00';
@@ -3044,7 +3044,7 @@ function ocart_shipping_fee_noformat() {
 	} elseif (!isset($_SESSION['ocart_shipping_fee']) && isset($ocart['courier1_fee']) && !isset($_SESSION['force_free_shipping'])) { // make default courier fee
 		$rate += $ocart['courier1_fee'];
 	}
-	
+
 	// calculate weight
 	$total_weight = 0;
 	if (isset($_SESSION['ocart_cart_count'])) {
@@ -3061,7 +3061,7 @@ function ocart_shipping_fee_noformat() {
 			}
 		}
 	}
-	
+
 	// get pricing based on total weight
 	if ($total_weight > 0) {
 		$weight = explode(PHP_EOL, ocart_get_option('weight_table'));
@@ -3111,7 +3111,7 @@ function ocart_shipping_rate($f) {
 	global $ocart;
 	$rate = 0;
 	$rate += $f;
-	
+
 	// calculate weight
 	$total_weight = 0;
 	if (isset($_SESSION['ocart_cart_count'])) {
@@ -3128,13 +3128,13 @@ function ocart_shipping_rate($f) {
 			}
 		}
 	}
-	
+
 	// get pricing based on total weight
 	if ($total_weight > 0) {
 		$weight = explode(PHP_EOL, ocart_get_option('weight_table'));
 		$rate += ocart_array_search($total_weight, $weight);
 	}
-	
+
 	if (isset($ocart['cost_per_item'])) {
 	$universal_cost_per_item = $ocart['cost_per_item'];
 	} else {
@@ -3186,15 +3186,15 @@ function ocart_comment($comment, $args, $depth) {
 		<?php if ( 'div' != $args['style'] ) : ?>
 		<div id="div-comment-<?php comment_ID() ?>" class="comment-body">
 		<?php endif; ?>
-		
+
 		<div class="comment-author vcard">
 			<?php if ($args['avatar_size'] != 0) echo get_avatar( $comment, $args['avatar_size'], $d = get_template_directory_uri() . '/img/assets/default-user.png' ); ?>
 		</div>
-		
-		<div class="comment-content"> 
+
+		<div class="comment-content">
 
 		<div class="commenter"><?php echo get_comment_author_link(); ?></div>
-		
+
 		<div class="comment-meta commentmetadata">
 			<?php printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?>
 			<?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
@@ -3202,13 +3202,13 @@ function ocart_comment($comment, $args, $depth) {
 		</div>
 
 		<?php comment_text() ?>
-		
+
 		<?php if ($comment->comment_approved == '0') : ?>
 			<p><em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.','ocart') ?></em></p>
 		<?php endif; ?>
 
 		</div><div class="clear"></div>
-		
+
 		<?php if ( 'div' != $args['style'] ) : ?>
 		</div>
 		<?php endif; ?>
@@ -3217,7 +3217,7 @@ function ocart_comment($comment, $args, $depth) {
 
 /************************************************************
 insert zone settings (or default zone)
-************************************************************/		
+************************************************************/
 function ocart_insert_zone_setting($setting, $postfield) {
 	$zones = get_option('occommerce_zones');
 	if (!empty($postfield)) {
@@ -3264,7 +3264,7 @@ function ocart_min_price() {
 	$min = "SELECT min(cast(meta_value as DECIMAL)) FROM wp_postmeta WHERE meta_key='price'";
 	return $wpdb->get_var($min);
 }
-		
+
 /************************************************************
 get highest item price
 ************************************************************/
@@ -3318,11 +3318,11 @@ function ocart_incart_product_options($terms) {
 					$bordercolor = $uiterm->name;
 				}
 ?>
-	
+
 	<span class="t-option"><?php echo ocart_get_taxonomy_nicename($tax); ?>:<span style="background: <?php echo $uiterm->name; ?>;border: 1px solid <?php echo $bordercolor; ?>;padding: 0 20px;margin: 0 0 0 10px;"></span></span>
-						
+
 <?php } else { ?>
-	
+
 	<span class="t-option"><?php echo ocart_get_taxonomy_nicename($tax); ?>:<span style="margin: 0 0 0 10px;"><?php echo $uiterm->name; ?></span></span>
 
 <?php
@@ -3351,11 +3351,11 @@ function ocart_incart_product_terms($terms) {
 					$bordercolor = $uiterm->name;
 				}
 ?>
-	
+
 	<span><?php echo ocart_get_taxonomy_nicename($tax); ?>:<span style="background: <?php echo $uiterm->name; ?>;border: 1px solid <?php echo $bordercolor; ?>;padding: 0 20px;"></span></span>
-						
+
 <?php } else { ?>
-	
+
 	<span><?php echo ocart_get_taxonomy_nicename($tax); ?>:<span><?php echo $uiterm->name; ?></span></span>
 
 <?php
@@ -3384,13 +3384,13 @@ function ocart_get_incart_product_terms($terms) {
 				} else {
 					$bordercolor = $uiterm->name;
 				}
-				
+
 				$res .= '<span style="display:block;color:#999;">'.ocart_get_taxonomy_nicename($tax).':<span style="margin: 0 0 0 5px;padding: 0 20px;background: '.$uiterm->name.';border: 1px solid '.$bordercolor.';"></span></span>';
-						
+
 			} else {
-	
+
 				$res .= '<span style="display:block;color:#999;">'.ocart_get_taxonomy_nicename($tax).':<span style="margin: 0 0 0 5px;">'.$uiterm->name.'</span></span>';
-				
+
 			}
 		}
 	}
@@ -3435,14 +3435,14 @@ loop thru filters/sorting options
 ************************************************************/
 function ocart_filters() {
 	global $ocart;
-	
+
 	// filters/browser attributes
 	if (isset($ocart['browser_attr']) && is_array($ocart['browser_attr'])) {
 		$filters = $ocart['browser_attr'];
 	} else {
 		$filters = array('product_category', 'brand', 'color', 'size'); // default fallback
 	}
-	
+
 	$args=array('public' => true,'_builtin' => false);
 	$output = 'names'; // or objects
 	$operator = 'and'; // 'and' or 'or'
@@ -3504,7 +3504,7 @@ function ocart_filters() {
 					</li>
 				</ul>
 			</div>
-			
+
 			<div class="tax">
 				<label><?php _e('Sort by','ocart'); ?></label>
 				<ul>
@@ -3524,16 +3524,16 @@ function ocart_filters() {
 				<input type="text" name="min_price" id="min_price" value="<?php echo ocart_format_currency(0); ?>" />
 				<input type="text" name="max_price" id="max_price" value="<?php echo ocart_format_currency( ocart_max_price() ); ?>" />
 			</div>
-			
+
 			<div class="tax">
 			</div>
-			
+
 			<div class="tax">
 				<a href="#clear" class="btnstyle4" id="resetfilters"><?php _e('Clear All Filters','ocart'); ?></a>
 			</div>
 
 <?php
-	
+
 }
 
 /************************************************************
@@ -3751,7 +3751,7 @@ function RGBToHSL($RGB) {
       if($b == $maxC)
         $h = 4.0 + ($r - $g) / ($maxC - $minC);
 
-      $h = $h / 6.0; 
+      $h = $h / 6.0;
     }
 
     $h = (int)round(255.0 * $h);
@@ -3767,7 +3767,7 @@ loop thru shipping options
 function ocart_shipping_options($loop, $id) {
 	global $ocart, $post;
 	$courier = get_post_meta($post->ID, 'courier', true);
-	
+
 	if ($loop == 'select') {
 ?>
         <select name="<?php echo $id; ?>" id="<?php echo $id; ?>">
@@ -3784,11 +3784,11 @@ function ocart_shipping_options($loop, $id) {
 payable amount
 ************************************************************/
 function ocart_payable($post_id, $force_currency = false) {
-	
+
 	global $ocart;
-	
+
 	$payable = get_post_meta($post_id, 'payment_gross_total', true);
-	
+
 	// use specific currency to pay
 	if ( $force_currency == true ) {
 		$url = 'http://finance.yahoo.com/d/quotes.csv?f=l1d1t1&s='.$ocart['currencycode'].$force_currency.'=X';
@@ -3799,9 +3799,9 @@ function ocart_payable($post_id, $force_currency = false) {
 		}
 		$payable = $result[0] * $payable;
 		$payable = number_format((float)$payable, 2, '.', '');
-		
+
 	} else {
-	
+
 		// multiply exchange rate * payable amount
 		if (isset($_SESSION['exchange_rate']) && $_SESSION['exchange_rate'] > 0 && $payable > 0) {
 			$payable = $_SESSION['exchange_rate'] * $payable;
@@ -3809,11 +3809,11 @@ function ocart_payable($post_id, $force_currency = false) {
 		} else {
 			$payable = number_format((float)$payable, 2, '.', '');
 		}
-	
+
 	}
 
 	return $payable;
-	
+
 }
 
 /************************************************************
@@ -3822,10 +3822,10 @@ print update check notice
 function ocart_print_update_notice() {
 	if (get_option('occommerce_updates') > 0) {
 	?>
-	
+
 	<span class="update_notice"><?php printf(__('A newer version is available. Please <a href="%s">update</a> your theme now.','ocart'), admin_url().'/update-core.php'); ?></span>
 	<div class="clear"></div>
-	
+
 	<?php
 	}
 }

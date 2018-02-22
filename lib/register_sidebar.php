@@ -57,7 +57,6 @@ register_sidebar(array(
 Registering custom widget modules (+options)
 ************************************************************/
 add_action( 'widgets_init', 'oc_text_init' );
-add_action( 'widgets_init', 'oc_twitter_init' );
 add_action( 'widgets_init', 'oc_latestblog_init' );
 add_action( 'widgets_init', 'oc_latestblogs_init' );
 add_action( 'widgets_init', 'oc_social_init' );
@@ -67,7 +66,6 @@ add_action( 'widgets_init', 'oc_tabs_init' );
 add_action( 'widgets_init', 'oc_collection_init');
 
 function oc_text_init() { register_widget( 'oc_text' ); }
-function oc_twitter_init() { register_widget( 'oc_twitter' ); }
 function oc_latestblog_init() { register_widget( 'oc_latestblog' ); }
 function oc_latestblogs_init() { register_widget( 'oc_latestblogs' ); }
 function oc_social_init() { register_widget( 'oc_social' ); }
@@ -83,15 +81,15 @@ class oc_collection extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array( 'classname' => 'oc_collection', 'description' => __('Display a products collection in a slider', 'ocart') );
-		
+
 		$control_ops = array( 'width' => 300, 'height' => 200, 'id_base' => 'oc_collection_widget' );
-		
+
 		parent::__construct( 'oc_collection_widget', __('ocCommerce - Collection', 'ocart'), $widget_ops, $control_ops );
 	}
 
 	function widget( $args, $instance ) {
 		extract( $args );
-		
+
 		//Our variables from the widget settings.
 		$collection_name = $instance['collection_name'];
 		$collection_title = $instance['collection_title'];
@@ -102,7 +100,7 @@ class oc_collection extends WP_Widget {
 		$collection_auto = $instance['collection_auto'];
 		$collection_timer = $instance['collection_timer'];
 		$collection_formula = $instance['collection_formula'];
-		
+
 		// Display widget
 		$unique_id = $this->id;
 		echo ocart_new_collection($collection_formula, $collection_name, $collection_title, $collection_count, $collection_orderby, $collection_order, $collection_exclude, $collection_auto, $collection_timer, $unique_id);
@@ -149,7 +147,7 @@ class oc_collection extends WP_Widget {
 		echo __('You did not create any custom collections yet.','ocart');
 		} ?>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'collection_formula' ); ?>"><?php _e('Use an Automatic Collection:', 'ocart'); ?></label>
 			<select id="<?php echo $this->get_field_id( 'collection_formula' ); ?>" name="<?php echo $this->get_field_name( 'collection_formula' ); ?>" class="widefat">
@@ -158,18 +156,18 @@ class oc_collection extends WP_Widget {
 			</select><br />
 			<small><?php _e('Choosing a predefined collection will override your existing collection. A predefined collection is made to show automatic results based on your chosen collection.','ocart'); ?></small>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'collection_title' ); ?>"><?php _e('Override Collection Title:', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'collection_title' ); ?>" name="<?php echo $this->get_field_name( 'collection_title' ); ?>" value="<?php echo $instance['collection_title']; ?>" class="widefat" />
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'collection_count' ); ?>"><?php _e('Number of Products:', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'collection_count' ); ?>" name="<?php echo $this->get_field_name( 'collection_count' ); ?>" value="<?php echo $instance['collection_count']; ?>" class="widefat" />
 			<small><?php _e('Leave blank if you want to show all products in that collection.','ocart'); ?></small>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'collection_orderby' ); ?>"><?php _e('Order by:', 'ocart'); ?></label>
 			<select id="<?php echo $this->get_field_id( 'collection_orderby' ); ?>" name="<?php echo $this->get_field_name( 'collection_orderby' ); ?>" class="widefat">
@@ -181,11 +179,11 @@ class oc_collection extends WP_Widget {
 				<option value="modified"<?php selected('modified', $instance['collection_orderby']); ?>><?php _e('Last Modified','ocart'); ?></option>
 				<option value="ID"<?php selected('ID', $instance['collection_orderby']); ?>><?php _e('ID','ocart'); ?></option>
 			</select><br />
-			<small><?php printf(__('You can use \'menu_order\' and re-order your products using ajax drag-and-drop and sort products <a href="%s">here</a>.','ocart'), 
+			<small><?php printf(__('You can use \'menu_order\' and re-order your products using ajax drag-and-drop and sort products <a href="%s">here</a>.','ocart'),
 			admin_url().'edit.php?post_type=product&page=product-order'
 			); ?></small>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'collection_order' ); ?>"><?php _e('Order:', 'ocart'); ?></label>
 			<select id="<?php echo $this->get_field_id( 'collection_order' ); ?>" name="<?php echo $this->get_field_name( 'collection_order' ); ?>" class="widefat">
@@ -193,13 +191,13 @@ class oc_collection extends WP_Widget {
 				<option value="ASC"<?php selected('ASC', $instance['collection_order']); ?>><?php _e('Ascending Order','ocart'); ?></option>
 			</select>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'collection_exclude' ); ?>"><?php _e('Exclude IDs:', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'collection_exclude' ); ?>" name="<?php echo $this->get_field_name( 'collection_exclude' ); ?>" value="<?php echo $instance['collection_exclude']; ?>" class="widefat" />
 			<small><?php _e('Enter a comma seperated list of products IDs you want to exclude.','ocart'); ?></small>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'collection_auto' ); ?>"><?php _e('Autoplay Slider:', 'ocart'); ?></label>
 			<select id="<?php echo $this->get_field_id( 'collection_auto' ); ?>" name="<?php echo $this->get_field_name( 'collection_auto' ); ?>" class="widefat">
@@ -207,7 +205,7 @@ class oc_collection extends WP_Widget {
 				<option value="false"<?php selected('false', $instance['collection_auto']); ?>><?php _e('Off','ocart'); ?></option>
 			</select>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'collection_timer' ); ?>"><?php _e('Delay (Timer):', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'collection_timer' ); ?>" name="<?php echo $this->get_field_name( 'collection_timer' ); ?>" value="<?php echo $instance['collection_timer']; ?>" class="widefat" />
@@ -225,9 +223,9 @@ class oc_text extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array( 'classname' => 'oc_text', 'description' => __('A text or HTML widget', 'ocart') );
-		
+
 		$control_ops = array( 'width' => 300, 'height' => 200, 'id_base' => 'oc_text_widget' );
-		
+
 		parent::__construct( 'oc_text_widget', __('ocCommerce - Text', 'ocart'), $widget_ops, $control_ops );
 	}
 
@@ -237,7 +235,7 @@ class oc_text extends WP_Widget {
 		//Our variables from the widget settings.
 		$title = apply_filters('widget_title', $instance['title'] );
 		$content = $instance['content'];
-		
+
 		// Display widget
 		echo $before_widget . $before_title . $title . $after_title;
 		echo wpautop( $content );
@@ -266,99 +264,9 @@ class oc_text extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="widefat" />
 		</p>
-		
+
 		<p>
 			<textarea id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" class="widefat" rows="16" cols="20"><?php if (isset($instance['content'])) { echo $instance['content']; } ?></textarea>
-		</p>
-
-	<?php
-	}
-}
-
-/************************************************************
-custom twitter widget
-************************************************************/
-class oc_twitter extends WP_Widget {
-
-	function __construct() {
-		$widget_ops = array( 'classname' => 'oc_twitter', 'description' => __('Your latest tweets from Twitter', 'ocart') );
-		
-		$control_ops = array( 'width' => 300, 'height' => 200, 'id_base' => 'oc_twitter_widget' );
-		
-		parent::__construct( 'oc_twitter_widget', __('ocCommerce - Latest Tweets', 'ocart'), $widget_ops, $control_ops );
-	}
-
-	function widget( $args, $instance ) {
-		extract( $args );
-
-		//Our variables from the widget settings.
-		$title = apply_filters('widget_title', $instance['title'] );
-		$username = $instance['username'];
-		$count = $instance['count'];
-		
-		// Display widget
-		global $ocart;
-		echo $before_widget . $before_title . $title . $after_title;
-		?>
-		
-		<?php if ($username) { // require twitter setup ?>
-		
-		<div id="twitter_div"><ul id="twitter_update_list"><li></li></ul></div>
-		<script type="text/javascript">
-		$(document).ready(function() {
-			GetTwitterFeedIncRT('<?php echo $username; ?>', '<?php echo $count; ?>', 'twitter_update_list');
-		});
-		</script>
-		
-		<div class="link"><a href="http://twitter.com/<?php echo $username; ?>"><?php _e('Follow on Twitter','ocart'); ?></a></div>
-		<div class="buttonblock"><a href="http://twitter.com/<?php echo $username; ?>" class="btnstyle3"><?php _e('Follow Us','ocart'); ?></a></div>
-		
-		<?php } else { ?>
-		
-			<p><?php _e('Please enter a Twitter username in your widget setup.','ocart'); ?></p>
-		
-		<?php } ?>
-
-		<?php
-		echo $after_widget;
-
-	}
-
-	//Update the widget
-	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-
-		//Strip tags from title and name to remove HTML
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['username'] = strip_tags( $new_instance['username'] );
-		$instance['count'] = $new_instance['count'];
-
-		return $instance;
-	}
-
-	function form( $instance ) {
-
-		//Set up some default widget settings.
-		$defaults = array( 'title' => __('Recent Tweet','ocart'), 'count' => 3, 'username' => '' );
-		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
-
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'ocart'); ?></label>
-			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="widefat" />
-		</p>
-		
-		<p>
-			<label for="<?php echo $this->get_field_id( 'username' ); ?>"><?php _e('Twitter Account Username:', 'ocart'); ?></label>
-			<input type="text" id="<?php echo $this->get_field_id( 'username' ); ?>" name="<?php echo $this->get_field_name( 'username' ); ?>" value="<?php if (isset($instance['username'])) { echo $instance['username']; } ?>" class="widefat" />
-		</p>
-		
-		<p>
-			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e('Number of Tweets:', 'ocart'); ?></label>
-			<select id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" class="widefat">
-				<?php for ($i = 1; $i <= 10; $i++) { ?>
-				<option value="<?php echo $i; ?>"<?php selected($i, $instance['count']); ?>><?php echo $i; ?></option>
-				<?php } ?>
-			</select>
 		</p>
 
 	<?php
@@ -372,9 +280,9 @@ class oc_latestblog extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array( 'classname' => 'oc_latestblog', 'description' => __('Your latest blog post', 'ocart') );
-		
+
 		$control_ops = array( 'width' => 300, 'height' => 200, 'id_base' => 'oc_latestblog_widget' );
-		
+
 		parent::__construct( 'oc_latestblog_widget', __('ocCommerce - Latest Post', 'ocart'), $widget_ops, $control_ops );
 	}
 
@@ -384,28 +292,28 @@ class oc_latestblog extends WP_Widget {
 		//Our variables from the widget settings.
 		$title = apply_filters('widget_title', $instance['title'] );
 		$words = $instance['words'];
-		
+
 		// Display widget
 		echo $before_widget . $before_title . $title . $after_title;
-		
+
 		global $WP_Query;
 		$posts = new WP_Query( array( 'post_type' => 'post', 'posts_per_page' => 1 ));
 		if ($posts->have_posts() ) :
 		while ( $posts->have_posts() ) : $posts->the_post();
 		?>
-		
+
 			<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 			<div class="meta"><?php printf(__('by %s','ocart'), get_the_author()); ?><span class="divid">|</span><?php comments_popup_link( __('0 Comments','ocart'), __('1 Comment','ocart'), __('% Comments','ocart') ); ?></div>
 			<?php ocart_the_content($words); ?>
-		
+
 		<?php endwhile; ?>
-		
+
 			<div class="link"><a href="<?php echo get_permalink( get_page_by_path( 'blog' ) ); ?>"><?php _e('View Blog','ocart'); ?></a></div>
-		
+
 		<?php else : ?>
-			
+
 			<p><?php _e('There are no blog posts yet.','ocart'); ?></p>
-		
+
 		<?php
 		endif;
 		echo $after_widget;
@@ -433,7 +341,7 @@ class oc_latestblog extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="widefat" />
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'words' ); ?>"><?php _e('Excerpt Length (in words):', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'words' ); ?>" name="<?php echo $this->get_field_name( 'words' ); ?>" value="<?php echo $instance['words']; ?>" class="widefat" />
@@ -450,9 +358,9 @@ class oc_latestblogs extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array( 'classname' => 'oc_latestblogs', 'description' => __('Your latest blog posts', 'ocart') );
-		
+
 		$control_ops = array( 'width' => 300, 'height' => 200, 'id_base' => 'oc_latestblogs_widget' );
-		
+
 		parent::__construct( 'oc_latestblogs_widget', __('ocCommerce - Latest Posts', 'ocart'), $widget_ops, $control_ops );
 	}
 
@@ -462,14 +370,14 @@ class oc_latestblogs extends WP_Widget {
 		//Our variables from the widget settings.
 		$title = apply_filters('widget_title', $instance['title'] );
 		$count = $instance['count'];
-		
+
 		// Display widget
 		echo $before_widget . $before_title . $title . $after_title;
 
 		?>
 
 		<ul class="liststyle1">
-			
+
 			<?php
 			global $WP_Query;
 			$posts = new WP_Query( array( 'post_type' => 'post', 'posts_per_page' => $count ));
@@ -483,9 +391,9 @@ class oc_latestblogs extends WP_Widget {
 				</div><div class="clear"></div>
 			</li>
 			<?php endwhile; ?>
-			
+
 		</ul>
-		
+
 		<?php
 		echo $after_widget;
 
@@ -512,7 +420,7 @@ class oc_latestblogs extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="widefat" />
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e('Number of posts to display:', 'ocart'); ?></label>
 			<select id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" class="widefat">
@@ -533,9 +441,9 @@ class oc_social extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array( 'classname' => 'oc_social', 'description' => __('Your social bookmarking pages', 'ocart') );
-		
+
 		$control_ops = array( 'width' => 300, 'height' => 200, 'id_base' => 'oc_social_widget' );
-		
+
 		parent::__construct( 'oc_social_widget', __('ocCommerce - Social Bookmarks', 'ocart'), $widget_ops, $control_ops );
 	}
 
@@ -544,13 +452,13 @@ class oc_social extends WP_Widget {
 
 		//Our variables from the widget settings.
 		$title = apply_filters('widget_title', $instance['title'] );
-		
+
 		// Display widget
 		global $ocart;
 		echo $before_widget . $before_title . $title . $after_title;
 
 		?>
-		
+
 			<ul class="social">
 				<?php
 				$bookmarks = get_option('occommerce_social_bookmarks');
@@ -561,7 +469,7 @@ class oc_social extends WP_Widget {
 						<li><a href="<?php echo $url; ?>" class="<?php echo $bookmark; ?>"></a></li>
 				<?php } } ?>
 			</ul>
-		
+
 		<?php
 
 		echo $after_widget;
@@ -600,9 +508,9 @@ class oc_search extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array( 'classname' => 'oc_search', 'description' => __('A search form for you store', 'ocart') );
-		
+
 		$control_ops = array( 'width' => 300, 'height' => 200, 'id_base' => 'oc_search_widget' );
-		
+
 		parent::__construct( 'oc_search_widget', __('ocCommerce - Search', 'ocart'), $widget_ops, $control_ops );
 	}
 
@@ -611,16 +519,16 @@ class oc_search extends WP_Widget {
 
 		//Our variables from the widget settings.
 		$title = apply_filters('widget_title', $instance['title'] );
-		
+
 		// Display widget
 		global $ocart;
 		echo $before_widget;
 		?>
-		
+
 		<form method="get" action="<?php echo home_url(); ?>/">
 			<input type="text" value="<?php _e('Enter search word and press enter...','ocart'); ?>" name="s" id="s" class="searchfield" />
 		</form>
-		
+
 		<?php
 		echo $after_widget;
 
@@ -658,9 +566,9 @@ class oc_ads extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array( 'classname' => 'oc_ads', 'description' => __('An advertisement widget', 'ocart') );
-		
+
 		$control_ops = array( 'width' => 300, 'height' => 200, 'id_base' => 'oc_ads_widget' );
-		
+
 		parent::__construct( 'oc_ads_widget', __('ocCommerce - Advertisement', 'ocart'), $widget_ops, $control_ops );
 	}
 
@@ -669,7 +577,7 @@ class oc_ads extends WP_Widget {
 
 		//Our variables from the widget settings.
 		$content = $instance['content'];
-		
+
 		// Display widget
 		global $ocart;
 		echo $before_widget;
@@ -710,9 +618,9 @@ class oc_tabs extends WP_Widget {
 
 	function __construct() {
 		$widget_ops = array( 'classname' => 'oc_tabs', 'description' => __('A custom generated tabbed content', 'ocart') );
-		
+
 		$control_ops = array( 'width' => 300, 'height' => 200, 'id_base' => 'oc_tabs_widget' );
-		
+
 		parent::__construct( 'oc_tabs_widget', __('ocCommerce - Tabs', 'ocart'), $widget_ops, $control_ops );
 	}
 
@@ -728,19 +636,19 @@ class oc_tabs extends WP_Widget {
 		$tags_count = $instance['tags_count'];
 		$tags_order = $instance['tags_order'];
 		$tags_tax = $instance['tags_tax'];
-		
+
 		// Display widget
 		echo $before_widget;
-		
+
 		?>
-		
+
 		<ul class="tabs">
 			<li><a href="#"><?php _e('Recent','ocart'); ?></a></li>
 			<li><a href="#"><?php _e('Popular','ocart'); ?></a></li>
 			<li><a href="#"><?php _e('Comments','ocart'); ?></a></li>
 			<li><a href="#"><?php _e('Tags','ocart'); ?></a></li>
 		</ul><div class="clear"></div>
-		
+
 		<div class="tabcontent">
 			<ul>
 				<?php
@@ -755,7 +663,7 @@ class oc_tabs extends WP_Widget {
 				?>
 			</ul>
 		</div>
-		
+
 		<div class="tabcontent">
 			<ol>
 				<?php
@@ -770,11 +678,11 @@ class oc_tabs extends WP_Widget {
 				?>
 			</ol>
 		</div>
-		
+
 		<div class="tabcontent">
 			<ul><?php ocart_recent_comments($num_comments, $len_comments); ?></ul>
 		</div>
-		
+
 		<div class="tabcontent">
 			<div class="tagcloud">
 				<?php
@@ -822,7 +730,7 @@ class oc_tabs extends WP_Widget {
 			<input type="text" id="<?php echo $this->get_field_id( 'num_recent' ); ?>" name="<?php echo $this->get_field_name( 'num_recent' ); ?>" value="<?php echo $instance['num_recent']; ?>" class="widefat" /><br />
 			<small><?php _e('How many recent posts you want to display.','ocart'); ?></small>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'posttype' ); ?>"><?php _e('Recent Posts Type:', 'ocart'); ?></label>
 			<select id="<?php echo $this->get_field_id( 'posttype' ); ?>" name="<?php echo $this->get_field_name( 'posttype' ); ?>" class="widefat">
@@ -831,30 +739,30 @@ class oc_tabs extends WP_Widget {
 			</select><br />
 			<small><?php _e('Display latest posts or latest products.','ocart'); ?></small>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'num_popular' ); ?>"><?php _e('Number of Popular Posts:', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'num_popular' ); ?>" name="<?php echo $this->get_field_name( 'num_popular' ); ?>" value="<?php echo $instance['num_popular']; ?>" class="widefat" /><br />
 			<small><?php _e('How many popular posts you want to display.','ocart'); ?></small>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'num_comments' ); ?>"><?php _e('Number of Recent Comments:', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'num_comments' ); ?>" name="<?php echo $this->get_field_name( 'num_comments' ); ?>" value="<?php echo $instance['num_comments']; ?>" class="widefat" /><br />
 			<small><?php _e('How many recent comments you want to display.','ocart'); ?></small>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'len_comments' ); ?>"><?php _e('Comment Length (characters):', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'len_comments' ); ?>" name="<?php echo $this->get_field_name( 'len_comments' ); ?>" value="<?php echo $instance['len_comments']; ?>" class="widefat" />
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'tags_count' ); ?>"><?php _e('Number of Tags:', 'ocart'); ?></label>
 			<input type="text" id="<?php echo $this->get_field_id( 'tags_count' ); ?>" name="<?php echo $this->get_field_name( 'tags_count' ); ?>" value="<?php echo $instance['tags_count']; ?>" class="widefat" /><br />
 			<small><?php _e('How many tags you want to display.','ocart'); ?></small>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo $this->get_field_id( 'tags_order' ); ?>"><?php _e('Order Tags by:', 'ocart'); ?></label>
 			<select id="<?php echo $this->get_field_id( 'tags_order' ); ?>" name="<?php echo $this->get_field_name( 'tags_order' ); ?>" class="widefat">
