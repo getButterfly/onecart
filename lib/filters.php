@@ -54,7 +54,11 @@ add_filter('wp_list_categories','ocart_list_categories');
 /************************************************************
 html email thru wp_mail function
 ************************************************************/
-add_filter('wp_mail_content_type',create_function('', 'return "text/html";'));
+add_filter('wp_mail_content_type', 'oc_set_html_content_type');
+
+function oc_set_html_content_type() {
+    return 'text/html';
+}
 
 /************************************************************
 add category and slug to nav items ID

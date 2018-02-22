@@ -4212,6 +4212,9 @@ function ocart_wishlist_count() {
 		global $current_user;
 		$id = $current_user->ID;
 		$wishlist = get_user_meta($id, 'wishlist', true);
+        if (!is_array($wishlist)) {
+            $wishlist = array();
+        }
 		$count = count($wishlist);
 		if ($wishlist && $count > 0) {
 			if ($count == 1) {

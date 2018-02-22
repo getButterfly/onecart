@@ -229,6 +229,9 @@ function pd_meta_box_cb($post) {
 				}
 			}
 		}
+    if (empty($ocart['currency'])) {
+        $ocart['currency'] = '$';
+    }
 	?>
 	<div class="clear"></div>
 	

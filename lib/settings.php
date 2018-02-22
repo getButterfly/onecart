@@ -49,7 +49,7 @@ if (isset($_POST['reset_skin'])) {
 	foreach($default_skin_array as $rule => $value) {
 		unset($this->options[$this->options['skin'].'_'.$rule]);
 	}
-
+	
 	// update options
 	update_option('ocart', $this->options);
 	$savedmsg = __('Your changes have been saved.','ocart');
@@ -77,17 +77,17 @@ if (isset($_POST['new_zone'])) {
 
 	// condition
 	if (!empty($_POST['name_new_zone'])) {
-
+	
 	$zones = get_option('occommerce_zones');
 	$count = count($zones)-1;
-
+	
 	// weight
 	if (!empty($_POST['weight_new_zone'])) {
 		$weight = explode(PHP_EOL, $_POST['weight_new_zone']);
 	} else {
 		$weight = $zones[0]['pricing']['weight']; // default
 	}
-
+	
 	// handling
 	if (!empty($_POST['handling_new_zone'])) {
 		$handling = explode(PHP_EOL, $_POST['handling_new_zone']);
@@ -113,11 +113,11 @@ if (isset($_POST['new_zone'])) {
 				'handling' => $handling_rules
 			)
 	);
-
+	
 	update_option('occommerce_zones',$zones);
-
+	
 	$savedmsg = __('Your new zone has been created.','ocart');
-
+	
 	}
 
 }
@@ -152,7 +152,7 @@ if (isset($_POST['save'])) {
 			}
 		}
 	}
-
+	
 	// save zones to occommerce_zones dynamically (edit zone only)
 	$editzones = get_option('occommerce_zones');
 	foreach($_POST as $key => $value) {
@@ -192,7 +192,7 @@ if (isset($_POST['save'])) {
 	}
 
 	update_option('occommerce_zones', $editzones);
-
+	
 	// enter new attributes
 	if (isset($_POST['create_attribute_slug']) && isset($_POST['create_attribute_plural']) && isset($_POST['create_attribute_single'])) {
 		// create taxonomy file
@@ -200,13 +200,13 @@ if (isset($_POST['save'])) {
 		$plural = $_POST['create_attribute_plural'];
 		$single = $_POST['create_attribute_single'];
 		if (ctype_lower($slug) && ctype_lower($plural) && ctype_lower($single)) {
-
+		
 			// custom attr
 			$attrs = get_option('occommerce_custom_attributes');
-
+			
 			// create new custom attributes file
 			file_put_contents(get_template_directory().'/lib/custom/'.$slug.'.php', "<?php
-
+		
 			add_action( 'init', 'create_".$slug."_taxonomies', 0 );
 			function create_".$slug."_taxonomies() {
 			  register_taxonomy('$slug','product',array(
@@ -219,7 +219,7 @@ if (isset($_POST['save'])) {
 				'all_items' => __( 'All ".ucfirst($plural)."' ),
 				'parent_item' => null,
 				'parent_item_colon' => null,
-				'edit_item' => __( 'Edit ".ucfirst($single)."' ),
+				'edit_item' => __( 'Edit ".ucfirst($single)."' ), 
 				'update_item' => __( 'Update ".ucfirst($single)."' ),
 				'add_new_item' => __( 'Add New ".ucfirst($single)."' ),
 				'new_item_name' => __( 'New ".ucfirst($single)." Name' ),
@@ -234,13 +234,13 @@ if (isset($_POST['save'])) {
 				'rewrite' => array( 'slug' => '".$slug."' ),
 			  ));
 			}
-
+		
 			?>");
-
+		
 			// save the new custom attribute
 			$attrs[] = array( 'slug' => $slug, 'single' => $single, 'plural' => $plural );
 			update_option('occommerce_custom_attributes', $attrs);
-
+			
 		} else {
 			if (!ctype_lower($slug)) {
 				$err_slug = __('Please enter a valid attribute with all lowercase letters.','ocart');
@@ -251,7 +251,7 @@ if (isset($_POST['save'])) {
 			}
 		}
 	}
-
+	
 	// update country lists
 	if (isset( $_POST['occommerce_disallowed_countries'] ) ) {
 		update_option('occommerce_disallowed_countries', $_POST['occommerce_disallowed_countries']);
@@ -267,7 +267,7 @@ if (isset($_POST['save'])) {
 	update_option('occommerce_disallowed_countries', '');
 	update_option('occommerce_allowed_countries', get_option('occommerce_all_countries'));
 	}
-
+	
 	// update shipping zones
 	if (isset( $_POST['occommerce_disallowed_shipping_destinations'] ) ) {
 		update_option('occommerce_disallowed_shipping_destinations', $_POST['occommerce_disallowed_shipping_destinations']);
@@ -283,7 +283,7 @@ if (isset($_POST['save'])) {
 	update_option('occommerce_disallowed_shipping_destinations', '');
 	update_option('occommerce_allowed_shipping_destinations', get_option('occommerce_all_countries'));
 	}
-
+	
 	// save checkbox
 	$arr = array ( 'paymethods', 'product_attr', 'grid_attr', 'scroll_attr', 'browser_attr' );
 	foreach($arr as $check ) {
@@ -294,7 +294,7 @@ if (isset($_POST['save'])) {
 			$this->options["$check"] = null;
 		}
 	}
-
+	
 	// add custom currencies dynamically
 	if (isset($this->options['multi_currency'])) {
 	$supported_c = $this->options['multi_currency'];
@@ -334,7 +334,7 @@ jQuery(document).ready(function(){
 		<div class="dashboard_name"><?php printf(__('<abbr>ocCommerce</abbr> Framework<span>v%s</span>','ocart'), wp_get_theme()->Version); ?></div>
 		<div class="dashboard_save"><input type="submit" name="save" id="save" class="button button-primary" value="<?php _e('Save changes','ocart'); ?>" /></div>
 	</div>
-
+	
 	<ul class="dashboard_tabs">
 		<li><a href="#" rel="tab1"><?php _e('General Settings','ocart'); ?></a></li>
 		<li><a href="#" rel="tab8"><?php _e('SEO Panel','ocart'); ?></a></li>
@@ -351,13 +351,13 @@ jQuery(document).ready(function(){
 			do_action('ocart_admin_tabs_hook');
 		?>
 	</ul>
-
+	
 	<?php do_action('ocart_admin_settings_hook', $this->options); ?>
-
+	
 	<div class="dashboard_body" id="tab8"><?php ocart_print_update_notice() ?>
-
+	
 		<h1><?php _e('Global SEO Options','ocart'); ?></h1>
-
+	
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="seo_hometitle"><?php _e('Homepage Title','ocart'); ?></label>
@@ -365,26 +365,26 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('This is the title of your store homepage.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_separator"><?php _e('Homepage Title Separator','ocart'); ?></label>
-				<input type="text" name="seo_separator" id="seo_separator" value="<?php if (isset($this->options['seo_separator'])) echo $this->options['seo_separator']; ?>" />
-				<span class="usage"><?php _e('This is the separator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
+				<label for="seo_seperator"><?php _e('Homepage Title Seperator','ocart'); ?></label>
+				<input type="text" name="seo_seperator" id="seo_seperator" value="<?php if (isset($this->options['seo_seperator'])) echo $this->options['seo_seperator']; ?>" />
+				<span class="usage"><?php _e('This is the seperator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_separator_position"><?php _e('Separator Position','ocart'); ?></label>
-				<select name="seo_separator_position" id="seo_separator_position">
-					<option value="1"<?php selected(1, $this->options['seo_separator_position']); ?>><?php _e('After Title','ocart'); ?></option>
-					<option value="2"<?php selected(2, $this->options['seo_separator_position']); ?>><?php _e('Before Title','ocart'); ?></option>
+				<label for="seo_seperator_position"><?php _e('Seperator Position','ocart'); ?></label>
+				<select name="seo_seperator_position" id="seo_seperator_position">
+					<option value="1"<?php selected(1, $this->options['seo_seperator_position']); ?>><?php _e('After Title','ocart'); ?></option>
+					<option value="2"<?php selected(2, $this->options['seo_seperator_position']); ?>><?php _e('Before Title','ocart'); ?></option>
 				</select>
-				<span class="usage"><?php _e('This is to show the separator text after or before the main title.','ocart'); ?></span>
+				<span class="usage"><?php _e('This is to show the seperator text after or before the main title.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="seo_homedesc"><?php _e('Homepage Meta Description','ocart'); ?></label>
@@ -392,11 +392,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('This is the description of your store homepage.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Search SEO Options','ocart'); ?></h1>
-
+	
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="seo_hometitle_search"><?php _e('Search Page Title','ocart'); ?></label>
@@ -404,26 +404,26 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('This is the title of your store search results page.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_separator_search"><?php _e('Search Page Title Separator','ocart'); ?></label>
-				<input type="text" name="seo_separator_search" id="seo_separator_search" value="<?php if (isset($this->options['seo_separator_search'])) echo $this->options['seo_separator_search']; ?>" />
-				<span class="usage"><?php _e('This is the separator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
+				<label for="seo_seperator_search"><?php _e('Search Page Title Seperator','ocart'); ?></label>
+				<input type="text" name="seo_seperator_search" id="seo_seperator_search" value="<?php if (isset($this->options['seo_seperator_search'])) echo $this->options['seo_seperator_search']; ?>" />
+				<span class="usage"><?php _e('This is the seperator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_separator_position_search"><?php _e('Searc Page Separator Position','ocart'); ?></label>
-				<select name="seo_separator_position_search" id="seo_separator_position_search">
-					<option value="1"<?php selected(1, $this->options['seo_separator_position_search']); ?>><?php _e('After Title','ocart'); ?></option>
-					<option value="2"<?php selected(2, $this->options['seo_separator_position_search']); ?>><?php _e('Before Title','ocart'); ?></option>
+				<label for="seo_seperator_position_search"><?php _e('Searc Page Seperator Position','ocart'); ?></label>
+				<select name="seo_seperator_position_search" id="seo_seperator_position_search">
+					<option value="1"<?php selected(1, $this->options['seo_seperator_position_search']); ?>><?php _e('After Title','ocart'); ?></option>
+					<option value="2"<?php selected(2, $this->options['seo_seperator_position_search']); ?>><?php _e('Before Title','ocart'); ?></option>
 				</select>
-				<span class="usage"><?php _e('This is to show the separator text after or before the main title.','ocart'); ?></span>
+				<span class="usage"><?php _e('This is to show the seperator text after or before the main title.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="seo_homedesc_search"><?php _e('Search Page Meta Description','ocart'); ?></label>
@@ -431,11 +431,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('This is the description of your store search results page.','ocart'); ?></span>
 			</div>
 		</div>
-
+	
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('404 Page SEO Options','ocart'); ?></h1>
-
+	
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="seo_hometitle_404"><?php _e('404 Page Title','ocart'); ?></label>
@@ -443,26 +443,26 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('This is the title of your store 404 page.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_separator_404"><?php _e('404 Page Title Separator','ocart'); ?></label>
-				<input type="text" name="seo_separator_404" id="seo_separator_404" value="<?php if (isset($this->options['seo_separator_404'])) echo $this->options['seo_separator_404']; ?>" />
-				<span class="usage"><?php _e('This is the separator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
+				<label for="seo_seperator_404"><?php _e('404 Page Title Seperator','ocart'); ?></label>
+				<input type="text" name="seo_seperator_404" id="seo_seperator_404" value="<?php if (isset($this->options['seo_seperator_404'])) echo $this->options['seo_seperator_404']; ?>" />
+				<span class="usage"><?php _e('This is the seperator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_separator_position_404"><?php _e('404 Page Separator Position','ocart'); ?></label>
-				<select name="seo_separator_position_404" id="seo_separator_position_404">
-					<option value="1"<?php selected(1, $this->options['seo_separator_position_404']); ?>><?php _e('After Title','ocart'); ?></option>
-					<option value="2"<?php selected(2, $this->options['seo_separator_position_404']); ?>><?php _e('Before Title','ocart'); ?></option>
+				<label for="seo_seperator_position_404"><?php _e('404 Page Seperator Position','ocart'); ?></label>
+				<select name="seo_seperator_position_404" id="seo_seperator_position_404">
+					<option value="1"<?php selected(1, $this->options['seo_seperator_position_404']); ?>><?php _e('After Title','ocart'); ?></option>
+					<option value="2"<?php selected(2, $this->options['seo_seperator_position_404']); ?>><?php _e('Before Title','ocart'); ?></option>
 				</select>
-				<span class="usage"><?php _e('This is to show the separator text after or before the main title.','ocart'); ?></span>
+				<span class="usage"><?php _e('This is to show the seperator text after or before the main title.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="seo_homedesc_404"><?php _e('404 Page Meta Description','ocart'); ?></label>
@@ -472,11 +472,11 @@ jQuery(document).ready(function(){
 		</div>
 
 	</div>
-
+	
 	<div class="dashboard_body" id="tab12"><?php ocart_print_update_notice() ?>
-
+	
 		<h1><?php _e('Default Product Attributes','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<?php
@@ -496,11 +496,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('The default product attributes which come with theme (Product options). They cannot be removed, but you can add unlimited attributes below.','ocart'); ?></span>
 			</div>
 		</div>
-
+	
 		<div class="clear"></div>
-
+	
 		<h1><?php _e('Custom Product Attributes','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<?php
@@ -526,11 +526,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('The product attributes that you have added to ocCommerce system will be displayed here.','ocart'); ?></span>
 			</div>
 		</div>
-
+	
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Add a New Attribute','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="create_attribute_slug"><?php _e('New Attribute Slug/Shortname','ocart'); ?></label>
@@ -539,7 +539,7 @@ jQuery(document).ready(function(){
 				<?php if (isset($err_slug)) { ?><span class="err"><?php echo $err_slug; ?></span><?php } ?>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="create_attribute_plural"><?php _e('New Attribute Plural Word','ocart'); ?></label>
@@ -548,7 +548,7 @@ jQuery(document).ready(function(){
 				<?php if (isset($err_plural)) { ?><span class="err"><?php echo $err_plural; ?></span><?php } ?>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="create_attribute_single"><?php _e('New Attribute Single Word','ocart'); ?></label>
@@ -557,15 +557,15 @@ jQuery(document).ready(function(){
 				<?php if (isset($err_single)) { ?><span class="err"><?php echo $err_single; ?></span><?php } ?>
 			</div>
 		</div>
-
+		
 	</div>
-
+	
 	<div class="dashboard_body" id="tab10"><?php ocart_print_update_notice() ?>
-
+	
 		<h1><?php _e('Accepted Orders','ocart'); ?></h1>
-
+		
 		<div class="ocfield ocfield_multi">
-
+			
 			<div class="subfield subfield_multi">
 				<label><?php _e('Allowed Countries','ocart'); ?></label>
 				<select name="occommerce_allowed_countries[]" size="10" multiple="true" id="select1">
@@ -576,7 +576,7 @@ jQuery(document).ready(function(){
 				</select>
 				<a href="#" id="add_country"><?php _e('Add to Disallowed Countries','ocart'); ?></a>
 			</div>
-
+			
 			<div class="subfield subfield_multi">
 				<label><?php _e('Disallowed Countries','ocart'); ?></label>
 				<select name="occommerce_disallowed_countries[]" size="10" multiple="true" id="select2">
@@ -588,15 +588,15 @@ jQuery(document).ready(function(){
 				</select>
 				<a href="#" id="remove_country"><?php _e('Remove from Disallowed Countries','ocart'); ?></a>
 			</div>
-
+			
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Shipping Destinations','ocart'); ?></h1>
-
+		
 		<div class="ocfield ocfield_multi">
-
+			
 			<div class="subfield subfield_multi">
 				<label><?php _e('Allowed Countries','ocart'); ?></label>
 				<select name="occommerce_allowed_shipping_destinations[]" size="10" multiple="true" id="select3">
@@ -608,7 +608,7 @@ jQuery(document).ready(function(){
 				</select>
 				<a href="#" id="add_country2"><?php _e('Add to Disallowed Countries','ocart'); ?></a>
 			</div>
-
+			
 			<div class="subfield subfield_multi">
 				<label><?php _e('Disallowed Countries','ocart'); ?></label>
 				<select name="occommerce_disallowed_shipping_destinations[]" size="10" multiple="true" id="select4">
@@ -620,9 +620,9 @@ jQuery(document).ready(function(){
 				</select>
 				<a href="#" id="remove_country2"><?php _e('Remove from Disallowed Countries','ocart'); ?></a>
 			</div>
-
+			
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="page_terms"><?php _e('Require Tems & Conditions agreement','ocart'); ?></label>
@@ -637,7 +637,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('If you created a <strong>Terms and Conditions</strong> page, you can select it from Pages list here. If you turn this option off, customers will not be prompted to accept terms before purchase.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="checkout_extras"><?php _e('Custom Delivery Date Field','ocart'); ?></label>
@@ -648,11 +648,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('If you enable this module, customers will be able to choose <strong>custom delivery date</strong> in checkout step.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 	</div>
-
+	
 	<div class="dashboard_body" id="tab1"><?php ocart_print_update_notice() ?>
-
+		
 		<!-- logo upload -->
 		<div class="ocfield">
 			<div class="subfield">
@@ -668,7 +668,7 @@ jQuery(document).ready(function(){
 			</div>
 		</div>
 		<!-- logo upload -->
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="wishlist"><?php _e('Enable Wishlist','ocart'); ?></label>
@@ -679,7 +679,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Customers can have their wishlists. They can add/remove products from their wishlist easily.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="ocml"><?php _e('Enable Multi-Language Module','ocart'); ?></label>
@@ -690,7 +690,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Enable <strong>multi-language</strong> store by activating this option. All languages should be stored in <code>/lang</code> folder.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="ocmc"><?php _e('Enable Multi-Currency Module','ocart'); ?></label>
@@ -701,7 +701,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Enable multi-currency store by activating this option.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="emptyterms"><?php _e('Empty Store Categories & Terms','ocart'); ?></label>
@@ -712,7 +712,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose whether to display or hide empty categories in your store navigation and browser.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="showcount"><?php _e('Show Products Count in Filter Popup','ocart'); ?></label>
@@ -723,7 +723,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Display or hide the <b>count of products</b> inside each category/custom taxonomy. The product count can be seen in filter/product browser.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="paymethods"><?php _e('Footer Payment Logos','ocart'); ?></label>
@@ -738,11 +738,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Select payment logos you want to display in your store footer. <b>Please note:</b> If you select a lot of payment logos, your footer may not look proper.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 	</div>
-
+	
 	<div class="dashboard_body" id="tab9"><?php ocart_print_update_notice() ?>
-
+	
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="sort_products"><?php _e('Sorting Products','ocart'); ?></label>
@@ -753,7 +753,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose how to sort/order products in the store.','ocart'); ?></span>
 			</div>
 		</div>
-
+	
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="catalog_version"><?php _e('Catalog View','ocart'); ?></label>
@@ -764,7 +764,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose the default products display mode here. The theme supports <b>Slider and Grid</b> view.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="force_lightbox"><?php _e('Open Products in Lightbox by default','ocart'); ?></label>
@@ -775,7 +775,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose the default products display mode here. The theme supports <b>Slider and Grid</b> view.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="single_product_in_popup"><?php _e('Open Single Product in Lightbox','ocart'); ?></label>
@@ -786,7 +786,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('If you choose yes here, single product pages will always open via lightbox popup.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="tax_included"><?php _e('Sales Tax Inclusion','ocart'); ?></label>
@@ -818,11 +818,11 @@ jQuery(document).ready(function(){
 				</select>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Product Browser Popup','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label><?php _e('Browse Products Filters','ocart'); ?></label>
@@ -846,9 +846,9 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose which options or attributes will build the filters in <b>Browser Popup</b>.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Grid View Settings','ocart'); ?></h1>
 
 		<div class="ocfield">
@@ -873,7 +873,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('The default attribute that forms a tagline. You can override this setting per product basis, or apply a custom tagline.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="grid_prod_num"><?php _e('Number of Loaded Products','ocart'); ?></label>
@@ -881,7 +881,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('How many products to show on every load in <strong>Grid</strong> display.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="max_grid_prods"><?php _e('Maximum products per page','ocart'); ?></label>
@@ -889,7 +889,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('How many products to show before displaying a button to show more products.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label><?php _e('Left Navigation Filters','ocart'); ?></label>
@@ -913,7 +913,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose which options or attributes will build the left navigation filters in <b>Grid mode</b>.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label><?php _e('Scrollable Attributes','ocart'); ?></label>
@@ -936,11 +936,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose which attributes you want to make scrollable (with auto height) in the grid view filters.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Product Settings','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label><?php _e('Product Page Attributes','ocart'); ?></label>
@@ -964,7 +964,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose which options or attributes you want to display in <b>Product</b> details page.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="attr_select"><?php _e('Product Attributes Selection','ocart'); ?></label>
@@ -975,7 +975,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Select the method to display your product attributes. You can display them via <strong>select dropdown</strong> or <strong>unordered list</strong>.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="weightunit"><?php _e('Item Weight Unit','ocart'); ?></label>
@@ -987,11 +987,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose a universal unit that will be used to calculate your items weight across the store.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Similar Products Module','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="related_tax"><?php _e('Taxonomy to Display Similar Products','ocart'); ?></label>
@@ -1013,11 +1013,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('If you did not choose <b>similar products</b> in Product page, the theme will automatically display related products based on the selected relationship.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 	</div>
-
+	
 	<div class="dashboard_body" id="tab2"><?php ocart_print_update_notice() ?>
-
+	
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="skin"><?php _e('Preset Skins','ocart'); ?></label>
@@ -1038,9 +1038,9 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Change active theme skin. <b>Skins</b> are stored in <code>/skins/</code> folder. Each skin contains a <b>set of images</b> plus <b>CSS rules</b>.','ocart'); ?><span class="sub"><?php _e('You can customize the images found in <code>/skins/your_skin/</code> folder.','ocart'); ?></span>
 			</div>
 		</div><div class="clear"></div>
-
+		
 		<h1><?php _e('General','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_custom_css"><?php _e('Custom CSS','ocart'); ?></label>
@@ -1048,7 +1048,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('Paste any <b>custom CSS</b> rules in this field so that your CSS tweaks and customizations will not get overriden when the theme is updated.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="theme_usebgcolor"><?php _e('Use Solid Body Background Color','ocart'); ?></label>
@@ -1059,7 +1059,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('If you set this to <b>YES</b>, the background color you set in your active skin below will be used as a background color.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="scroll_distance"><?php _e('Scroll Distance','ocart'); ?></label>
@@ -1067,7 +1067,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Applies to <b>Grid</b> layout only. Define the <b>required distance</b> in pixels which will trigger loading more products to the catalog page.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="lightbox_shadow"><?php _e('Lightbox Shadow','ocart'); ?></label>
@@ -1077,11 +1077,11 @@ jQuery(document).ready(function(){
 				</select>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Header','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="theme_header_height"><?php _e('Header Height','ocart'); ?></label>
@@ -1089,7 +1089,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Override the default theme header height. <code>Use pixels please</code>','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="theme_menu_opacity"><?php _e('Menu Style 2 Opacity','ocart'); ?></label>
@@ -1097,11 +1097,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Enter number from <strong>1 to 100</strong> for opacity. You may want to play with this setting to get best results.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Slideshow','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="theme_slide_opacity"><?php _e('Text Opacity','ocart'); ?></label>
@@ -1109,7 +1109,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Enter number from <strong>1 to 100</strong> for opacity. You may want to play with this setting to get best results.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="theme_slide_usebg"><?php _e('Use Background for Slide Text','ocart'); ?></label>
@@ -1120,7 +1120,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('You can select no If you want the text to appear without a background color. You can customize slide text background and color using the <strong>Color Customizer</strong> below.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="theme_slide_usebg_image"><?php _e('Use Background Image for Slide Text','ocart'); ?></label>
@@ -1131,11 +1131,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('If you apply this setting, the transparent image will be used as a background instead. <strong>Opacity</strong> will be automatically adjusted when this choice is enabled.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Product Page','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="main_image_width"><?php _e('Main Image Width','ocart'); ?></label>
@@ -1143,7 +1143,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('The width of main product image in Product page.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="main_image_height"><?php _e('Main Image Height','ocart'); ?></label>
@@ -1151,7 +1151,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('The height of main product image in Product page.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="main_image_left_px"><?php _e('Main Image Left Margin','ocart'); ?></label>
@@ -1159,7 +1159,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('The number of pixels to keep from left. This can help you center the product image.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="main_image_nav"><?php _e('Main Image Navigation Controls','ocart'); ?></label>
@@ -1170,7 +1170,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('These controls are next/previous buttons that navigate the main image area (Not mini thumbnails)','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="product_thumbs"><?php _e('Small Thumbnails Style','ocart'); ?></label>
@@ -1182,11 +1182,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('If you apply this setting, the transparent image will be used as a background instead. <strong>Opacity</strong> will be automatically adjusted when this choice is enabled.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Products Slider','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="catalog_image_height"><?php _e('Catalog Image Height','ocart'); ?></label>
@@ -1194,13 +1194,13 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Enter height of your <strong>catalog image</strong> in pixels.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php printf(__('Customize \'%s\' Skin','ocart'), ucfirst($this->options['skin'])); ?></h1>
-
+		
 		<p><input type="submit" name="reset_skin" id="reset_skin" value="<?php _e('Reset All','ocart'); ?>" class="button button-primary" /></p>
-
+		
 		<div class="ocfield ocfield_clr">
 		<?php
 		$skin_arr = get_option('occommerce_skin_'.$this->options['skin']);
@@ -1218,13 +1218,13 @@ jQuery(document).ready(function(){
 		}
 		?>
 		</div>
-
+		
 	</div>
-
+	
 	<div class="dashboard_body" id="tab3"><?php ocart_print_update_notice() ?>
-
+	
 		<h1><?php _e('Customize Header','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_header_code"><?php _e('Tracking Code','ocart'); ?></label>
@@ -1232,7 +1232,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('Paste your <b>Google Analytics</b> or other tracking/javascript code here. Any code you put here will go directly in the <b>header part</b> of your site.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="menu_style"><?php _e('Main Menu Style','ocart'); ?></label>
@@ -1243,7 +1243,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('The theme now includes <strong>2 navigation systems</strong> to choose from.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="show_bloglink"><?php _e('Display Blog Link','ocart'); ?></label>
@@ -1254,7 +1254,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('You can hide <strong>Blog</strong> link (it will disappear from header menu).','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="show_login"><?php _e('Display Login/Registration Links','ocart'); ?></label>
@@ -1265,7 +1265,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('You can show or hide login/registration links from header.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="default_nav_tax"><?php _e('Default Navigation Filter','ocart'); ?></label>
@@ -1287,11 +1287,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('By default, the top navigation shows <strong>Brands</strong>. You can change this default setting here. For example: Select <strong>product_category</strong> to display categories instead.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Enable/Disable Site Features','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="enable_slideshow"><?php _e('Main Slideshow','ocart'); ?></label>
@@ -1302,7 +1302,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('When disabled, your latest <strong>Slide</strong> will be displayed as a static image.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="hide_slider"><?php _e('Force Hide Slider','ocart'); ?></label>
@@ -1313,7 +1313,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Choose <strong>Enable</strong> to hide slider from store home (requires Grid mode on. infinite scroll of products)','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="enable_calc"><?php _e('Estimated Shipping/Tax Calculation Form','ocart'); ?></label>
@@ -1324,11 +1324,11 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('When disabled, the form used to calculate shipping/tax based on location will not be available on store cart.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Show/Hide Elements','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="show_nav_all"><?php _e('Main Left Menu','ocart'); ?></label>
@@ -1338,7 +1338,7 @@ jQuery(document).ready(function(){
 				</select>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="show_nav"><?php _e('Main Dropdown Navigation','ocart'); ?></label>
@@ -1348,7 +1348,7 @@ jQuery(document).ready(function(){
 				</select>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="show_product_breadcrumb"><?php _e('Product Breadcrumbs','ocart'); ?></label>
@@ -1358,7 +1358,7 @@ jQuery(document).ready(function(){
 				</select>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="show_gridbtn"><?php _e('Switch to Grid Button','ocart'); ?></label>
@@ -1368,7 +1368,7 @@ jQuery(document).ready(function(){
 				</select>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="show_sliderbtn"><?php _e('Switch to Slider Button','ocart'); ?></label>
@@ -1378,7 +1378,7 @@ jQuery(document).ready(function(){
 				</select>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="show_pinit"><?php _e('Pin It Button','ocart'); ?></label>
@@ -1388,7 +1388,7 @@ jQuery(document).ready(function(){
 				</select>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="show_backtotop"><?php _e('Back to Top Button','ocart'); ?></label>
@@ -1398,11 +1398,11 @@ jQuery(document).ready(function(){
 				</select>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Customize Footer','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_footer"><?php _e('Footer Text','ocart'); ?></label>
@@ -1410,11 +1410,11 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('Enter your website copyright (appears in footer) here.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Contact Us Template','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_contact_googlemaps"><?php _e('Google Maps Code','ocart'); ?></label>
@@ -1422,14 +1422,14 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('Enter your Google Maps embed code here. It will appear on your <b>Contact Us</b> page.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_contact_addr"><?php _e('Company Address','ocart'); ?></label>
 				<textarea name="html_contact_addr" id="html_contact_addr"><?php if (isset($this->options['html_contact_addr'])) echo $this->options['html_contact_addr']; ?></textarea>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="contact_phone"><?php _e('Phone Number','ocart'); ?></label>
@@ -1437,7 +1437,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Enter a phone number which presents you or your business. It will be displayed in your Contact page.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="contact_fax"><?php _e('Fax Number','ocart'); ?></label>
@@ -1445,7 +1445,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('If you have a fax, enter your fax number here.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="contact_email"><?php _e('Contact Email','ocart'); ?></label>
@@ -1453,7 +1453,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('This e-mail address will be displayed under your business <b>Contact Info</b>.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="contact_web"><?php _e('Contact Website','ocart'); ?></label>
@@ -1461,7 +1461,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Your business site domain name. e.g. <code>mywebsite.com</code>','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_contact_text"><?php _e('Contact Us Additional Text','ocart'); ?></label>
@@ -1469,13 +1469,13 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('Use the above field to write extra text or HTML in your contact us page. It will be displayed below your contact info/address.','ocart'); ?></span>
 			</div>
 		</div>
-
+	
 	</div>
-
+	
 	<div class="dashboard_body" id="tab4"><?php ocart_print_update_notice() ?>
 
 		<h1><?php _e('Currency Settings','ocart'); ?></h1>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="currency_pos"><?php _e('Currency Position','ocart'); ?></label>
@@ -1486,7 +1486,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Display the currency symbol on the left or right of price.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="cur_no_space"><?php _e('Currency symbol Space','ocart'); ?></label>
@@ -1497,7 +1497,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Display the currency symbol on the left or right of price.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="currencycode"><?php _e('Primary Currency Code','ocart'); ?></label>
@@ -1512,7 +1512,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('If you use a currency other than <b>USD</b> please select it from the list of supported currencies.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="multi_currency"><?php _e('Supported Currencies','ocart'); ?></label>
@@ -1520,19 +1520,19 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('Add here currency codes for the currencies you want to enable in the <strong>Multi-Currency</strong> storefront. <code>e.g. USD, GBP, EUR, AUD, JPY</code>','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="clear"></div>
-
+		
 		<?php
 		// process payment gateway fields setup
 		$gateways = get_option('occommerce_OC_gateways');
 		foreach($gateways as $gateway => $array) {
 		?>
-
+		
 			<div class="clear"></div>
-
+		
 			<h1><?php echo $array['name']; ?></h1>
-
+		
 			<?php
 			foreach($array['options'] as $option) {
 				switch ($option) {
@@ -1791,26 +1791,26 @@ jQuery(document).ready(function(){
 				}
 			}
 			?>
-
+		
 		<?php } ?>
-
+		
 	</div>
-
+	
 	<div class="dashboard_body" id="tab5"><?php ocart_print_update_notice() ?>
-
+	
 		<div class="clear"></div>
-
+		
 		<?php /* add new zone */ ?>
 			<h1><?php _e('Add a New Zone','ocart'); ?></h1>
-
+			
 			<div class="ocfield">
-
+			
 				<div class="subfield">
 					<label for="name_new_zone"><?php _e('Zone Name','ocart'); ?></label>
 					<input type="text" name="name_new_zone" id="name_new_zone" value="" />
 					<span class="usage"><?php _e('This name is used for zone reference only, It cannot be edited later. The zone name is used to make it easier for you to reference and edit zones only.','ocart'); ?></span>
 				</div>
-
+		
 				<div class="subfield">
 					<label><?php _e('Add countries to this zone','ocart'); ?></label>
 					<select class="country_select">
@@ -1829,54 +1829,54 @@ jQuery(document).ready(function(){
 					<textarea class="limited" name="regions_new_zone" id="regions_new_zone"></textarea>
 					<span class="usage"><?php _e('Enter a comma seperated list of <strong>countries, states, cities, zip codes, and so on</strong> The list represents regions specified to this zone. <code>Example: United States, 10012, NY, New York, Alaska</code>','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="fixed_tax_new_zone"><?php _e('Charge Fixed Tax Rate','ocart'); ?></label>
 					<input type="text" name="fixed_tax_new_zone" id="fixed_tax_new_zone" value="" />
 					<span class="usage"><?php _e('If you want to charge <strong>fixed tax</strong> fee for this zone, enter it here.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="pct_tax_new_zone"><?php _e('Charge Percentage Tax Rate','ocart'); ?></label>
 					<input type="text" name="pct_tax_new_zone" id="pct_tax_new_zone" value="" />
 					<span class="usage"><?php _e('If you want to charge <strong>percentage tax</strong> rate for this zone, enter it here. Without the percentage sign please.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="fixed_shipping_new_zone"><?php _e('Charge Fixed Shipping Rate','ocart'); ?></label>
 					<input type="text" name="fixed_shipping_new_zone" id="fixed_shipping_new_zone" value="" />
 					<span class="usage"><?php _e('If you want to charge <strong>fixed shipping</strong> fee for this zone, enter it here.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="pct_shipping_new_zone"><?php _e('Charge Percentage Shipping Rate','ocart'); ?></label>
 					<input type="text" name="pct_shipping_new_zone" id="pct_shipping_new_zone" value="" />
 					<span class="usage"><?php _e('If you want to charge <strong>percentage shipping</strong> rate for this zone, enter it here. Without the percentage sign please.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="weight_new_zone"><?php _e('Weight-based Shipping Rules','ocart'); ?></label>
 					<textarea class="limited" name="weight_new_zone" id="weight_new_zone"></textarea>
 					<span class="usage"><?php _e('Define fees that can be added based on <strong>Weight</strong> of items in cart. You <strong>should enter one rule per line</strong> using this example as a sample rule: <code>0|500|1</code> Each rule must be in a new line. The example means that if weight of cart is within 0 to 500 (weight unit) the charge will be 1 in your set currency.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="handling_new_zone"><?php _e('Add Handling Fees','ocart'); ?></label>
 					<textarea class="limited" name="handling_new_zone" id="handling_new_zone"></textarea>
 					<span class="usage"><?php _e('Define handling fees here if applicable. For example, add a cost to handle the first-item, second item, or any number of quantity you specify. You <strong>should enter one rule per line</strong> An example rule looks like this: <code>1|2.50</code> Each rule must be in a new line. That example adds a cost of 2.50 per each unit in cart. You can similarly add new rules for other quantities.','ocart'); ?></span>
 				</div>
-
+				
 				<input type="submit" name="new_zone" id="new_zone" value="<?php _e('Add New Zone','ocart'); ?>" class="button button-primary" />
-
-			</div>
+				
+			</div>			
 			<?php /* end add new zone */ ?>
-
+			
 		<div class="clear"></div>
-
+		
 		<h1><?php _e('Edit Zones','ocart'); ?></h1>
-
+		
 		<p><?php _e('Zones are used to simplify shipping and sales tax rates and give you maximum flexibility to set different rates based on customer location. By default, the themes comes with a default zone called <strong>Everywhere Else</strong>.','ocart'); ?></p>
-
+		
 		<?php
 		$zones = get_option('occommerce_zones');
 		$i = -1;
@@ -1884,13 +1884,13 @@ jQuery(document).ready(function(){
 			$i++;
 			if (isset($zone['status']) && $zone['status'] == 'disable') continue;
 		?>
-
+		
 			<div class="clear"></div>
-
+		
 			<h3><?php echo $zone['name']; ?><?php if ($i > 0) { ?>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" name="remove_zone_<?php echo $i; ?>" value="<?php _e('Remove zone','ocart'); ?>" class="button button-secondary" /><?php } ?></h3>
-
+			
 			<div class="ocfield">
-
+				
 				<?php if ($i > 0) { ?>
 				<div class="subfield">
 					<label><?php _e('Add countries to this zone','ocart'); ?></label>
@@ -1911,53 +1911,53 @@ jQuery(document).ready(function(){
 					<span class="usage"><?php _e('Enter a comma seperated list of <strong>countries, states, cities, zip codes, and so on</strong> The list represents regions specified to this zone. <code>Example: United States, 10012, NY, New York, Alaska</code>','ocart'); ?></span>
 				</div>
 				<?php } ?>
-
+				
 				<div class="subfield">
 					<label for="fixed_tax_<?php echo $i; ?>"><?php _e('Charge Fixed Tax Rate','ocart'); ?></label>
 					<input type="text" name="fixed_tax_<?php echo $i; ?>" id="fixed_tax_<?php echo $i; ?>" value="<?php echo $zones[$i]['pricing']['fixed_tax']; ?>" />
 					<span class="usage"><?php _e('If you want to charge <strong>fixed tax</strong> fee for this zone, enter it here.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="pct_tax_<?php echo $i; ?>"><?php _e('Charge Percentage Tax Rate','ocart'); ?></label>
 					<input type="text" name="pct_tax_<?php echo $i; ?>" id="pct_tax_<?php echo $i; ?>" value="<?php echo $zones[$i]['pricing']['pct_tax']; ?>" />
 					<span class="usage"><?php _e('If you want to charge <strong>percentage tax</strong> rate for this zone, enter it here. Without the percentage sign please.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="fixed_shipping_<?php echo $i; ?>"><?php _e('Charge Fixed Shipping Rate','ocart'); ?></label>
 					<input type="text" name="fixed_shipping_<?php echo $i; ?>" id="fixed_shipping_<?php echo $i; ?>" value="<?php echo $zones[$i]['pricing']['fixed_shipping']; ?>" />
 					<span class="usage"><?php _e('If you want to charge <strong>fixed shipping</strong> fee for this zone, enter it here.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="pct_shipping_<?php echo $i; ?>"><?php _e('Charge Percentage Shipping Rate','ocart'); ?></label>
 					<input type="text" name="pct_shipping_<?php echo $i; ?>" id="pct_shipping_<?php echo $i; ?>" value="<?php echo $zones[$i]['pricing']['pct_shipping']; ?>" />
 					<span class="usage"><?php _e('If you want to charge <strong>percentage shipping</strong> rate for this zone, enter it here. Without the percentage sign please.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="weight_<?php echo $i; ?>"><?php _e('Weight-based Shipping Rules','ocart'); ?></label>
 					<textarea class="limited" name="weight_<?php echo $i; ?>" id="weight_<?php echo $i; ?>"><?php echo ocart_convert_weight_array($zones[$i]['pricing']['weight']); ?></textarea>
 					<span class="usage"><?php _e('Define fees that can be added based on <strong>Weight</strong> of items in cart. You <strong>should enter one rule per line</strong> using this example as a sample rule: <code>0|500|1</code> Each rule must be in a new line. The example means that if weight of cart is within 0 to 500 (weight unit) the charge will be 1 in your set currency.','ocart'); ?></span>
 				</div>
-
+				
 				<div class="subfield">
 					<label for="handling_<?php echo $i; ?>"><?php _e('Add Handling Fees','ocart'); ?></label>
 					<textarea class="limited" name="handling_<?php echo $i; ?>" id="handling_<?php echo $i; ?>"><?php echo ocart_convert_handling($zones[$i]['pricing']['handling']); ?></textarea>
 					<span class="usage"><?php _e('Define handling fees here if applicable. For example, add a cost to handle the first-item, second item, or any number of quantity you specify. You <strong>should enter one rule per line</strong> An example rule looks like this: <code>1|2.50</code> Each rule must be in a new line. That example adds a cost of 2.50 per each unit in cart. You can similarly add new rules for other quantities.','ocart'); ?></span>
 				</div>
-
+				
 			</div>
-
+	
 		<?php
 		} ?>
 		<?php /* end zones here */ ?>
-
+		
 		<div class="clear"></div>
-
+	
 		<h1><?php _e('Shipping Labels','ocart'); ?></h1>
-
+	
 		<?php for ($i = 1; $i <= 5; $i++) { // loop courier options ?>
 		<div class="ocfield">
 			<div class="subfield">
@@ -1977,13 +1977,13 @@ jQuery(document).ready(function(){
 			</div>
 		</div>
 		<?php } ?>
-
+	
 	</div>
-
+	
 	<div class="dashboard_body" id="tab6"><?php ocart_print_update_notice() ?>
 
 		<h1><?php _e('E-mail Settings','ocart'); ?></h1>
-
+	
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="mail_name"><?php _e('Mail From: (Name)','ocart'); ?></label>
@@ -1991,7 +1991,7 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('The name you enter here will appear to customers in the mail header when e-mails are sent to them.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="mail_address"><?php _e('Mail From: (E-mail Address)','ocart'); ?></label>
@@ -1999,12 +1999,12 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php _e('The e-mail address you enter here will appear to customers in the mail header when e-mails are sent to them.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<?php
 		/** allow hooking to add more customized e-mail templates **/
 		do_action('ocart_pre_email_templates_admin', $this->options);
 		?>
-
+	
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_order_received"><?php _e('Order Received','ocart'); ?></label>
@@ -2012,7 +2012,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be sent to customer when he places a new order. You can use the following <b>template tags</b> where applicable in any of your email templates to display shortcuts, order and customer information.','ocart'); ?><span class="sub"><?php ocart_email_template_tags(); ?></span></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_order_awaiting_payment"><?php _e('Order is Awaiting Payment','ocart'); ?></label>
@@ -2020,7 +2020,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be sent to customer when admin changes the status of order to <b>awaiting payment</b>. You can use the following <b>template tags</b> where applicable in any of your email templates to display shortcuts, order and customer information.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_order_pending"><?php _e('Order is Pending','ocart'); ?></label>
@@ -2028,7 +2028,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be sent to customer when admin changes the status of order to <b>pending</b>. You can use the following <b>template tags</b> where applicable in any of your email templates to display shortcuts, order and customer information.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_order_processing"><?php _e('Order is being Processed','ocart'); ?></label>
@@ -2036,7 +2036,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be sent to customer when admin changes the status of order to <b>processing</b>. You can use the following <b>template tags</b> where applicable in any of your email templates to display shortcuts, order and customer information.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_order_shipped"><?php _e('Order has been Shipped','ocart'); ?></label>
@@ -2044,7 +2044,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be sent to customer when admin changes the status of order to <b>shipped</b>. You can use the following <b>template tags</b> where applicable in any of your email templates to display shortcuts, order and customer information.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_order_cancelled"><?php _e('Order has been Cancelled','ocart'); ?></label>
@@ -2052,7 +2052,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be sent to customer when an order has been <b>cancelled</b>. You can use the following <b>template tags</b> where applicable in any of your email templates to display shortcuts, order and customer information.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_order_declined"><?php _e('Order has been Declined','ocart'); ?></label>
@@ -2060,7 +2060,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be sent to customer when an order has been <b>declined</b>. You can use the following <b>template tags</b> where applicable in any of your email templates to display shortcuts, order and customer information.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_order_tracking"><?php _e('Order Tracking','ocart'); ?></label>
@@ -2068,7 +2068,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be sent to customer when admin submits <b>tracking information</b> for an order. You can use the following <b>template tags</b> where applicable in any of your email templates to display shortcuts, order and customer information.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_order_comments"><?php _e('Order Comments','ocart'); ?></label>
@@ -2076,7 +2076,7 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be sent to customer when admin submits <b>order comments</b>. You can use the following <b>template tags</b> where applicable in any of your email templates to display shortcuts, order and customer information.','ocart'); ?></span>
 			</div>
 		</div>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="html_admin_order_received"><?php _e('Admin Order Received','ocart'); ?></label>
@@ -2084,19 +2084,19 @@ jQuery(document).ready(function(){
 				<span class="usage2"><?php _e('This e-mail template will be <b>sent to the administrator</b> when someone places a new order.','ocart'); ?></span>
 			</div>
 		</div>
-
+	
 	</div>
-
+	
 	<div class="dashboard_body" id="tab7"><?php ocart_print_update_notice() ?>
-
+		
 		<h1><?php _e('Setup your Social Profiles','ocart'); ?></h1>
 		<p><?php _e('Your social profiles are links to different social bookmarking sites like <b>Facebook or Twitter</b>. If your store has any of these social profiles, please put it in. They will be used to link to your social profiles when you create a <b>Social Widget</b>. <b>Please note:</b> Enter the complete URL to your social profile, and not just your username.','ocart'); ?></p>
-
+	
 		<?php
 		$bookmarks = get_option('occommerce_social_bookmarks');
 		foreach($bookmarks as $bookmark) {
 		?>
-
+		
 		<div class="ocfield">
 			<div class="subfield">
 				<label for="<?php echo $bookmark; ?>"><?php echo ucfirst($bookmark); ?></label>
@@ -2104,14 +2104,14 @@ jQuery(document).ready(function(){
 				<span class="usage"><?php printf(__('Enter your <b>%s</b> page or URL here or leave blank to disable this social profile.','ocart'), ucfirst($bookmark)); ?></span>
 			</div><div class="clear"></div>
 		</div>
-
+		
 		<?php
 		}
 		?>
-
+		
 	</div>
-
+	
 <div class="clear"></div>
 </div>
-
+	
 </form><!--end main form-->

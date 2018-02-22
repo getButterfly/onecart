@@ -44,46 +44,46 @@ function onecart_seo_metabox($post) {
 		<input type="text" name="seo_description" id="seo_description" value="<?php if(!empty($seo_description)) echo $seo_description; ?>" />
 		<span class="description"><?php _e('Enter description for SEO here. Leave blank to use automatic SEO description.','ocart'); ?></span>
 	</p>
-
+	
 	<p>
-		<label for="seo_sep"><?php _e('Page SEO Title Separator','ocart'); ?></label>
+		<label for="seo_sep"><?php _e('Page SEO Title Seperator','ocart'); ?></label>
 		<select name="seo_sep" id="seo_sep">
 			<option value="default" <?php if (isset($seo_sep) && $seo_sep == 'default') echo 'selected="selected"'; ?> ><?php echo ' | '. get_bloginfo('name'); ?></option>
 			<option value="custom" <?php if (isset($seo_sep) && $seo_sep == 'custom') echo 'selected="selected"'; ?>><?php _e('Custom','ocart'); ?></option>
 			<option value="none" <?php if (isset($seo_sep) && $seo_sep == 'none') echo 'selected="selected"'; ?>><?php _e('Do not use','ocart'); ?></option>
 		</select>
-		<span class="description"><?php _e('You can include a separator that appears besides the title in your title bar.','ocart'); ?></span>
+		<span class="description"><?php _e('You can include a seperator that appears besides the title in your title bar.','ocart'); ?></span>
 	</p>
-
+	
 	<p>
-		<label for="seo_custom_sep"><?php _e('Page SEO Custom Separator','ocart'); ?></label>
+		<label for="seo_custom_sep"><?php _e('Page SEO Custom Seperator','ocart'); ?></label>
 		<input type="text" name="seo_custom_sep" id="seo_custom_sep" value="<?php if(!empty($seo_custom_sep)) echo $seo_custom_sep; ?>" />
-		<span class="description"><?php _e('If you choose to use a custom separator besides title, enter it here.','ocart'); ?></span>
+		<span class="description"><?php _e('If you choose to use a custom seperator besides title, enter it here.','ocart'); ?></span>
 	</p>
-
+	
 <?php
 }
 
 /*
 	save the metabox
 */
-add_action( 'save_post', 'onecart_seo_metabox_save' );
+add_action( 'save_post', 'onecart_seo_metabox_save' );  
 function onecart_seo_metabox_save( $post_id ) {
 
 	if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
 	if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'my_meta_box_nonce' ) ) return;
 	if( !current_user_can( 'edit_post', $post_id ) ) return;
-
+	
 	// custom fields
 	if (isset($_POST['seo_title']))
 		update_post_meta( $post_id, 'seo_title', esc_attr( $_POST['seo_title'] ) );
-
+		
 	if (isset($_POST['seo_description']))
 		update_post_meta( $post_id, 'seo_description', esc_attr( $_POST['seo_description'] ) );
-
+		
 	if (isset($_POST['seo_sep']))
 		update_post_meta( $post_id, 'seo_sep', esc_attr( $_POST['seo_sep'] ) );
-
+		
 	if (isset($_POST['seo_custom_sep']))
 		update_post_meta( $post_id, 'seo_custom_sep', esc_attr( $_POST['seo_custom_sep'] ) );
 

@@ -28,7 +28,7 @@ function duplicate_post_get_clone_post_link( $id = 0, $context = 'display', $dra
 	if ( !duplicate_post_is_current_user_allowed_to_copy() )
 	return;
 
-	if ( !$post = &get_post( $id ) )
+	if ( !$post = get_post( $id ) )
 	return;
 
 	if ($draft)
