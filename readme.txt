@@ -1,8 +1,8 @@
 === OneCart ===
 Contributors: butterflymedia
 Requires at least: 4.7
-Tested up to: WordPress 4.8.2
-Version: 1.9-beta3
+Tested up to: WordPress 4.9.4
+Version: 1.9.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
@@ -37,6 +37,10 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
 == Changelog ==
+
+= 1.9.1 =
+* UPDATE: Updated PHP 7.2 compatibility
+* UPDATE: Updated WordPress compatibility
 
 = 1.9-beta3 =
 * FIX: Fixed readme.txt syntax

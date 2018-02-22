@@ -1,13 +1,11 @@
 <?php
-
 /**
  * Only run if theme is being activated for the first time.
  * Create required pages, default options and settings
 */
 
 $flag = get_option('occommerce_first_time_theme_activation_hook');
-if ( $flag == false && is_admin()){
-
+if ($flag == false && is_admin()) {
 	/*************************************************
 	create myorders page
 	*************************************************/
@@ -20,7 +18,7 @@ if ( $flag == false && is_admin()){
 	);
 	$myorders_id = wp_insert_post( $myorders );
 	update_post_meta($myorders_id, '_wp_page_template', 'myorders.php');
-	
+
 	/*************************************************
 	create checkout page
 	*************************************************/
@@ -33,7 +31,7 @@ if ( $flag == false && is_admin()){
 	);
 	$checkout_id = wp_insert_post( $checkout );
 	update_post_meta($checkout_id, '_wp_page_template', 'checkout.php');
-	
+
 	/*************************************************
 	create blog page
 	*************************************************/
@@ -46,25 +44,25 @@ if ( $flag == false && is_admin()){
 	);
 	$blog_id = wp_insert_post( $blog );
 	update_post_meta($blog_id, '_wp_page_template', 'blog.php');
-	
+
 	/*************************************************
 	create default social bookmarks
 	*************************************************/
 	$bookmarks = array('blogger','digg','dribble','facebook','feed','feedburner','flickr','google','lastfm','linkedin','newsvine','sharethis','skype','tumblr','twitter','vimeo','wordpress','youtube');
 	update_option('occommerce_social_bookmarks', $bookmarks);
-	
+
 	/*************************************************
 	create default payment logos
 	*************************************************/
 	$payments = array('paypal','co','visa','electron','mastercard','maestro','cirrus','amex','discover','solo','switch','delta','directdebit','moneybookers','westernunion','google','ebay','sage');
 	update_option('occommerce_payment_logos', $payments);
-	
+
 	/*************************************************
 	install default currency codes
 	*************************************************/
 	$currencies = array('AUD','CAD','EUR','GBP','JPY','USD','NZD','CHF','HKD','SGD','SEK','DKK','PLN','NOK','HUF','CZK','ILS','MXN','BRL','MYR','PHP','TWD','THB','TRY');
 	update_option('occommerce_currencies', $currencies);
-	
+
 	/*************************************************
 	save default options
 	*************************************************/
@@ -203,7 +201,7 @@ if (get_option('occommerce_custom_attributes')) {
 		if (!file_exists(get_template_directory().'/lib/custom/'.$slug.'.php')) { // check the taxonomy file exists
 			// create new custom attributes file
 			file_put_contents(get_template_directory().'/lib/custom/'.$slug.'.php', "<?php
-		
+
 			add_action( 'init', 'create_".$slug."_taxonomies', 0 );
 			function create_".$slug."_taxonomies() {
 			  register_taxonomy('$slug','product',array(
@@ -216,7 +214,7 @@ if (get_option('occommerce_custom_attributes')) {
 				'all_items' => __( 'All ".ucfirst($plural)."' ),
 				'parent_item' => null,
 				'parent_item_colon' => null,
-				'edit_item' => __( 'Edit ".ucfirst($single)."' ), 
+				'edit_item' => __( 'Edit ".ucfirst($single)."' ),
 				'update_item' => __( 'Update ".ucfirst($single)."' ),
 				'add_new_item' => __( 'Add New ".ucfirst($single)."' ),
 				'new_item_name' => __( 'New ".ucfirst($single)." Name' ),
@@ -231,7 +229,7 @@ if (get_option('occommerce_custom_attributes')) {
 				'rewrite' => array( 'slug' => '".$slug."' ),
 			  ));
 			}
-		
+
 			?>");
 		}
 	}
@@ -521,160 +519,80 @@ if (!get_option('occommerce_all_countries')) {
 add skins
 ************************************************************/
 
-	/* default skin */
-	update_option('occommerce_skin_default', array(
-		'body_bg' => '#ffffff',
-		'active_color' => '#ea6ea0',
-		'header_bg' => '#ffffff',
-		'slide_text_color' => '#ffffff',
-		'slide_text_bg' => '#000000',
-		'text_color_1' => '#929292',
-		'text_color_2' => '#686868',
-		'text_color_3' => '#929292',
-		'text_color_4' => '#afaeae',
-		'text_color_5' => '#666666',
-		'nav_color' => '#929292',
-		'nav_hover_color' => '#111111',
-		'bottom_bg' => 'none',
-		'catalog_border' => '#cccccc',
-		'header_border' => '#cccccc',
-		'footer_border' => '#cccccc',
-		'common_border_1' => '#dddddd',
-		'widget_border' => '#cccccc',
-		'comments_color' => '#666666',
-		'comments_meta_color' => '#9e9e9e',
-		'comments_author' => '#333333',
-		'button_hover_1' => '#e74a89',
-		'button_hover_2' => '#f67bad',
-		'button_style1_color' => '#99ca3b',
-		'button_style1_hover' => '#abd759',
-		'button_style2_color' => '#49c9f8',
-		'button_style2_hover' => '#76d5f8',
-		'heading3' => '#494949',
-		'menu_color' => '#666666',
-		'menu_active_color' => '#ffffff',
-		'menu_hover_color' => '#ffffff',
-		'menu_hover_bg' => '#666666',
-		'menu_sub_bg' => '#ffffff',
-		'menu_sub_color' => '#666666',
-		'menu_sub_border' => '#dddddd',
-	));
+/* default skin */
+update_option('occommerce_skin_default', array(
+	'body_bg' => '#ffffff',
+	'active_color' => '#ea6ea0',
+	'header_bg' => '#ffffff',
+	'slide_text_color' => '#ffffff',
+	'slide_text_bg' => '#000000',
+	'text_color_1' => '#929292',
+	'text_color_2' => '#686868',
+	'text_color_3' => '#929292',
+	'text_color_4' => '#afaeae',
+	'text_color_5' => '#666666',
+	'nav_color' => '#929292',
+	'nav_hover_color' => '#111111',
+	'bottom_bg' => 'none',
+	'catalog_border' => '#cccccc',
+	'header_border' => '#cccccc',
+	'footer_border' => '#cccccc',
+	'common_border_1' => '#dddddd',
+	'widget_border' => '#cccccc',
+	'comments_color' => '#666666',
+	'comments_meta_color' => '#9e9e9e',
+	'comments_author' => '#333333',
+	'button_hover_1' => '#e74a89',
+	'button_hover_2' => '#f67bad',
+	'button_style1_color' => '#99ca3b',
+	'button_style1_hover' => '#abd759',
+	'button_style2_color' => '#49c9f8',
+	'button_style2_hover' => '#76d5f8',
+	'heading3' => '#494949',
+	'menu_color' => '#666666',
+	'menu_active_color' => '#ffffff',
+	'menu_hover_color' => '#ffffff',
+	'menu_hover_bg' => '#666666',
+	'menu_sub_bg' => '#ffffff',
+	'menu_sub_color' => '#666666',
+	'menu_sub_border' => '#dddddd',
+));
 
-	/* canvas skin */
-	update_option('occommerce_skin_canvas', array(
-		'body_bg' => '#ffffff',
-		'active_color' => '#a46516',
-		'header_bg' => '#ffffff',
-		'slide_text_color' => '#ffffff',
-		'slide_text_bg' => '#000000',
-		'text_color_1' => '#998e80',
-		'text_color_2' => '#885c25',
-		'text_color_3' => '#333333',
-		'text_color_4' => '#c7b399',
-		'text_color_5' => '#bda696',
-		'nav_color' => '#333333',
-		'nav_hover_color' => '#a46516',
-		'bottom_bg' => '#f6f3e3',
-		'catalog_border' => '#e8d8c4',
-		'header_border' => '#cccccc',
-		'footer_border' => '#e8d8c4',
-		'common_border_1' => '#d4bdad',
-		'widget_border' => '#cccccc',
-		'comments_color' => '#333333',
-		'comments_meta_color' => '#b29580',
-		'comments_author' => '#947966',
-		'button_hover_1' => '#da7900',
-		'button_hover_2' => '#da7900',
-		'button_style1_color' => '#414141',
-		'button_style1_hover' => '#555555',
-		'button_style2_color' => '#f48800',
-		'button_style2_hover' => '#fda83f',
-		'heading3' => '#b4a087',
-		'menu_color' => '#666666',
-		'menu_active_color' => '#ffffff',
-		'menu_hover_color' => '#ffffff',
-		'menu_hover_bg' => '#666666',
-		'menu_sub_bg' => '#ffffff',
-		'menu_sub_color' => '#666666',
-		'menu_sub_border' => '#dddddd',
-	));
-
-	/* azure skin */
-	update_option('occommerce_skin_azure', array(
-		'body_bg' => '#ffffff',
-		'active_color' => '#1e83e0',
-		'header_bg' => '#ffffff',
-		'slide_text_color' => '#ffffff',
-		'slide_text_bg' => '#000000',
-		'text_color_1' => '#929292',
-		'text_color_2' => '#686868',
-		'text_color_3' => '#929292',
-		'text_color_4' => '#afaeae',
-		'text_color_5' => '#666666',
-		'nav_color' => '#555555',
-		'nav_hover_color' => '#111111',
-		'bottom_bg' => 'none',
-		'catalog_border' => '#cccccc',
-		'header_border' => '#cccccc',
-		'footer_border' => '#cccccc',
-		'common_border_1' => '#d9d9d9',
-		'widget_border' => '#cccccc',
-		'comments_color' => '#666666',
-		'comments_meta_color' => '#9e9e9e',
-		'comments_author' => '#333333',
-		'button_hover_1' => '#39a0ff',
-		'button_hover_2' => '#39a0ff',
-		'button_style1_color' => '#414141',
-		'button_style1_hover' => '#555555',
-		'button_style2_color' => '#0065c2',
-		'button_style2_hover' => '#007cef',
-		'heading3' => '#494949',
-		'menu_color' => '#666666',
-		'menu_active_color' => '#ffffff',
-		'menu_hover_color' => '#ffffff',
-		'menu_hover_bg' => '#666666',
-		'menu_sub_bg' => '#ffffff',
-		'menu_sub_color' => '#666666',
-		'menu_sub_border' => '#dddddd',
-	));
-	
-	/* tangerine skin */
-	update_option('occommerce_skin_tangerine', array(
-		'body_bg' => '#ffffff',
-		'active_color' => '#f5692c',
-		'header_bg' => '#ffffff',
-		'slide_text_color' => '#ffffff',
-		'slide_text_bg' => '#000000',
-		'text_color_1' => '#929292',
-		'text_color_2' => '#977160',
-		'text_color_3' => '#929292',
-		'text_color_4' => '#afaeae',
-		'text_color_5' => '#666666',
-		'nav_color' => '#666666',
-		'nav_hover_color' => '#f5692c',
-		'bottom_bg' => 'none',
-		'catalog_border' => '#eeeeee',
-		'header_border' => '#eeeeee',
-		'footer_border' => '#eeeeee',
-		'common_border_1' => '#eeeeee',
-		'widget_border' => '#eeeeee',
-		'comments_color' => '#666666',
-		'comments_meta_color' => '#9e9e9e',
-		'comments_author' => '#333333',
-		'button_hover_1' => '#ff8c5a',
-		'button_hover_2' => '#ff8c5a',
-		'button_style1_color' => '#444444',
-		'button_style1_hover' => '#555555',
-		'button_style2_color' => '#f5692c',
-		'button_style2_hover' => '#ff8c5a',
-		'heading3' => '#494949',
-		'menu_color' => '#666666',
-		'menu_active_color' => '#ffffff',
-		'menu_hover_color' => '#ffffff',
-		'menu_hover_bg' => '#666666',
-		'menu_sub_bg' => '#ffffff',
-		'menu_sub_color' => '#666666',
-		'menu_sub_border' => '#dddddd',
-	));
-
-?>
+/* canvas skin */
+update_option('occommerce_skin_canvas', array(
+	'body_bg' => '#ffffff',
+	'active_color' => '#a46516',
+	'header_bg' => '#ffffff',
+	'slide_text_color' => '#ffffff',
+	'slide_text_bg' => '#000000',
+	'text_color_1' => '#998e80',
+	'text_color_2' => '#885c25',
+	'text_color_3' => '#333333',
+	'text_color_4' => '#c7b399',
+	'text_color_5' => '#bda696',
+	'nav_color' => '#333333',
+	'nav_hover_color' => '#a46516',
+	'bottom_bg' => '#f6f3e3',
+	'catalog_border' => '#e8d8c4',
+	'header_border' => '#cccccc',
+	'footer_border' => '#e8d8c4',
+	'common_border_1' => '#d4bdad',
+	'widget_border' => '#cccccc',
+	'comments_color' => '#333333',
+	'comments_meta_color' => '#b29580',
+	'comments_author' => '#947966',
+	'button_hover_1' => '#da7900',
+	'button_hover_2' => '#da7900',
+	'button_style1_color' => '#414141',
+	'button_style1_hover' => '#555555',
+	'button_style2_color' => '#f48800',
+	'button_style2_hover' => '#fda83f',
+	'heading3' => '#b4a087',
+	'menu_color' => '#666666',
+	'menu_active_color' => '#ffffff',
+	'menu_hover_color' => '#ffffff',
+	'menu_hover_bg' => '#666666',
+	'menu_sub_bg' => '#ffffff',
+	'menu_sub_color' => '#666666',
+	'menu_sub_border' => '#dddddd',
+));
