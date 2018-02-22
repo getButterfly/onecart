@@ -60,7 +60,6 @@
 		background: white;
 		padding:5px 5px;
 	}
-	#browser-320 select * {font-family: Arial}
 	#browser-320 optgroup {font-style: normal}
 
 	/* slider */
@@ -204,7 +203,6 @@
 	}
 	.infotabs li a {
 		font-size: 9px;
-		font-family: Arial;
 		padding: 0 5px;
 	}
 	#reviewform textarea {
@@ -236,7 +234,6 @@
 	}
 	#blog_nav-320 select {
 		width: 100%;
-		font-family: Arial;
 		font-size: 13px;
 		color: #444;
 		-webkit-border-radius: 3px;
@@ -246,7 +243,6 @@
 		background: white;
 		padding:5px 5px;
 	}
-	#blog_nav-320 select * {font-family: Arial}
 	#blog_nav-320 optgroup {font-style: normal}
 
 	/* blog */
@@ -328,13 +324,11 @@
 		display: none;
 	}
 	.myorders table th {
-		font-family: Arial;
 		font-size: 10px;
 		line-height: 18px;
 		padding: 12px 0;
 	}
 	.myorders table td {
-		font-family: Arial;
 		font-size: 10px;
 		line-height: 15px;
 		padding: 12px 0;
@@ -350,7 +344,6 @@
 	}
 	.myorders span.data {
 		display: block;
-		font-family: Arial;
 		color: #888;
 		font-size: 11px;
 		line-height: 20px;
@@ -385,7 +378,6 @@
 		display: none;
 	}
 	.thecart th, .thecart td {
-		font-family: Arial;
 		font-size: 10px;
 		font-weight: 300;
 		padding-left: 8px;
@@ -398,7 +390,6 @@
 	.thecart td.td-sub {font-size: 14px}
 	.t-productname a {
 		font-size: 11px;
-		font-family: Arial;
 		line-height: 16px;
 	}
 	.t-option {
@@ -414,7 +405,6 @@
 		color: #333;
 		text-align: center;
 		height: 24px;
-		font-family: inherit;
 		font-size: 11px;
 		font-weight: 300;
 	}
@@ -441,7 +431,6 @@
 		margin: 12px 80px 0 0;
 		width: 100px;
 		font-size: 11px;
-		font-family: Arial;
 		line-height: 17px;
 	}
 	.calc-tax span, .calc-shipping span, .calc-coupon span, .calc-total span {
@@ -494,7 +483,6 @@
 		padding: 0 50px;
 		border: 1px solid #d0d0d0;
 		height: 42px;
-		font-family: Arial;
 		font-size: 16px;
 		color: #333;
 		margin: 0 0 24px 0;
@@ -510,7 +498,6 @@
 	}
 	.checkout_login input[type=submit] {
 		color: #fff;
-		font-family: inherit;
 		font-size: 18px;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -710,7 +697,6 @@
 	}
 	#browser-320 select {
 		width: 100%;
-		font-family: Arial;
 		font-size: 13px;
 		color: #444;
 		-webkit-border-radius: 3px;
@@ -720,7 +706,6 @@
 		background: white;
 		padding:5px 5px;
 	}
-	#browser-320 select * {font-family: Arial}
 	#browser-320 optgroup {font-style: normal}
 
 	/* slider */
@@ -880,7 +865,6 @@
 	}
 	.infotabs li a {
 		font-size: 9px;
-		font-family: Arial;
 		padding: 0 5px;
 	}
 	#reviewform textarea {
@@ -909,7 +893,6 @@
 	}
 	#blog_nav-320 select {
 		width: 100%;
-		font-family: Arial;
 		font-size: 13px;
 		color: #444;
 		-webkit-border-radius: 3px;
@@ -919,7 +902,6 @@
 		background: white;
 		padding:5px 5px;
 	}
-	#blog_nav-320 select * {font-family: Arial}
 	#blog_nav-320 optgroup {font-style: normal}
 
 	/* blog */
@@ -1001,13 +983,11 @@
 	}
 
 	.myorders table th {
-		font-family: Arial;
 		font-size: 11px;
 		line-height: 18px;
 		padding: 12px 0;
 	}
 	.myorders table td {
-		font-family: Arial;
 		font-size: 11px;
 		line-height: 15px;
 		padding: 12px 0;
@@ -1017,7 +997,6 @@
 	}
 	.myorders span.data {
 		display: block;
-		font-family: Arial;
 		color: #888;
 		font-size: 11px;
 		line-height: 20px;
@@ -1052,7 +1031,6 @@
 		display: none;
 	}
 	.thecart th, .thecart td {
-		font-family: Arial;
 		font-size: 10px;
 		font-weight: 300;
 		padding-left: 8px;
@@ -1065,7 +1043,6 @@
 	.thecart td.td-sub {font-size: 14px}
 	.t-productname a {
 		font-size: 11px;
-		font-family: Arial;
 		line-height: 16px;
 	}
 	.t-option {
@@ -1081,7 +1058,6 @@
 		color: #333;
 		text-align: center;
 		height: 24px;
-		font-family: inherit;
 		font-size: 11px;
 		font-weight: 300;
 	}
@@ -1160,7 +1136,6 @@
 		padding: 0 50px;
 		border: 1px solid #d0d0d0;
 		height: 42px;
-		font-family: Arial;
 		font-size: 16px;
 		color: #333;
 		margin: 0 0 24px 0;
@@ -1176,7 +1151,6 @@
 	}
 	.checkout_login input[type=submit] {
 		color: #fff;
-		font-family: inherit;
 		font-size: 18px;
 		font-weight: 700;
 		text-transform: uppercase;
@@ -1389,7 +1363,6 @@
 		background: white;
 		padding:5px 5px;
 	}
-	#browser-320 select * {font-family: Arial}
 	#browser-320 optgroup {font-style: normal}
 
 	/* slider */
@@ -1540,7 +1513,6 @@
 	}
 	.infotabs li a {
 		font-size: 11px;
-		font-family: Arial;
 		padding: 0 10px;
 	}
 	#reviewform textarea {
@@ -1569,7 +1541,6 @@
 	}
 	#blog_nav-320 select {
 		width: 100%;
-		font-family: Arial;
 		font-size: 13px;
 		color: #444;
 		-webkit-border-radius: 3px;
@@ -1579,7 +1550,6 @@
 		background: white;
 		padding:5px 5px;
 	}
-	#blog_nav-320 select * {font-family: Arial}
 	#blog_nav-320 optgroup {font-style: normal}
 
 	/* blog */
@@ -1661,13 +1631,11 @@
 	}
 
 	.myorders table th {
-		font-family: Arial;
 		font-size: 12px;
 		line-height: 18px;
 		padding: 12px 0;
 	}
 	.myorders table td {
-		font-family: Arial;
 		font-size: 12px;
 		line-height: 15px;
 		padding: 12px 0;
@@ -1677,7 +1645,6 @@
 	}
 	.myorders span.data {
 		display: block;
-		font-family: Arial;
 		color: #888;
 		font-size: 11px;
 		line-height: 20px;
@@ -1704,7 +1671,6 @@
 	.lightbox h1 {
 		font-weight: 500;
 		font-size: 14px;
-		font-family: inherit;
 		color: #363636;
 		text-transform: uppercase;
 		margin: 0 0 20px 0;
@@ -1713,7 +1679,6 @@
 		display: none;
 	}
 	.thecart th, .thecart td {
-		font-family: Arial;
 		font-size: 10px;
 		font-weight: 300;
 		padding-left: 8px;
@@ -1726,7 +1691,6 @@
 	.thecart td.td-sub {font-size: 14px}
 	.t-productname a {
 		font-size: 11px;
-		font-family: Arial;
 		line-height: 16px;
 	}
 	.t-option {
@@ -1742,7 +1706,6 @@
 		color: #333;
 		text-align: center;
 		height: 24px;
-		font-family: inherit;
 		font-size: 11px;
 		font-weight: 300;
 	}
@@ -1821,7 +1784,6 @@
 		padding: 0 50px;
 		border: 1px solid #d0d0d0;
 		height: 42px;
-		font-family: Arial;
 		font-size: 16px;
 		color: #333;
 		margin: 0 0 24px 0;
@@ -1837,7 +1799,6 @@
 	}
 	.checkout_login input[type=submit] {
 		color: #fff;
-		font-family: inherit;
 		font-size: 18px;
 		font-weight: 700;
 		text-transform: uppercase;

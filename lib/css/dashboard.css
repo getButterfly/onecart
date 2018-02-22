@@ -456,7 +456,6 @@ label.checkbox_1 input[type=checkbox] {
 	color: #333;
 	text-decoration: none;
 	padding: 0 10px 0 0;
-	font-family: Georgia;
 	font-size: 16px;
 	font-weight: bold;
 	float: left;
@@ -472,7 +471,7 @@ label.checkbox_1 input[type=checkbox] {
 
 a.nostyle {
 	text-decoration: none;
-} 
+}
 
 .ordercount_new {color: #ff6000}
 .ordercount_awaiting {color: #ff3000}
@@ -505,4 +504,3 @@ a.nostyle {
 
 
 
-	

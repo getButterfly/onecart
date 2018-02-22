@@ -29,6 +29,9 @@ body {
 	width: 100%;
 	text-align: center;
 }
+input, select, textarea, button {
+    font-family: inherit;
+}
 
 .wrap {
 	width: 977px;
@@ -1521,11 +1524,9 @@ product information
 	float: left;
 	margin: 0 10px 0 0;
 	font-size: 11px;
-	font-family: Arial;
 	color: #999;
 }
 .navi a {
-	font-family: Arial;
 	color: #999;
 }
 .navi a:hover {text-decoration:underline}
@@ -1578,7 +1579,6 @@ product information
 	line-height: 26px;
 	color: #fff;
 	font-style: italic;
-	font-family: Arial;
 	font-size: 13px;
 	padding: 0 15px 0 20px;
 	margin: 16px 0 0 10px;
@@ -1674,7 +1674,6 @@ product information
 	line-height: 30px;
 	color: #666;
 	font-size: 12px;
-	font-family: Arial;
 	padding: 0 16px;
 	border-right: 1px solid #ddd;
 	-webkit-transition: all 0.3s ease-in-out; /* fade in effect */
@@ -1686,8 +1685,6 @@ product information
 	background: #444;
 	color: #fff;
 }
-
-.infotabs li a span {font-family: Arial}
 
 .infotab_div_default {
 	border: 1px solid #ddd;
@@ -1707,20 +1704,15 @@ product information
 
 /* infotab_div (Tab area CSS) */
 .infotab_div p {
-	font-family: Arial;
 	font-size: 12px;
 	margin: 0 0 12px 0;
 }
 
 .product-about .infotab_div_default p {
-	font-family: Arial;
 	font-size: 12px;
 	margin: 0;
 }
 
-.infotab_div p * {
-	font-family: Arial;
-}
 .infotab_div a:hover {text-decoration: underline}
 
 .infotab_div img {
@@ -2239,7 +2231,6 @@ lightbox content login
 	padding: 0 50px;
 	border: 1px solid #d0d0d0;
 	height: 42px;
-	font-family: Arial;
 	font-size: 16px;
 	color: #333;
 	margin: 0 0 24px 0;
@@ -2270,7 +2261,6 @@ p.form-right {
 
 .form_submit {
 	color: #fff;
-	font-family: inherit;
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -2365,7 +2355,6 @@ lightbox cart
 	color: #333;
 	text-align: center;
 	height: 24px;
-	font-family: inherit;
 	font-size: 14px;
 	font-weight: 300;
 }
@@ -2718,7 +2707,6 @@ blog page
 
 .blog_title h1 span {
 	font-size: 15px;
-	font-family: Arial;
 	text-shadow: 0 1px #fff;
 	color: #999;
 	position: relative;
@@ -2998,7 +2986,6 @@ comments template
 	margin: 15px 0 0 0;
 }
 .commentlist p em {
-	font-family: Arial;
 	font-size: 11px;
 	color: #999;
 	background: #fff;
@@ -3057,7 +3044,6 @@ comments template
 
 #commentform #submit {
 	color: #fff;
-	font-family: inherit;
 	font-size: 20px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -3446,7 +3432,6 @@ checkout process
 	padding: 0 50px;
 	border: 1px solid #d0d0d0;
 	height: 42px;
-	font-family: Arial;
 	font-size: 16px;
 	color: #333;
 	margin: 0 0 24px 0;
@@ -3455,7 +3440,6 @@ checkout process
 
 .checkout_login input[type=submit] {
 	color: #fff;
-	font-family: inherit;
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -3575,15 +3559,13 @@ checkout forms
 	margin: 0;
 }
 
-.cform p.chkbox_terms label, .cform p.chkbox_terms label a {font-family: Arial;text-transform: none;font-weight: normal}
-.cform p.chkbox_terms label a strong {font-family: Arial;}
+.cform p.chkbox_terms label, .cform p.chkbox_terms label a {text-transform: none;font-weight: normal}
 .cform p.chkbox_terms label a:hover {text-decoration: underline}
 
 .cform p.radiobox label {
 	display: block;
 	float: none;
 	width: auto;
-	font-family: Arial;
 	font-size: 13px;
 	line-height: 21px;
 	text-transform: none;
@@ -3598,17 +3580,12 @@ checkout forms
 	vertical-align: middle;
 }
 
-.cform p.radiobox label a {
-	font-family: Arial;
-}
-
 .cform p.radiobox label a:hover {
 	text-decoration: underline;
 }
 
-.cform p.radiobox label abbr {color: #999;font-family: Arial;}
-.cform p.radiobox label datetime {font-size: 11px;font-family: Arial;color: #888;text-transform: uppercase;margin: 0 0 0 15px;background:#f5f5f5;}
-.cform p.radiobox label ins {font-family: Arial;}
+.cform p.radiobox label abbr {color: #999;}
+.cform p.radiobox label datetime {font-size: 11px;color: #888;text-transform: uppercase;margin: 0 0 0 15px;background:#f5f5f5;}
 
 .cform label {
 	float: left;
@@ -3658,7 +3635,6 @@ checkout forms
 
 .usericon {
 	position: absolute;
-	font-family: Arial;
 	font-size: 13px;
 	color: #666;
 	line-height: 32px;
@@ -3733,7 +3709,6 @@ checkout forms
 	border: 1px solid #d0d0d0;
 	border-bottom: 1px solid #e5e5e5;
 	border-right: 1px solid #e5e5e5;
-	font-family: inherit;
 	font-size: 13px;
 	color: #777;
 	box-sizing:content-box;
@@ -3776,12 +3751,10 @@ checkout forms
 	color: #333;
 }
 .cform input[disabled], .cform select[disabled] {background: #eee}
-.cform select * {font-family: inherit}
 
 .cform input[type=submit] {
 	text-align: center;
 	color: #fff;
-	font-family: inherit;
 	font-size: 18px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -3941,7 +3914,6 @@ my orders css
 	border: 1px solid #d0d0d0;
 	border-bottom: 1px solid #e5e5e5;
 	border-right: 1px solid #e5e5e5;
-	font-family: inherit;
 	font-size: 11px;
 	color: #777;
 	box-sizing:content-box;
@@ -3983,7 +3955,6 @@ my orders css
 	display: block;
 	float: none;
 	width: auto;
-	font-family: Arial;
 	font-size: 13px;
 	line-height: 21px;
 	text-transform: none;
@@ -4005,17 +3976,12 @@ my orders css
 	vertical-align: middle;
 }
 
-.myorders p.radiobox label a {
-	font-family: Arial;
-}
-
 .myorders p.radiobox label a:hover {
 	text-decoration: underline;
 }
 
-.myorders p.radiobox label abbr {color: #999;font-family: Arial;}
-.myorders p.radiobox label datetime {font-size: 11px;font-family: Arial;color: #888;text-transform: uppercase;margin: 0 0 0 15px;background:#f5f5f5;}
-.myorders p.radiobox label ins {font-family: Arial;}
+.myorders p.radiobox label abbr {color: #999;}
+.myorders p.radiobox label datetime {font-size: 11px;color: #888;text-transform: uppercase;margin: 0 0 0 15px;background:#f5f5f5;}
 
 /* custom invoice table */
 
@@ -4033,8 +3999,7 @@ a.back {
 }
 
 table.table-invoice {border-left: 1px solid #f5f5f5;border-right: 1px solid #f5f5f5}
-table.table-invoice * {font-family: Arial}
-table.table-invoice th, table.table-invoice td {font-family: Arial;width: auto;font-size: 13px;border:0;}
+table.table-invoice th, table.table-invoice td {width: auto;font-size: 13px;border:0;}
 table.table-invoice abbr {
 	text-transform: uppercase;
 	font-weight: bold;
@@ -4096,7 +4061,6 @@ contact form
 
 #contactform label {
 	display: block;
-	font-family: Arial;
 	font-size: 12px;
 	color: #777;
 	cursor: pointer;
@@ -4104,7 +4068,6 @@ contact form
 }
 
 #contactform label span {
-	font-family: Arial;
 	margin: 0 0 0 6px;
 }
 
@@ -4112,7 +4075,6 @@ contact form
 	width: 248px;
 	height: 26px;
 	border: 1px solid #ddd;
-	font-family: Arial;
 	font-size: 12px;
 	color: #777;
 	-webkit-border-radius: 3px; /* round corners */
@@ -4141,7 +4103,6 @@ contact form
 #contactform input[type=submit] {
 	background: #bbb;
 	color: #fff;
-	font-family: inherit;
 	font-size: 13px;
 	font-weight: 300;
 	text-transform: uppercase;
@@ -4490,7 +4451,6 @@ filtering and categories
 .header a {
 	float: right;
 	font-size: 11px;
-	font-family: Arial;
 	font-weight: normal;
 	border-radius: 3px;
 	padding: 4px 10px;
@@ -4528,14 +4488,12 @@ filtering and categories
 
 .filter .cat_count {
 	float: right;
-	font-family: Arial;
 	font-size: 11px;
 	color: #aaa;
 }
 
 .filter_e {
 	padding: 0 0 0 5px;
-	font-family: Arial;
 	font-size: 0.7em;
 	cursor: pointer;
 }
@@ -4554,22 +4512,19 @@ catalog view
 }
 
 .catalog_title {
-	font-family: Arial;
 	font-size: 24px;
 	color: #333;
 	border-bottom: 4px solid #f1f1f1;
 	padding: 0 0 15px 0;
 }
 .catalog_title ins {
-	font-family: Arial;
 	font-size: 24px;
 }
 .catalog_title span {
-	font-family: Arial;
 	color: #666;
 	margin: 0 0 0 20px;
 }
-.catalog_title span span {font-family: Arial;margin: 0}
+.catalog_title span span {margin: 0}
 
 .catalog_title div.active_filter {
 	float: left;
@@ -5064,7 +5019,6 @@ select options
 ***************************************************************/
 .product-tax select {
 	margin: 10px 0 0 0;
-	font-family: Arial;
 	min-width: 90%;
 	padding: 3px;
 	color: #333;
@@ -5072,8 +5026,6 @@ select options
 	border-radius: 3px;
 	font-size: 13px;
 }
-
-.product-tax select * {font-family: Arial}
 
 /***************************************************************
 price range
