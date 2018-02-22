@@ -368,20 +368,20 @@ jQuery(document).ready(function(){
 
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_seperator"><?php _e('Homepage Title Seperator','ocart'); ?></label>
-				<input type="text" name="seo_seperator" id="seo_seperator" value="<?php if (isset($this->options['seo_seperator'])) echo $this->options['seo_seperator']; ?>" />
-				<span class="usage"><?php _e('This is the seperator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
+				<label for="seo_separator"><?php _e('Homepage Title Separator','ocart'); ?></label>
+				<input type="text" name="seo_separator" id="seo_separator" value="<?php if (isset($this->options['seo_separator'])) echo $this->options['seo_separator']; ?>" />
+				<span class="usage"><?php _e('This is the separator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
 			</div>
 		</div>
 
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_seperator_position"><?php _e('Seperator Position','ocart'); ?></label>
-				<select name="seo_seperator_position" id="seo_seperator_position">
-					<option value="1"<?php selected(1, $this->options['seo_seperator_position']); ?>><?php _e('After Title','ocart'); ?></option>
-					<option value="2"<?php selected(2, $this->options['seo_seperator_position']); ?>><?php _e('Before Title','ocart'); ?></option>
+				<label for="seo_separator_position"><?php _e('Separator Position','ocart'); ?></label>
+				<select name="seo_separator_position" id="seo_separator_position">
+					<option value="1"<?php selected(1, $this->options['seo_separator_position']); ?>><?php _e('After Title','ocart'); ?></option>
+					<option value="2"<?php selected(2, $this->options['seo_separator_position']); ?>><?php _e('Before Title','ocart'); ?></option>
 				</select>
-				<span class="usage"><?php _e('This is to show the seperator text after or before the main title.','ocart'); ?></span>
+				<span class="usage"><?php _e('This is to show the separator text after or before the main title.','ocart'); ?></span>
 			</div>
 		</div>
 
@@ -407,20 +407,20 @@ jQuery(document).ready(function(){
 
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_seperator_search"><?php _e('Search Page Title Seperator','ocart'); ?></label>
-				<input type="text" name="seo_seperator_search" id="seo_seperator_search" value="<?php if (isset($this->options['seo_seperator_search'])) echo $this->options['seo_seperator_search']; ?>" />
-				<span class="usage"><?php _e('This is the seperator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
+				<label for="seo_separator_search"><?php _e('Search Page Title Separator','ocart'); ?></label>
+				<input type="text" name="seo_separator_search" id="seo_separator_search" value="<?php if (isset($this->options['seo_separator_search'])) echo $this->options['seo_separator_search']; ?>" />
+				<span class="usage"><?php _e('This is the separator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
 			</div>
 		</div>
 
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_seperator_position_search"><?php _e('Searc Page Seperator Position','ocart'); ?></label>
-				<select name="seo_seperator_position_search" id="seo_seperator_position_search">
-					<option value="1"<?php selected(1, $this->options['seo_seperator_position_search']); ?>><?php _e('After Title','ocart'); ?></option>
-					<option value="2"<?php selected(2, $this->options['seo_seperator_position_search']); ?>><?php _e('Before Title','ocart'); ?></option>
+				<label for="seo_separator_position_search"><?php _e('Search Page Separator Position','ocart'); ?></label>
+				<select name="seo_separator_position_search" id="seo_separator_position_search">
+					<option value="1"<?php selected(1, $this->options['seo_separator_position_search']); ?>><?php _e('After Title','ocart'); ?></option>
+					<option value="2"<?php selected(2, $this->options['seo_separator_position_search']); ?>><?php _e('Before Title','ocart'); ?></option>
 				</select>
-				<span class="usage"><?php _e('This is to show the seperator text after or before the main title.','ocart'); ?></span>
+				<span class="usage"><?php _e('This is to show the separator text after or before the main title.','ocart'); ?></span>
 			</div>
 		</div>
 
@@ -446,20 +446,20 @@ jQuery(document).ready(function(){
 
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_seperator_404"><?php _e('404 Page Title Seperator','ocart'); ?></label>
-				<input type="text" name="seo_seperator_404" id="seo_seperator_404" value="<?php if (isset($this->options['seo_seperator_404'])) echo $this->options['seo_seperator_404']; ?>" />
-				<span class="usage"><?php _e('This is the seperator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
+				<label for="seo_separator_404"><?php _e('404 Page Title Separator','ocart'); ?></label>
+				<input type="text" name="seo_separator_404" id="seo_separator_404" value="<?php if (isset($this->options['seo_separator_404'])) echo $this->options['seo_separator_404']; ?>" />
+				<span class="usage"><?php _e('This is the separator which can be displayed before or after page title. e.g. <code>| My Store</code>','ocart'); ?></span>
 			</div>
 		</div>
 
 		<div class="ocfield">
 			<div class="subfield">
-				<label for="seo_seperator_position_404"><?php _e('404 Page Seperator Position','ocart'); ?></label>
-				<select name="seo_seperator_position_404" id="seo_seperator_position_404">
-					<option value="1"<?php selected(1, $this->options['seo_seperator_position_404']); ?>><?php _e('After Title','ocart'); ?></option>
-					<option value="2"<?php selected(2, $this->options['seo_seperator_position_404']); ?>><?php _e('Before Title','ocart'); ?></option>
+				<label for="seo_separator_position_404"><?php _e('404 Page Separator Position','ocart'); ?></label>
+				<select name="seo_separator_position_404" id="seo_separator_position_404">
+					<option value="1"<?php selected(1, $this->options['seo_separator_position_404']); ?>><?php _e('After Title','ocart'); ?></option>
+					<option value="2"<?php selected(2, $this->options['seo_separator_position_404']); ?>><?php _e('Before Title','ocart'); ?></option>
 				</select>
-				<span class="usage"><?php _e('This is to show the seperator text after or before the main title.','ocart'); ?></span>
+				<span class="usage"><?php _e('This is to show the separator text after or before the main title.','ocart'); ?></span>
 			</div>
 		</div>
 

@@ -252,7 +252,6 @@ top bar
 .wishlist p {
 	margin: 25px 0 0 0;
 	text-align: left;
-	font-family: Tahoma;
 	font-size: 12px;
 	color: #888;
 }
@@ -457,7 +456,7 @@ navigation menu (style 2) super/mega
 	-o-transition: all 0.4s ease-in-out;
 }
 
-#supermenu li a span {padding: 0 0 0 5px;font-size: 9px;font-family:Tahoma;}
+#supermenu li a span {padding: 0 0 0 5px;font-size: 9px;}
 
 #supermenu a.homelink {
 	background-image: url(../img/icon-home-dark.png);
@@ -1309,7 +1308,7 @@ footer
 tipsy
 ***************************************************************/
 .tipsy { padding: 5px; font-size: 11px; position: absolute; z-index: 1000; }
-.tipsy-inner { padding: 4px 8px; background-color: black; color: white; max-width: 200px; text-align: center;font-family: Tahoma; }
+.tipsy-inner { padding: 4px 8px; background-color: black; color: white; max-width: 200px; text-align: center; }
 .tipsy-inner { border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
 .tipsy-arrow { position: absolute; background: url('../img/assets/tipsy.gif') no-repeat top left; width: 9px; height: 5px; }
 .tipsy-n .tipsy-arrow { top: 0; left: 50%; margin-left: -4px; }
@@ -1368,7 +1367,6 @@ jQuery Zoom
    filter: alpha(opacity = 80);
    color: #333;
    font-size: 12px;
-   font-family: Tahoma;
    text-decoration: none;
    border: 1px solid #CCC;
    background-color: white;
@@ -1620,13 +1618,11 @@ product information
 
 .product-rating-note {
 	display: block;
-	font-family: Tahoma;
 	color: #aaa;
 	font-size: 10px;
 	margin: 2px 0 0 0;
 }
 
-.product-rating-note * {font-family: Tahoma}
 .product-rating-note a:hover {text-decoration: underline}
 
 /* product area spacing */
@@ -1757,7 +1753,6 @@ product information
 	color: #666;
 	text-transform: uppercase;
 	padding: 6px 8px 6px 26px;
-	font-family: Tahoma;
 	background: #fff url(../img/closetab.png) no-repeat 8px center;
 	border-top: 1px solid #eee;
 	border-right: 1px solid #eee;
@@ -2451,10 +2446,7 @@ total price
 	left: 240px;
 	color: #999;
 	font-size: 15px;
-	font-family: Tahoma;
 }
-
-.calc-coupon span ins {font-family: Tahoma}
 
 .calc-total {
 	border-top: 1px solid #eee;
@@ -2463,7 +2455,6 @@ total price
 }
 
 .calc-total span {
-	font-family: Georgia;
 	font-size: 18px;
 	top: 10px;
 }
@@ -2838,7 +2829,6 @@ blog post
 }
 
 .blog_content .post p {
-	font-family: Tahoma;
 	font-size: 13px;
 	line-height: 20px;
 	padding: 15px 0 0 0;
@@ -2846,7 +2836,6 @@ blog post
 .blog_content .post p a.readmore {font-size: 12px;border-bottom: 1px dotted #fdbdd7}
 .blog_content .post p a.readmore:hover {border-bottom: 1px dotted #ff6ba7;color: #333;text-decoration: none}
 
-.blog_content .post p a, .blog_content .post p em, .blog_content .post p strong {font-family: Tahoma}
 .blog_content .post p em {
 	font-style: normal;
 	color: #999;
@@ -2855,14 +2844,12 @@ blog post
 
 .blog_content .post ul {margin: 15px 0 0 20px}
 .blog_content .post ul li {
-	font-family: Tahoma;
 	font-size: 12px;
 	color: #444;
 	line-height: 20px;
 	padding: 3px 0 3px 20px;
 }
 
-.blog_content .post li * {font-family: Tahoma}
 .blog_content .post li span {color: #aaa}
 
 .blog_content .post-tags {
@@ -2935,7 +2922,6 @@ blog page
 }
 
 .blog_content .page p {
-	font-family: Tahoma;
 	font-size: 13px;
 	line-height: 20px;
 	padding: 15px 0 0 0;
@@ -2943,7 +2929,6 @@ blog page
 .blog_content .page p a.readmore {font-size: 12px;border-bottom: 1px dotted #fdbdd7}
 .blog_content .page p a.readmore:hover {border-bottom: 1px dotted #ff6ba7;color: #333;text-decoration: none}
 
-.blog_content .page p a, .blog_content .page p em, .blog_content .page p strong  {font-family: Tahoma}
 .blog_content .page p em {
 	font-style: normal;
 	color: #999;
@@ -2952,14 +2937,12 @@ blog page
 
 .blog_content .page ul {margin: 15px 0 0 20px}
 .blog_content .page ul li {
-	font-family: Tahoma;
 	font-size: 12px;
 	color: #444;
 	line-height: 20px;
 	padding: 3px 0 3px 20px;
 }
 
-.blog_content .page li * {font-family: Tahoma}
 .blog_content .page li span {color: #aaa}
 
 /***************************************************************
@@ -3136,7 +3119,6 @@ blog sidebar
 	border: 1px solid #f5f5f5;
 	width: 223px;
 	height: 32px;
-	font-family: Tahoma;
 	font-size: 11px;
 	color: #999;
 }
@@ -3818,7 +3800,6 @@ checkout forms
 messages shown to user
 ***************************************************************/
 .result p {
-	font-family: Tahoma;
 	font-size: 13px;
 	color: #333;
 	line-height: 22px;
@@ -4193,7 +4174,6 @@ contact form
 	text-transform: uppercase;
 	padding: 5px 15px;
 	cursor: pointer;
-	font-family: Tahoma;
 	background: #f5f5f5;
 	font-weight: bold;
 }
@@ -4234,7 +4214,6 @@ contact form
 	padding: 0 10px;
 	background: #bbb;
 	color: #fff;
-	font-family: Tahoma;
 	font-size: 11px;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -4255,7 +4234,6 @@ contact form
 	float: left;
 	width: 140px;
 	border: 1px solid #d0d0d0;
-	font-family: Tahoma;
 	font-size: 12px;
 	color: #777;
 	height: 26px;
@@ -4266,7 +4244,6 @@ contact form
 	float: left;
 	background: #bbb;
 	color: #fff;
-	font-family: Tahoma;
 	font-size: 11px;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -4284,7 +4261,6 @@ contact form
 	margin: 14px 0 0 0;
 	float: left;
 	display: block;
-	font-family: Tahoma;
 	font-size: 11px;
 	line-height: 17px;
 	color: #da0048;
@@ -4298,7 +4274,6 @@ contact form
 	margin: 14px 0 0 0;
 	float: left;
 	display: block;
-	font-family: Tahoma;
 	font-size: 11px;
 	line-height: 17px;
 	color: #333;
@@ -4364,7 +4339,6 @@ styling reviews
 	background: #bbb;
 	font-size: 11px;
 	text-transform: uppercase;
-	font-family: Tahoma;
 	color: #fff;
 	padding: 5px 15px;
 	cursor: pointer;
@@ -4375,14 +4349,12 @@ styling reviews
 }
 
 .rating-title {
-	font-family: Tahoma;
 	font-size: 11px;
 	line-height: 18px;
 	color: #444;
 	margin: 0 0 4px 0;
 }
 .rating-title span {
-	font-family: Tahoma;
 	margin: 0 0 0 15px;
 	color: red;
 }
@@ -4407,7 +4379,6 @@ span.is_req {margin: 0 0 0 10px}
 p#toggle_review a {
 	padding: 4px 8px;
 	font-size: 11px;
-	font-family: Tahoma;
 	text-transform: uppercase;
 	color: #fff;
 	background: #bbb;
@@ -4444,8 +4415,7 @@ p#toggle_review a:hover {
 }
 
 .customer_name {
-	font-family: Tahoma;
-	font-weight: bold;
+	font-weight: 700;
 	color: #333;
 	border-bottom: 3px solid #999;
 	height: 20px;
@@ -4453,7 +4423,6 @@ p#toggle_review a:hover {
 }
 
 .customer_time {
-	font-family: Tahoma;
 	color: #aaa;
 	margin: 0 0 0 20px;
 }
@@ -4478,7 +4447,6 @@ div.customer_rating {
 	display: inline;
 	font-size: 11px;
 	line-height: 17px;
-	font-family: Tahoma;
 	padding: 10px;
 	opacity: 0;
 	background: #9f2626;
@@ -4667,7 +4635,6 @@ img.preload{display: none}
     border-radius: 999px;
     behavior: url(PIE.htc);
     text-align: center;
-	font-family: Georgia;
 	text-transform: uppercase;
 	position: absolute;
 	top: -20px;
@@ -4710,7 +4677,6 @@ img.preload{display: none}
 }
 .catalog_quickadd span {
 	font-size: 11px;
-	font-family: Tahoma;
 	padding: 6px 6px 6px 28px;
 	border-radius: 3px;
 	background: #fff url(../img/basket.png) no-repeat 6px center;
@@ -4826,7 +4792,6 @@ img.preload{display: none}
 	cursor: pointer;
 	display: none;
 	color: #333;
-	font-family: Tahoma;
 	font-size: 11px;
 	border: 1px dotted #ddd;
 	-webkit-transition: all 0.4s ease-in-out;
@@ -4950,7 +4915,6 @@ help / switch layout etc
 	background: #fff url(../img/slider_view.png) no-repeat 8px center;
 	color: #666;
 	font-size: 11px;
-	font-family: Tahoma;
 	padding: 0 6px 0 24px;
 	cursor: pointer;
 	border-radius: 3px;

@@ -46,19 +46,19 @@ function onecart_seo_metabox($post) {
 	</p>
 	
 	<p>
-		<label for="seo_sep"><?php _e('Page SEO Title Seperator','ocart'); ?></label>
+		<label for="seo_sep"><?php _e('Page SEO Title Separator','ocart'); ?></label>
 		<select name="seo_sep" id="seo_sep">
 			<option value="default" <?php if (isset($seo_sep) && $seo_sep == 'default') echo 'selected="selected"'; ?> ><?php echo ' | '. get_bloginfo('name'); ?></option>
 			<option value="custom" <?php if (isset($seo_sep) && $seo_sep == 'custom') echo 'selected="selected"'; ?>><?php _e('Custom','ocart'); ?></option>
 			<option value="none" <?php if (isset($seo_sep) && $seo_sep == 'none') echo 'selected="selected"'; ?>><?php _e('Do not use','ocart'); ?></option>
 		</select>
-		<span class="description"><?php _e('You can include a seperator that appears besides the title in your title bar.','ocart'); ?></span>
+		<span class="description"><?php _e('You can include a separator that appears besides the title in your title bar.','ocart'); ?></span>
 	</p>
 	
 	<p>
-		<label for="seo_custom_sep"><?php _e('Page SEO Custom Seperator','ocart'); ?></label>
+		<label for="seo_custom_sep"><?php _e('Page SEO Custom Separator','ocart'); ?></label>
 		<input type="text" name="seo_custom_sep" id="seo_custom_sep" value="<?php if(!empty($seo_custom_sep)) echo $seo_custom_sep; ?>" />
-		<span class="description"><?php _e('If you choose to use a custom seperator besides title, enter it here.','ocart'); ?></span>
+		<span class="description"><?php _e('If you choose to use a custom separator besides title, enter it here.','ocart'); ?></span>
 	</p>
 	
 <?php

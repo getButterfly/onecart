@@ -14,3 +14,6 @@ OneCart is a commercial WordPress theme available from https://getbutterfly.com/
 - [ ] TODO: Test, test, test
 - [x] TODO: Set up a collaboration system (GIT, pull requests)
 - [ ] TODO: Migrate old documentation and installation notes
+- [ ] TODO: Remove Arial and all inherited fonts
+- [ ] TODO: Remove all IE-specific CSS hacks
+- [ ] TODO: Remove text-shadow and alpha opacity

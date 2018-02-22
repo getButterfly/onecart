@@ -72,16 +72,16 @@ function ocart_get_option($option) {
             if ($option == 'main_image_height') return 300;
             if ($option == 'main_image_left_px') return 30;
             if ($option == 'product_thumbs') return 'default';
-            if ($option == 'seo_seperator_position') return 1;
-            if ($option == 'seo_seperator') return '';
+            if ($option == 'seo_separator_position') return 1;
+            if ($option == 'seo_separator') return '';
             if ($option == 'seo_hometitle') return get_bloginfo('name');
             if ($option == 'seo_homedesc') return get_bloginfo('description');
-            if ($option == 'seo_seperator_position_404') return 1;
-            if ($option == 'seo_seperator_404') return '';
+            if ($option == 'seo_separator_position_404') return 1;
+            if ($option == 'seo_separator_404') return '';
             if ($option == 'seo_hometitle_404') return __('404','ocart');
             if ($option == 'seo_homedesc_404') return get_bloginfo('description');
-            if ($option == 'seo_seperator_position_search') return 1;
-            if ($option == 'seo_seperator_search') return '';
+            if ($option == 'seo_separator_position_search') return 1;
+            if ($option == 'seo_separator_search') return '';
             if ($option == 'seo_hometitle_search') return __('Search Results','ocart');
             if ($option == 'seo_homedesc_search') return get_bloginfo('description');
             if ($option == 'default_expire_for_new') return 15;
@@ -125,8 +125,8 @@ function ocart_seo() {
 
     // Homepage
     if (is_home()) {
-        $sep = ocart_get_option('seo_seperator');
-		$sep_position = ocart_get_option('seo_seperator_position');
+        $sep = ocart_get_option('seo_separator');
+		$sep_position = ocart_get_option('seo_separator_position');
 		$title = ocart_get_option('seo_hometitle');
 		$desc = ocart_get_option('seo_homedesc');
 		$content .= '<title>';
@@ -140,8 +140,8 @@ function ocart_seo() {
 
 	// search
 	if (is_search()) {
-		$sep = ocart_get_option('seo_seperator_search');
-		$sep_position = ocart_get_option('seo_seperator_position_search');
+		$sep = ocart_get_option('seo_separator_search');
+		$sep_position = ocart_get_option('seo_separator_position_search');
 		$title = ocart_get_option('seo_hometitle_search');
 		$desc = ocart_get_option('seo_homedesc_search');
 		$content .= '<title>';
@@ -167,10 +167,10 @@ function ocart_seo() {
 			$sep = '';
 		} elseif (isset($term_meta['seosep']) && $term_meta['seosep'] == 'default') {
 			$sep = ' | '. get_bloginfo('name');
-		} else { // no seo seperator
+		} else { // no seo separator
 			$sep = ' | '. get_bloginfo('name');
 		}
-		$sep_position = ocart_get_option('seo_seperator_position');
+		$sep_position = ocart_get_option('seo_separator_position');
 		if (isset($term_meta['seotitle']) && !empty($term_meta['seotitle'])) {
 			$title = $term_meta['seotitle'];
 		} else {
@@ -192,8 +192,8 @@ function ocart_seo() {
 
 	// 404 not found
 	if (is_404()) {
-		$sep = ocart_get_option('seo_seperator_404');
-		$sep_position = ocart_get_option('seo_seperator_position_404');
+		$sep = ocart_get_option('seo_separator_404');
+		$sep_position = ocart_get_option('seo_separator_position_404');
 		$title = ocart_get_option('seo_hometitle_404');
 		$desc = ocart_get_option('seo_homedesc_404');
 		$content .= '<title>';
@@ -219,10 +219,10 @@ function ocart_seo() {
 			$sep = '';
 		} elseif (isset($seo_sep) && $seo_sep == 'default') {
 			$sep = ' | '. get_bloginfo('name');
-		} else { // no seo seperator
+		} else { // no seo separator
 			$sep = ' | '. get_bloginfo('name');
 		}
-		$sep_position = ocart_get_option('seo_seperator_position');
+		$sep_position = ocart_get_option('seo_separator_position');
 		if (isset($seo_title) && !empty($seo_title)) {
 			$title = $seo_title;
 		} else {
